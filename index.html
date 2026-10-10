@@ -1,0 +1,4057 @@
+<!DOCTYPE html>
+<html lang="tl" class="scroll-smooth bg-[#090b10]">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>eSUBLI: Pamana sa Sulat | Indigenous Kapampangan Kulitan App</title>
+  <meta name="description"
+    content="eSUBLI: Pamana sa Sulat. Tuklasin muli ang sinaunang sulat Kapampangan sa pagsasanay, studio at labanan. Ang opisyal na Android APK app para sa Kulitan.">
+  <link rel="icon" type="image/png" href="assets/images/logo.png">
+
+  <!-- External App Links & Files Configuration -->
+  <script src="app-links.js"></script>
+
+  <!-- Google Fonts: Cinzel, Cinzel Decorative, Plus Jakarta Sans, JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Cinzel+Decorative:wght@700;900&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=JetBrains+Mono:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+
+  <!-- FontAwesome 6 Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            serif: ['"Cinzel"', 'Georgia', 'serif'],
+            display: ['"Cinzel Decorative"', '"Cinzel"', 'serif'],
+            sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'Consolas', 'monospace'],
+          },
+          colors: {
+            esubli: {
+              parchmentLight: '#FFF8EA',
+              parchment: '#EFE2C9',
+              parchmentDark: '#D8C3A0',
+              borderGold: '#C59F58',
+              gold: '#DFB467',
+              goldLight: '#FDE3A7',
+              goldDark: '#99732B',
+              orange: '#D45A27',
+              orangeHover: '#EA6832',
+              orangeDark: '#A83E15',
+              charcoal: '#14161F',
+              charcoalDark: '#0C0D11',
+              surface: '#1A1E29',
+              surfaceCard: '#1E2332',
+              borderSlate: '#282F42'
+            }
+          },
+          boxShadow: {
+            'phone-3d': '-22px 30px 60px -10px rgba(0, 0, 0, 0.85), -6px 12px 25px rgba(0, 0, 0, 0.5), 0 0 25px rgba(223, 180, 103, 0.25)',
+            'glow-orange': '0 10px 30px -5px rgba(212, 90, 39, 0.65)',
+            'glow-gold': '0 0 35px rgba(223, 180, 103, 0.4)',
+            'medallion': '0 15px 35px rgba(0,0,0,0.7), inset 0 0 25px rgba(223, 180, 103, 0.5)'
+          },
+          animation: {
+            'float-phone': 'floatPhone 6s ease-in-out infinite',
+            'finger-trace': 'fingerTrace 4s ease-in-out infinite',
+            'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+          },
+          keyframes: {
+            floatPhone: {
+              '0%, 100%': { transform: 'rotateY(-22deg) rotateX(8.5deg) rotateZ(-2deg) translate3d(0, 0px, 30px)' },
+              '50%': { transform: 'rotateY(-18deg) rotateX(5.5deg) rotateZ(-1.2deg) translate3d(0, -12px, 45px)' },
+            },
+            fingerTrace: {
+              '0%': { transform: 'translate(45px, 30px) scale(0.9)', opacity: '0' },
+              '10%': { transform: 'translate(45px, 30px) scale(1)', opacity: '1' },
+              '25%': { transform: 'translate(25px, 95px)' },
+              '45%': { transform: 'translate(50px, 60px)' },
+              '70%': { transform: 'translate(80px, 95px)' },
+              '85%': { transform: 'translate(45px, 75px)', opacity: '1' },
+              '100%': { transform: 'translate(45px, 75px) scale(0.9)', opacity: '0' }
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Global Smooth Scrolling, Responsive Physics & Typography Rendering */
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 5.5rem;
+      overflow-x: hidden;
+      max-width: 100vw;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+    }
+    body {
+      overflow-x: hidden;
+      max-width: 100vw;
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    /* Filigree decorative frame */
+    .ornate-filigree-frame {
+      border: 1.5px solid rgba(197, 159, 88, 0.7);
+      position: relative;
+    }
+
+    .ornate-filigree-frame::before {
+      content: '';
+      position: absolute;
+      top: 6px;
+      left: 6px;
+      right: 6px;
+      bottom: 6px;
+      border: 1px solid rgba(197, 159, 88, 0.35);
+      pointer-events: none;
+    }
+
+    .corner-flourish {
+      position: absolute;
+      width: 26px;
+      height: 26px;
+      border-color: #C59F58;
+      pointer-events: none;
+      z-index: 20;
+    }
+
+    .corner-tl {
+      top: -2px;
+      left: -2px;
+      border-top: 3px solid #DFB467;
+      border-left: 3px solid #DFB467;
+    }
+
+    .corner-tr {
+      top: -2px;
+      right: -2px;
+      border-top: 3px solid #DFB467;
+      border-right: 3px solid #DFB467;
+    }
+
+    .corner-bl {
+      bottom: -2px;
+      left: -2px;
+      border-bottom: 3px solid #DFB467;
+      border-left: 3px solid #DFB467;
+    }
+
+    .corner-br {
+      bottom: -2px;
+      right: -2px;
+      border-bottom: 3px solid #DFB467;
+      border-right: 3px solid #DFB467;
+    }
+
+    /* Hero Gradient Fading from warm obsidian across left side */
+    .hero-obsidian-gradient {
+      background: linear-gradient(95deg,
+          rgba(16, 13, 11, 0.98) 0%,
+          rgba(16, 13, 11, 0.95) 35%,
+          rgba(16, 13, 11, 0.78) 47%,
+          rgba(16, 13, 11, 0.28) 58%,
+          transparent 68%);
+    }
+
+    /* Mobile gradient fallback */
+    @media (max-width: 1023px) {
+      .hero-obsidian-gradient {
+        background: linear-gradient(to bottom,
+            rgba(16, 13, 11, 0.98) 0%,
+            rgba(16, 13, 11, 0.92) 55%,
+            rgba(16, 13, 11, 0.96) 100%);
+      }
+    }
+
+    /* 3D Perspective phone container with high-depth foreshortening */
+    .phone-perspective {
+      perspective: 950px;
+      transform-style: preserve-3d;
+    }
+
+    .phone-tilted {
+      transform-style: preserve-3d;
+      transition: transform 0.28s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+
+    /* Hyper-Realistic 3D Extruded Titanium Bezel & Deep Contact Shadows */
+    .phone-3d-chassis {
+      transform-style: preserve-3d;
+      background: linear-gradient(145deg, #3d3020 0%, #261f14 30%, #151a24 70%, #0a0d13 100%);
+      border: 2px solid #DFB467;
+      box-shadow:
+        /* Physical 3D Chamfered Metal Edge Bevel (8mm physical depth) */
+        -1px 1px 0px #c59f58,
+        -2px 2px 0px #ad8945,
+        -3px 3px 0px #947233,
+        -4px 4px 0px #7a5c24,
+        -5px 5px 0px #604616,
+        -6px 6px 0px #47320d,
+        -7px 7px 0px #2e2006,
+        -8px 8px 0px #181103,
+        /* Metallic Specular Highlight & Bevel Lighting */
+        inset 1px 1px 2px rgba(255, 240, 200, 0.75),
+        inset -1px -1px 2px rgba(0, 0, 0, 0.8),
+        /* Atmospheric Floating Drop Shadows */
+        -30px 40px 65px -10px rgba(0, 0, 0, 0.95),
+        -12px 18px 30px -5px rgba(0, 0, 0, 0.7),
+        0 0 45px rgba(223, 180, 103, 0.35);
+    }
+
+    /* Curved Gorilla Glass Specular Glare across display */
+    .screen-specular-glare {
+      position: absolute;
+      inset: 0;
+      border-radius: 40px;
+      pointer-events: none;
+      z-index: 50;
+      overflow: hidden;
+    }
+
+    .screen-specular-glare::before {
+      content: '';
+      position: absolute;
+      top: -65%;
+      left: -65%;
+      width: 230%;
+      height: 230%;
+      background: linear-gradient(128deg,
+          rgba(255, 255, 255, 0.22) 0%,
+          rgba(255, 255, 255, 0.08) 22%,
+          rgba(255, 255, 255, 0.01) 38%,
+          transparent 52%);
+      transform: rotate(14deg);
+      pointer-events: none;
+    }
+
+    .screen-specular-glare::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 88% 12%, rgba(255, 240, 200, 0.14) 0%, transparent 58%);
+      pointer-events: none;
+    }
+
+    /* Realistic 3D Ambient Floor Shadow */
+    .phone-ambient-floor-shadow {
+      position: absolute;
+      bottom: -32px;
+      left: 12%;
+      right: 4%;
+      height: 42px;
+      background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.88) 0%, rgba(0, 0, 0, 0.45) 50%, transparent 75%);
+      filter: blur(14px);
+      transform: rotateX(75deg) rotateY(-20deg) translateZ(-40px);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* =========================================================================
+       3D CELESTIAL SKY SYSTEM: VOLUMETRIC PARCHMENT CLOUDS & 3D SOARING SWALLOWS
+       ========================================================================= */
+    .sky-3d-scene {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      perspective: 1100px;
+      transform-style: preserve-3d;
+      overflow: hidden;
+    }
+
+    /* 3D PARALLAX CLOUD LAYERS */
+    .cloud-layer-3d {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      transform-style: preserve-3d;
+      will-change: transform;
+      transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+
+    .cloud-layer-deep {
+      z-index: 3;
+    }
+
+    .cloud-layer-mid {
+      z-index: 4;
+    }
+
+    .cloud-layer-fore {
+      z-index: 6;
+    }
+
+    /* Volumetric Parchment Cloud Containers */
+    .volumetric-cloud {
+      position: absolute;
+      pointer-events: none;
+      will-change: transform;
+      filter: drop-shadow(0 8px 24px rgba(175, 130, 68, 0.22));
+    }
+
+    /* Continuous Panoramic Drift Keyframes */
+    .cloud-drift-slow {
+      animation: driftPanoramicSlow 68s linear infinite;
+    }
+
+    .cloud-drift-medium {
+      animation: driftPanoramicMid 52s linear infinite;
+    }
+
+    .cloud-drift-fast {
+      animation: driftPanoramicFast 38s linear infinite;
+    }
+
+    @keyframes driftPanoramicSlow {
+      0% {
+        transform: translate3d(-340px, 0, -100px);
+        opacity: 0;
+      }
+
+      10% {
+        opacity: 0.75;
+      }
+
+      85% {
+        opacity: 0.75;
+      }
+
+      100% {
+        transform: translate3d(115vw, 0, -100px);
+        opacity: 0;
+      }
+    }
+
+    @keyframes driftPanoramicMid {
+      0% {
+        transform: translate3d(-380px, 0, 0px);
+        opacity: 0;
+      }
+
+      8% {
+        opacity: 0.85;
+      }
+
+      88% {
+        opacity: 0.85;
+      }
+
+      100% {
+        transform: translate3d(115vw, 0, 0px);
+        opacity: 0;
+      }
+    }
+
+    @keyframes driftPanoramicFast {
+      0% {
+        transform: translate3d(-300px, 0, 80px);
+        opacity: 0;
+      }
+
+      12% {
+        opacity: 0.6;
+      }
+
+      82% {
+        opacity: 0.6;
+      }
+
+      100% {
+        transform: translate3d(115vw, 0, 80px);
+        opacity: 0;
+      }
+    }
+
+    /* =========================================================================
+       CLASSIC SILHOUETTE SOARING BIRDS (Faithful Ink Swallows & Graceful Flight)
+       ========================================================================= */
+    .bird-flock-wrap {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 5;
+      overflow: hidden;
+      transform-style: preserve-3d;
+      transition: transform 0.22s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+
+    .soaring-bird {
+      position: absolute;
+      pointer-events: none;
+      will-change: transform;
+    }
+
+    .bird-svg {
+      display: block;
+      color: #2D2017;
+      opacity: 0.92;
+      filter: drop-shadow(0 2px 3px rgba(45, 32, 23, 0.25));
+      transform-origin: 50% 50%;
+    }
+
+    /* Flapping Wing Cadence: flapping cycles + soaring glide */
+    .flap-wings-lead {
+      animation: flapMotionLead 2.2s ease-in-out infinite;
+    }
+
+    .flap-wings-fast {
+      animation: flapMotionFast 1.5s ease-in-out infinite;
+    }
+
+    .flap-wings-slow {
+      animation: flapMotionSlow 3.2s ease-in-out infinite;
+    }
+
+    @keyframes flapMotionLead {
+
+      0%,
+      100% {
+        transform: scaleY(1) translateY(0);
+      }
+
+      18% {
+        transform: scaleY(0.35) translateY(-2px);
+      }
+
+      32% {
+        transform: scaleY(1.1) translateY(1px);
+      }
+
+      48% {
+        transform: scaleY(0.4) translateY(-1.5px);
+      }
+
+      62% {
+        transform: scaleY(1) translateY(0);
+      }
+
+      75%,
+      95% {
+        transform: scaleY(0.9) translateY(0.5px);
+      }
+    }
+
+    @keyframes flapMotionFast {
+
+      0%,
+      100% {
+        transform: scaleY(1) translateY(0);
+      }
+
+      22% {
+        transform: scaleY(0.28) translateY(-2px);
+      }
+
+      44% {
+        transform: scaleY(1.08) translateY(1px);
+      }
+
+      66% {
+        transform: scaleY(0.36) translateY(-1.5px);
+      }
+
+      80%,
+      95% {
+        transform: scaleY(0.92) translateY(0);
+      }
+    }
+
+    @keyframes flapMotionSlow {
+
+      0%,
+      100% {
+        transform: scaleY(1) translateY(0);
+      }
+
+      16% {
+        transform: scaleY(0.42) translateY(-1px);
+      }
+
+      30% {
+        transform: scaleY(1.05) translateY(1px);
+      }
+
+      44% {
+        transform: scaleY(0.48) translateY(-1px);
+      }
+
+      58%,
+      95% {
+        transform: scaleY(0.88) translateY(0);
+      }
+    }
+
+    /* Flight Path 1: Lead Swallow circling gracefully above Mount Arayat peak */
+    .flight-path-1 {
+      animation: flightLoop1 22s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
+    }
+
+    @keyframes flightLoop1 {
+      0% {
+        transform: translate(0px, 0px) rotate(-3deg);
+      }
+
+      22% {
+        transform: translate(38px, -18px) rotate(2deg);
+      }
+
+      48% {
+        transform: translate(78px, -8px) rotate(-1deg);
+      }
+
+      72% {
+        transform: translate(45px, 16px) rotate(-5deg);
+      }
+
+      100% {
+        transform: translate(0px, 0px) rotate(-3deg);
+      }
+    }
+
+    /* Flight Path 2: Companion Swallow drifting higher in amber clouds */
+    .flight-path-2 {
+      animation: flightLoop2 28s ease-in-out infinite;
+    }
+
+    @keyframes flightLoop2 {
+      0% {
+        transform: translate(0px, 0px) rotate(2deg);
+      }
+
+      28% {
+        transform: translate(-32px, -20px) rotate(-3deg);
+      }
+
+      58% {
+        transform: translate(42px, -12px) rotate(4deg);
+      }
+
+      84% {
+        transform: translate(58px, 12px) rotate(0deg);
+      }
+
+      100% {
+        transform: translate(0px, 0px) rotate(2deg);
+      }
+    }
+
+    /* Flight Path 3: Swiftlet near right volcano slope */
+    .flight-path-3 {
+      animation: flightLoop3 17s ease-in-out infinite;
+    }
+
+    @keyframes flightLoop3 {
+      0% {
+        transform: translate(0px, 0px) scale(0.7) rotate(-4deg);
+      }
+
+      38% {
+        transform: translate(28px, -22px) scale(0.72) rotate(3deg);
+      }
+
+      74% {
+        transform: translate(52px, 8px) scale(0.68) rotate(-2deg);
+      }
+
+      100% {
+        transform: translate(0px, 0px) scale(0.7) rotate(-4deg);
+      }
+    }
+
+    /* Flight Path 4: Long-distance swallow swooping across from left to right */
+    .flight-path-4 {
+      animation: flightAcross 34s linear infinite;
+    }
+
+    @keyframes flightAcross {
+      0% {
+        transform: translate(-90px, 35px) scale(0.78) rotate(-5deg);
+        opacity: 0;
+      }
+
+      6% {
+        opacity: 0.92;
+      }
+
+      45% {
+        transform: translate(30px, -15px) scale(0.85) rotate(2deg);
+        opacity: 0.94;
+      }
+
+      88% {
+        opacity: 0.92;
+      }
+
+      100% {
+        transform: translate(150px, -40px) scale(0.75) rotate(5deg);
+        opacity: 0;
+      }
+    }
+
+    /* Flight Path 5: Distant horizon pair floating in clouds */
+    .flight-path-5 {
+      animation: flightHorizon 26s ease-in-out infinite;
+    }
+
+    @keyframes flightHorizon {
+
+      0%,
+      100% {
+        transform: translate(0px, 0px) scale(0.55) rotate(1deg);
+      }
+
+      50% {
+        transform: translate(-26px, -16px) scale(0.58) rotate(-3deg);
+      }
+    }
+
+    /* Flight Path 6: Agile swallow looping in western sky */
+    .flight-path-6 {
+      animation: flightLoop6 21s cubic-bezier(0.4, 0.1, 0.6, 0.9) infinite;
+    }
+
+    @keyframes flightLoop6 {
+      0% {
+        transform: translate(0px, 0px) scale(0.82) rotate(-2deg);
+      }
+
+      25% {
+        transform: translate(-34px, -18px) scale(0.84) rotate(-5deg);
+      }
+
+      50% {
+        transform: translate(28px, -26px) scale(0.8) rotate(3deg);
+      }
+
+      75% {
+        transform: translate(46px, 8px) scale(0.82) rotate(1deg);
+      }
+
+      100% {
+        transform: translate(0px, 0px) scale(0.82) rotate(-2deg);
+      }
+    }
+
+    /* Flight Path 7: Wingman swallow trailing in formation */
+    .flight-path-7 {
+      animation: flightLoop7 25s ease-in-out infinite 1.8s;
+    }
+
+    @keyframes flightLoop7 {
+      0% {
+        transform: translate(0px, 0px) scale(0.74) rotate(4deg);
+      }
+
+      30% {
+        transform: translate(38px, -16px) scale(0.76) rotate(-1deg);
+      }
+
+      65% {
+        transform: translate(62px, 12px) scale(0.72) rotate(-4deg);
+      }
+
+      85% {
+        transform: translate(18px, 16px) scale(0.74) rotate(2deg);
+      }
+
+      100% {
+        transform: translate(0px, 0px) scale(0.74) rotate(4deg);
+      }
+    }
+
+    /* Flight Path 8: Swiftlet swooping along eastern mountain ridge */
+    .flight-path-8 {
+      animation: flightLoop8 18s cubic-bezier(0.35, 0.1, 0.65, 0.9) infinite 3s;
+    }
+
+    @keyframes flightLoop8 {
+      0% {
+        transform: translate(0px, 0px) scale(0.68) rotate(-3deg);
+      }
+
+      35% {
+        transform: translate(-26px, -22px) scale(0.7) rotate(2deg);
+      }
+
+      70% {
+        transform: translate(42px, -8px) scale(0.66) rotate(-3deg);
+      }
+
+      100% {
+        transform: translate(0px, 0px) scale(0.68) rotate(-3deg);
+      }
+    }
+
+    /* Flight Path 9: High stratosphere swallow drifting peacefully in amber clouds */
+    .flight-path-9 {
+      animation: flightLoop9 32s ease-in-out infinite;
+    }
+
+    @keyframes flightLoop9 {
+
+      0%,
+      100% {
+        transform: translate(0px, 0px) scale(0.52) rotate(0deg);
+      }
+
+      45% {
+        transform: translate(36px, -14px) scale(0.54) rotate(3deg);
+      }
+
+      75% {
+        transform: translate(-20px, -8px) scale(0.5) rotate(-2deg);
+      }
+    }
+
+    /* Floating Golden Amber Sparkle/Petal particles near flowers */
+    .petal-float-1 {
+      animation: petalFloat1 12s ease-in-out infinite;
+    }
+
+    @keyframes petalFloat1 {
+
+      0%,
+      100% {
+        transform: translate3d(0, 0, 40px) rotate(0deg);
+        opacity: 0.25;
+      }
+
+      50% {
+        transform: translate3d(18px, -28px, 60px) rotate(45deg);
+        opacity: 0.85;
+      }
+    }
+
+    .petal-float-2 {
+      animation: petalFloat2 15s ease-in-out infinite 2s;
+    }
+
+    @keyframes petalFloat2 {
+
+      0%,
+      100% {
+        transform: translate3d(0, 0, 30px) rotate(0deg);
+        opacity: 0.2;
+      }
+
+      50% {
+        transform: translate3d(-14px, -36px, 50px) rotate(-30deg);
+        opacity: 0.8;
+      }
+    }
+
+    /* Gold gradient text */
+    .gold-text-gradient {
+      background: linear-gradient(135deg, #FFF6DD 0%, #DFB467 50%, #C59F58 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    /* Slider track for phone screens */
+    .phone-slides-track {
+      display: flex;
+      width: 300%;
+      height: 100%;
+      transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .phone-slide {
+      width: 33.333333%;
+      height: 100%;
+      flex-shrink: 0;
+    }
+
+    /* Scrollbar hide */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+
+
+    /* =========================================================================
+       PAGE 2: DID YOU KNOW? (SULAT KAPAMPANGAN) IMMERSIVE ANIMATIONS
+       ========================================================================= */
+    .dyk-reveal {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1), transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: opacity, transform;
+    }
+
+    .dyk-reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .dyk-reveal-scale {
+      opacity: 0;
+      transform: translateY(36px) scale(0.96);
+      transition: opacity 0.95s cubic-bezier(0.16, 1, 0.3, 1), transform 0.95s cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: opacity, transform;
+    }
+
+    .dyk-reveal-scale.is-visible {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+
+    /* Syllable Calligraphy Drop-in Cascade */
+    .syllable-drop-in {
+      animation: syllableInkDrop 0.55s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+      will-change: transform, opacity, filter;
+    }
+
+    @keyframes syllableInkDrop {
+      0% {
+        opacity: 0;
+        transform: translateY(-24px) scale(0.82);
+        filter: blur(3px) drop-shadow(0 0 16px rgba(223, 180, 103, 0.8));
+      }
+
+      70% {
+        transform: translateY(3px) scale(1.04);
+        filter: blur(0px) drop-shadow(0 0 8px rgba(223, 180, 103, 0.4));
+      }
+
+      100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        filter: blur(0px) drop-shadow(0 0 0px transparent);
+      }
+    }
+
+    /* Fact Cards Shimmer Sheen on Hover */
+    .dyk-card-shine {
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1), border-color 0.3s ease, box-shadow 0.35s ease;
+    }
+
+    .dyk-card-shine::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -120%;
+      width: 70%;
+      height: 100%;
+      background: linear-gradient(90deg,
+          transparent,
+          rgba(223, 180, 103, 0.16),
+          rgba(255, 255, 255, 0.08),
+          transparent);
+      transform: skewX(-25deg);
+      transition: left 0.85s cubic-bezier(0.2, 0.8, 0.2, 1);
+      pointer-events: none;
+      z-index: 10;
+    }
+
+    .dyk-card-shine:hover::before {
+      left: 170%;
+    }
+
+    .dyk-card-shine:hover {
+      box-shadow: 0 24px 50px -12px rgba(0, 0, 0, 0.9), 0 0 30px rgba(223, 180, 103, 0.2);
+    }
+
+    /* Ambient Glowing Orbs Breathing Animation */
+    @keyframes dykOrbPulse {
+
+      0%,
+      100% {
+        transform: scale(1) translate(0, 0);
+        opacity: 0.6;
+      }
+
+      50% {
+        transform: scale(1.15) translate(20px, -15px);
+        opacity: 0.85;
+      }
+    }
+
+    .dyk-orb-anim-1 {
+      animation: dykOrbPulse 14s ease-in-out infinite;
+    }
+
+    .dyk-orb-anim-2 {
+      animation: dykOrbPulse 18s ease-in-out infinite reverse;
+    }
+
+    /* Word Switcher crossfade transition helper */
+    .showcase-text-fade {
+      animation: showcaseTextIn 0.35s ease-out forwards;
+    }
+
+    @keyframes showcaseTextIn {
+      0% {
+        opacity: 0;
+        transform: translateY(6px);
+      }
+
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* =========================================================================
+       PAGE 2 TO PAGE 3: SEAMLESS ILLUMINATION & MOTION TRANSITION
+       ========================================================================= */
+      .page2to3-beam-glow {
+        animation: page2to3BeamShimmer 4s ease-in-out infinite alternate;
+      }
+
+      @keyframes page2to3BeamShimmer {
+        0% {
+          opacity: 0.5;
+          filter: blur(1px) drop-shadow(0 0 10px rgba(223, 180, 103, 0.4));
+        }
+
+        50% {
+          opacity: 0.95;
+          filter: blur(2px) drop-shadow(0 0 24px rgba(255, 215, 120, 0.8));
+        }
+
+        100% {
+          opacity: 0.5;
+          filter: blur(1px) drop-shadow(0 0 10px rgba(223, 180, 103, 0.4));
+        }
+      }
+
+      /* Trace Studio Card Scroll Entrance Flare & Shimmer Sheen */
+      .trace-studio-card-glow {
+        position: relative;
+        overflow: hidden;
+        transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.6s ease, border-color 0.6s ease;
+        will-change: transform, box-shadow;
+      }
+
+      .trace-studio-card-glow::before {
+        content: '';
+        position: absolute;
+        top: -60%;
+        left: -130%;
+        width: 70%;
+        height: 220%;
+        background: linear-gradient(105deg,
+            transparent,
+            rgba(223, 180, 103, 0.22),
+            rgba(255, 255, 255, 0.12),
+            transparent);
+        transform: skewX(-22deg);
+        transition: left 1.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+        pointer-events: none;
+        z-index: 20;
+      }
+
+      .trace-studio-card-glow.is-revealed::before {
+        left: 190%;
+      }
+
+      .trace-studio-card-glow.is-revealed {
+        animation: traceStudioCardGlowFlare 1.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      }
+
+      @keyframes traceStudioCardGlowFlare {
+        0% {
+          box-shadow: 0 16px 50px rgba(0, 0, 0, 0.6), 0 0 0 rgba(223, 180, 103, 0);
+          border-color: rgba(223, 180, 103, 0.3);
+        }
+
+        45% {
+          box-shadow: 0 24px 70px rgba(0, 0, 0, 0.85), 0 0 45px rgba(223, 180, 103, 0.5);
+          border-color: rgba(223, 180, 103, 0.95);
+        }
+
+        100% {
+          box-shadow: 0 16px 50px rgba(0, 0, 0, 0.6), 0 0 25px rgba(223, 180, 103, 0.25);
+          border-color: rgba(223, 180, 103, 0.5);
+        }
+      }
+
+      /* Trace Studio Canvas Guide Breathing Light */
+      .canvas-guide-anim {
+        animation: traceGuideBreath 3.5s ease-in-out infinite;
+      }
+
+      @keyframes traceGuideBreath {
+
+        0%,
+        100% {
+          filter: drop-shadow(0 0 10px rgba(223, 180, 103, 0.3));
+          opacity: 0.5;
+        }
+
+        50% {
+          filter: drop-shadow(0 0 22px rgba(255, 215, 120, 0.75));
+          opacity: 0.8;
+        }
+      }
+
+      /* =========================================================================
+       UNIVERSAL CINEMATIC SCROLL REVEAL & LUXURY MOTION SYSTEM
+       ========================================================================= */
+      .esubli-reveal {
+        opacity: 0;
+        transform: translateY(32px);
+        transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1), transform 0.85s cubic-bezier(0.16, 1, 0.3, 1), filter 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+        filter: blur(4px);
+        will-change: opacity, transform, filter;
+      }
+
+      .esubli-reveal.is-revealed {
+        opacity: 1;
+        transform: translateY(0);
+        filter: blur(0px);
+      }
+
+      .esubli-reveal-scale {
+        opacity: 0;
+        transform: translateY(28px) scale(0.95);
+        transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1), filter 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+        filter: blur(4px);
+        will-change: opacity, transform, filter;
+      }
+
+      .esubli-reveal-scale.is-revealed {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        filter: blur(0px);
+      }
+
+      .esubli-reveal-left {
+        opacity: 0;
+        transform: translateX(-35px);
+        transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1), transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+        will-change: opacity, transform;
+      }
+
+      .esubli-reveal-left.is-revealed {
+        opacity: 1;
+        transform: translateX(0);
+      }
+
+      .esubli-reveal-right {
+        opacity: 0;
+        transform: translateX(35px);
+        transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1), transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+        will-change: opacity, transform;
+      }
+
+      .esubli-reveal-right.is-revealed {
+        opacity: 1;
+        transform: translateX(0);
+      }
+
+      /* 3D Tactile Card Tilt with Dynamic Specular Glare */
+      .tilt-card {
+        transition: transform 0.28s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.35s ease, border-color 0.3s ease;
+        transform-style: preserve-3d;
+        will-change: transform;
+        position: relative;
+      }
+
+      .tilt-card-glare {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(223, 180, 103, 0.22) 0%, transparent 60%);
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        border-radius: inherit;
+        z-index: 20;
+      }
+
+      .tilt-card:hover .tilt-card-glare {
+        opacity: 1;
+      }
+
+      /* Continuous Shimmer Sweeps on Badges & Highlight Elements */
+      .shimmer-badge {
+        position: relative;
+        overflow: hidden;
+      }
+
+      .shimmer-badge::after {
+        content: '';
+        position: absolute;
+        top: -50%;
+        left: -150%;
+        width: 100%;
+        height: 200%;
+        background: linear-gradient(90deg,
+            transparent,
+            rgba(255, 245, 210, 0.35),
+            transparent);
+        transform: rotate(25deg);
+        animation: badgeShimmerLoop 4s ease-in-out infinite;
+        pointer-events: none;
+      }
+
+      @keyframes badgeShimmerLoop {
+
+        0%,
+        65% {
+          left: -150%;
+        }
+
+        100% {
+          left: 200%;
+        }
+      }
+
+      /* Golden Pulsing Halo for CTA buttons */
+      .pulse-glow-gold {
+        animation: pulseGlowGold 3.2s ease-in-out infinite;
+      }
+
+      @keyframes pulseGlowGold {
+
+        0%,
+        100% {
+          box-shadow: 0 10px 30px -5px rgba(212, 90, 39, 0.65), 0 0 15px rgba(223, 180, 103, 0.3);
+        }
+
+        50% {
+          box-shadow: 0 14px 40px -3px rgba(212, 90, 39, 0.85), 0 0 30px rgba(223, 180, 103, 0.65);
+        }
+      }
+
+      /* Interactive Trace Studio Canvas Glow Feedback */
+      .canvas-drawing-active {
+        box-shadow: 0 0 35px rgba(223, 180, 103, 0.5), inset 0 0 25px rgba(212, 90, 39, 0.3) !important;
+        border-color: #DFB467 !important;
+        transition: box-shadow 0.2s ease, border-color 0.2s ease;
+      /* Persistent Sticky / Fixed Navigation Bar with Scroll Glow Elevation */
+      #mainNavbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        width: 100%;
+        z-index: 50;
+        transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      #mainNavbar.nav-scrolled {
+        background-color: rgba(6, 8, 14, 0.98) !important;
+        border-bottom-color: rgba(223, 180, 103, 0.45) !important;
+        box-shadow: 0 10px 35px -5px rgba(0, 0, 0, 0.92), 0 0 15px rgba(223, 180, 103, 0.12) !important;
+      }
+
+  </style>
+</head>
+
+<body
+  class="bg-[#0C0D11] text-slate-200 font-sans antialiased selection:bg-esubli-orange selection:text-white min-h-screen flex flex-col overflow-x-hidden">
+
+  <!-- Atmospheric Floating Golden Heritage Embers Canvas -->
+  <canvas id="heritageParticlesCanvas" class="fixed inset-0 pointer-events-none z-[1] opacity-70"></canvas>
+
+
+  <!-- =====================================================================
+       2. NAVIGATION BAR (Top Header)
+       ===================================================================== -->
+  <!-- Top Header / Navigation Bar (Styled to match #06080E Did You Know background) -->
+  <nav id="mainNavbar"
+    class="fixed top-0 left-0 right-0 w-full z-50 bg-[#06080E]/95 backdrop-blur-md border-b border-esubli-borderGold/30 shadow-[0_4px_30px_rgba(6,8,14,0.85)] transition-all duration-300">
+    <!-- Golden Scroll Progress Indicator Bar -->
+    <div id="navScrollProgress"
+      class="absolute bottom-0 left-0 h-[2.5px] bg-gradient-to-r from-esubli-orange via-esubli-gold to-amber-200 shadow-[0_0_12px_rgba(223,180,103,0.8)] transition-all duration-75 w-0 pointer-events-none z-[51]">
+    </div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+
+      <!-- Left: Pure Transparent App Emblem & bold serif brand text (No white box) -->
+      <a href="#" class="flex items-center gap-3 group">
+        <div class="h-12 w-auto flex items-center justify-center group-hover:scale-105 transition-transform">
+          <img src="assets/images/logo.png" alt="eSUBLI App Logo"
+            class="h-12 w-auto object-contain filter drop-shadow-[0_2px_8px_rgba(0,0,0,0.5)]"
+            onerror="this.onerror=null; this.src='assets/images/logo.jpg';">
+        </div>
+
+        <div>
+          <div class="flex items-baseline">
+            <span class="font-serif font-bold text-2xl text-esubli-orange tracking-tight">e</span>
+            <span class="font-serif font-extrabold text-2xl tracking-wider text-white">SUBLI</span>
+          </div>
+          <span class="text-[9px] uppercase tracking-widest text-esubli-gold font-bold block -mt-1">Pamana sa
+            Sulat</span>
+        </div>
+      </a>
+
+      <!-- Center Navigation Links: About, Did You Know?, Try Interactive -->
+      <div class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-300">
+        <a href="#about" class="hover:text-esubli-gold transition-colors" data-i18n="nav_about">About</a>
+        <a href="#did-you-know" class="hover:text-esubli-gold transition-colors" data-i18n="nav_dyk">Did You Know?</a>
+        <a href="#trace-studio" class="hover:text-esubli-gold transition-colors" data-i18n="nav_trace">Try
+          Interactive</a>
+      </div>
+
+      <!-- Right Action Controls: Multilingual Switcher + Download Buttons -->
+      <div class="flex items-center gap-2 sm:gap-3">
+
+        <!-- MULTILINGUAL LANGUAGE SWITCHER (Header Desktop/Tablet) -->
+        <div id="siteLangSwitcher"
+          class="hidden sm:flex items-center p-1 rounded-full bg-[#121622]/95 border border-esubli-gold/40 shadow-inner">
+          <span class="text-esubli-gold text-[10px] pl-1.5 pr-1 hidden sm:inline" title="Select Language">
+            <i class="fa-solid fa-globe"></i>
+          </span>
+          <button onclick="setSiteLanguage('en')" id="langBtnEn"
+            class="px-2.5 py-1 rounded-full text-xs font-mono font-bold transition-all duration-300 bg-esubli-orange text-white shadow-glow-orange scale-105"
+            title="English">
+            EN
+          </button>
+          <button onclick="setSiteLanguage('tl')" id="langBtnTl"
+            class="px-2.5 py-1 rounded-full text-xs font-mono font-bold transition-all duration-300 text-slate-400 hover:text-white"
+            title="Tagalog (Filipino)">
+            TL
+          </button>
+          <button onclick="setSiteLanguage('kpm')" id="langBtnKpm"
+            class="px-2.5 py-1 rounded-full text-xs font-mono font-bold transition-all duration-300 text-slate-400 hover:text-white"
+            title="Kapampangan (Amánung Sísuan)">
+            KPM
+          </button>
+        </div>
+
+        <!-- Download APK Button -->
+        <button onclick="navigateToDownloadSection('apk', this)"
+          class="bg-[#d45a27] hover:bg-[#ea6832] text-white text-xs sm:text-sm font-bold uppercase tracking-wider px-4 sm:px-6 py-2.5 rounded-full shadow-glow-orange hover:scale-105 active:scale-95 transition-all flex items-center gap-2">
+          <i class="fa-solid fa-download text-xs"></i>
+          <span data-i18n="nav_btn_apk">DOWNLOAD APK</span>
+        </button>
+
+        <!-- Play Store Button -->
+        <button onclick="navigateToDownloadSection('playstore', this)"
+          class="hidden lg:flex items-center gap-2 px-4 py-2.5 rounded-full bg-[#0E1320] hover:bg-[#161D30] border border-slate-700/80 hover:border-esubli-gold text-slate-200 text-xs font-semibold transition hover:scale-105 active:scale-95 shadow-sm">
+          <svg class="w-3.5 h-3.5 shrink-0" viewBox="0 0 29 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M13.54 15.28.12 29.34a3.64 3.64 0 0 0 5.33 2.16l15.1-8.6z" fill="#EA4335"/>
+            <path d="m27.11 12.89-6.53-3.74-7.35 6.45 7.38 7.28 6.48-3.7a3.55 3.55 0 0 0 0-6.29z" fill="#FBBC04"/>
+            <path d="M.12 2.66a3.46 3.46 0 0 0-.12.92v24.84a3.66 3.66 0 0 0 .12.92L14 15.64Z" fill="#4285F4"/>
+            <path d="m13.64 16 6.94-6.85L5.5.51A3.72 3.72 0 0 0 3.63 0 3.64 3.64 0 0 0 .12 2.65Z" fill="#34A853"/>
+          </svg>
+          <span>Play Store</span>
+        </button>
+
+        <!-- Mobile Menu Toggle Button -->
+        <button id="mobileNavToggle" class="md:hidden text-slate-300 text-xl p-2 hover:text-white"
+          aria-label="Open navigation menu">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+
+    </div>
+
+    <!-- Mobile Drawer -->
+    <div id="mobileDrawer"
+      class="hidden md:hidden bg-[#06080E]/98 backdrop-blur-md border-b border-esubli-borderGold/30 px-6 py-4 space-y-3 text-sm max-h-[calc(100vh-5rem)] overflow-y-auto">
+      <!-- Mobile Language Switcher Row -->
+      <div class="flex items-center justify-between pb-3 border-b border-slate-800">
+        <span class="text-xs text-slate-300 font-medium flex items-center gap-1.5">
+          <i class="fa-solid fa-globe text-esubli-gold"></i>
+          <span>Wika / Language:</span>
+        </span>
+        <div class="flex items-center p-0.5 rounded-full bg-[#121622] border border-esubli-gold/40 font-mono text-xs">
+          <button onclick="setSiteLanguage('en')" id="mobLangBtnEn"
+            class="px-2.5 py-1 rounded-full font-bold bg-esubli-orange text-white">EN</button>
+          <button onclick="setSiteLanguage('tl')" id="mobLangBtnTl"
+            class="px-2.5 py-1 rounded-full font-bold text-slate-400 hover:text-white">TL</button>
+          <button onclick="setSiteLanguage('kpm')" id="mobLangBtnKpm"
+            class="px-2.5 py-1 rounded-full font-bold text-slate-400 hover:text-white">KPM</button>
+        </div>
+      </div>
+      <a href="#about" onclick="toggleMobileMenu()" class="block text-slate-300 hover:text-esubli-gold py-1"
+        data-i18n="nav_about">About</a>
+      <a href="#did-you-know" onclick="toggleMobileMenu()" class="block text-slate-300 hover:text-esubli-gold py-1"
+        data-i18n="nav_dyk">Did You Know?</a>
+      <a href="#trace-studio" onclick="toggleMobileMenu()" class="block text-slate-300 hover:text-esubli-gold py-1"
+        data-i18n="nav_trace">Try Interactive</a>
+    </div>
+  </nav>
+
+  <!-- Spacer to preserve original flow height under fixed navbar -->
+  <div class="h-20 w-full shrink-0" aria-hidden="true"></div>
+
+  <!-- =====================================================================
+           3. HERO SECTION (Landscape Split Layout, Mount Arayat background & Filipino Filigree)
+           ===================================================================== -->
+  <!-- =====================================================================
+           3. HERO SECTION (Full-Screen Edge-to-Edge Mount Arayat Artwork & 3D Phone)
+           ===================================================================== -->
+  <section id="about"
+    class="relative w-full overflow-hidden border-b border-esubli-borderGold/30 min-h-[640px] lg:min-h-[720px] flex items-center bg-[#1E1713]">
+
+    <!-- Background: Antique Mount Arayat Artwork covering full width edge-to-edge -->
+    <div class="absolute inset-0 z-0 pointer-events-none">
+      <img id="bg-image" src="assets/images/background.jpg" alt="Mount Arayat Antique Parchment Artwork"
+        class="w-full h-full object-cover pointer-events-none transition-all duration-700"
+        style="object-position: 60% 46%;">
+
+      <!-- Smooth Dark Espresso Gradient covering left half for text legibility -->
+      <div class="absolute inset-0 hero-obsidian-gradient pointer-events-none"></div>
+
+      <!-- Subtle Top & Bottom Vignette Blend into Navbar and Features Section -->
+      <div
+        class="absolute inset-0 pointer-events-none bg-gradient-to-b from-[#10141D]/35 via-transparent to-[#0E1118]/65">
+      </div>
+    </div>
+
+    <!-- =================================================================
+             3D CELESTIAL SKY: VOLUMETRIC PARCHMENT CLOUDS & 3D WINGED SWALLOWS
+             ================================================================= -->
+    <div class="sky-3d-scene" aria-hidden="true">
+
+      <!-- 1. DEEP SKY CLOUD LAYER (Distant golden wisps) -->
+      <div id="deepCloudsLayer" class="cloud-layer-3d cloud-layer-deep">
+        <!-- Distant wisp 1 -->
+        <div class="volumetric-cloud cloud-drift-slow" style="top: 8%; left: -5%;">
+          <svg viewBox="0 0 280 60" class="w-72 sm:w-96 h-auto" fill="none">
+            <path
+              d="M 20 40 C 5 40, 0 28, 8 18 C 18 6, 45 8, 60 16 C 78 4, 115 5, 134 15 C 152 5, 195 8, 212 20 C 232 12, 258 18, 264 30 C 270 40, 250 42, 235 42 Z"
+              fill="url(#deepCloudGrad1)" filter="blur(2px)" />
+            <defs>
+              <radialGradient id="deepCloudGrad1" cx="50%" cy="30%" r="70%">
+                <stop offset="0%" stop-color="#FFF8E8" stop-opacity="0.45" />
+                <stop offset="60%" stop-color="#ECD4AF" stop-opacity="0.25" />
+                <stop offset="100%" stop-color="#D2B080" stop-opacity="0" />
+              </radialGradient>
+            </defs>
+          </svg>
+        </div>
+        <!-- Distant wisp 2 -->
+        <div class="volumetric-cloud cloud-drift-slow" style="top: 24%; left: 45%; animation-delay: -32s;">
+          <svg viewBox="0 0 220 50" class="w-60 sm:w-80 h-auto" fill="none">
+            <path
+              d="M 15 35 C 5 35, 0 25, 6 15 C 15 5, 38 6, 50 14 C 65 4, 98 5, 112 14 C 128 6, 160 8, 172 18 C 188 12, 208 18, 212 28 C 215 35, 200 36, 188 36 Z"
+              fill="url(#deepCloudGrad2)" filter="blur(2.2px)" />
+            <defs>
+              <radialGradient id="deepCloudGrad2" cx="50%" cy="30%" r="70%">
+                <stop offset="0%" stop-color="#FFF8E8" stop-opacity="0.4" />
+                <stop offset="60%" stop-color="#ECD4AF" stop-opacity="0.2" />
+                <stop offset="100%" stop-color="#D2B080" stop-opacity="0" />
+              </radialGradient>
+            </defs>
+          </svg>
+        </div>
+      </div>
+
+      <!-- 2. MID-SKY VOLUMETRIC CUMULUS CLOUDS (With traditional golden filigree crests) -->
+      <div id="midCloudsLayer" class="cloud-layer-3d cloud-layer-mid">
+        <!-- Volumetric Cumulus 1 -->
+        <div class="volumetric-cloud cloud-drift-medium" style="top: 13%; left: 8%;">
+          <svg viewBox="0 0 260 75" class="w-64 sm:w-84 h-auto" fill="none">
+            <path
+              d="M 32 54 C 14 54, 4 42, 10 28 C 20 12, 52 14, 64 22 C 76 10, 110 8, 128 20 C 144 8, 184 10, 200 24 C 222 18, 248 26, 252 42 C 254 54, 235 54, 220 54 Z"
+              fill="url(#midCloudGrad1)" filter="blur(1.2px)" />
+            <path d="M 38 48 C 50 48, 60 38, 74 40 C 86 32, 114 32, 126 42 C 140 36, 160 42, 174 48"
+              stroke="rgba(223, 180, 103, 0.45)" stroke-width="1.6" stroke-linecap="round" />
+            <defs>
+              <radialGradient id="midCloudGrad1" cx="50%" cy="30%" r="70%">
+                <stop offset="0%" stop-color="#FFFDF7" stop-opacity="0.65" />
+                <stop offset="45%" stop-color="#F5E4C8" stop-opacity="0.45" />
+                <stop offset="100%" stop-color="#DFC090" stop-opacity="0.05" />
+              </radialGradient>
+            </defs>
+          </svg>
+        </div>
+        <!-- Volumetric Cumulus 2 -->
+        <div class="volumetric-cloud cloud-drift-medium" style="top: 27%; left: 38%; animation-delay: -24s;">
+          <svg viewBox="0 0 230 65" class="w-56 sm:w-72 h-auto" fill="none">
+            <path
+              d="M 28 48 C 12 48, 4 38, 8 26 C 18 12, 45 14, 56 20 C 68 10, 98 8, 114 18 C 128 8, 164 10, 178 22 C 196 16, 218 24, 222 38 C 224 48, 208 48, 195 48 Z"
+              fill="url(#midCloudGrad2)" filter="blur(1.4px)" />
+            <path d="M 32 44 C 44 44, 52 36, 64 37 C 76 30, 100 30, 112 39" stroke="rgba(223, 180, 103, 0.4)"
+              stroke-width="1.5" stroke-linecap="round" />
+            <defs>
+              <radialGradient id="midCloudGrad2" cx="50%" cy="30%" r="70%">
+                <stop offset="0%" stop-color="#FFFDF7" stop-opacity="0.6" />
+                <stop offset="45%" stop-color="#F5E4C8" stop-opacity="0.4" />
+                <stop offset="100%" stop-color="#DFC090" stop-opacity="0.05" />
+              </radialGradient>
+            </defs>
+          </svg>
+        </div>
+        <!-- Volumetric Cumulus 3 (High in Sky above Mountain Peak) -->
+        <div class="volumetric-cloud cloud-drift-medium opacity-35" style="top: 8%; left: 75%; animation-delay: -40s;">
+          <svg viewBox="0 0 210 60" class="w-52 sm:w-68 h-auto" fill="none">
+            <path
+              d="M 24 44 C 10 44, 2 34, 6 24 C 15 10, 40 12, 50 18 C 62 8, 90 7, 105 16 C 118 7, 150 9, 162 20 C 178 14, 198 22, 202 34 C 204 44, 190 44, 178 44 Z"
+              fill="url(#midCloudGrad3)" filter="blur(1.3px)" />
+            <defs>
+              <radialGradient id="midCloudGrad3" cx="50%" cy="30%" r="70%">
+                <stop offset="0%" stop-color="#FFFDF7" stop-opacity="0.55" />
+                <stop offset="45%" stop-color="#F5E4C8" stop-opacity="0.38" />
+                <stop offset="100%" stop-color="#DFC090" stop-opacity="0.05" />
+              </radialGradient>
+            </defs>
+          </svg>
+        </div>
+      </div>
+
+      <!-- 3. CLASSIC SOARING SILHOUETTE BIRDS (9 Swallows) -->
+      <div id="birdsFlockOverlay" class="bird-flock-wrap">
+
+        <!-- Bird 1: Lead Swallow soaring above Mount Arayat Peak -->
+        <div class="soaring-bird flight-path-1" style="top: 22%; left: 54%;">
+          <svg class="bird-svg flap-wings-lead w-7 h-4 sm:w-8 sm:h-5" viewBox="0 0 50 30" fill="currentColor">
+            <path d="M 0 14 Q 13 0, 25 10 Q 37 0, 50 14 Q 37 9, 25 24 Q 13 9, 0 14 Z" />
+          </svg>
+        </div>
+
+        <!-- Bird 2: Companion Swallow soaring in upper amber clouds -->
+        <div class="soaring-bird flight-path-2" style="top: 14%; left: 63%;">
+          <svg class="bird-svg flap-wings-slow w-6 h-3.5 sm:w-7 sm:h-4" viewBox="0 0 50 30" fill="currentColor">
+            <path d="M 0 14 Q 13 0, 25 10 Q 37 0, 50 14 Q 37 9, 25 24 Q 13 9, 0 14 Z" />
+          </svg>
+        </div>
+
+        <!-- Bird 3: Distant Swift swooping along eastern mountain ridge -->
+        <div class="soaring-bird flight-path-3" style="top: 29%; left: 69%;">
+          <svg class="bird-svg flap-wings-fast w-5 h-3" viewBox="0 0 50 30" fill="currentColor">
+            <path d="M 0 14 Q 13 0, 25 10 Q 37 0, 50 14 Q 37 9, 25 24 Q 13 9, 0 14 Z" />
+          </svg>
+        </div>
+
+        <!-- Bird 4: Gliding Swallow crossing the open sky -->
+        <div class="soaring-bird flight-path-4" style="top: 19%; left: 45%;">
+          <svg class="bird-svg flap-wings-lead w-6 h-3.5 sm:w-7 sm:h-4" viewBox="0 0 50 30" fill="currentColor">
+            <path d="M 0 14 Q 13 0, 25 10 Q 37 0, 50 14 Q 37 9, 25 24 Q 13 9, 0 14 Z" />
+          </svg>
+        </div>
+
+        <!-- Bird 5: Distant pair trailing in clouds -->
+        <div class="soaring-bird flight-path-5" style="top: 10%; left: 72%;">
+          <svg class="bird-svg flap-wings-slow w-4 h-2.5" viewBox="0 0 50 30" fill="currentColor">
+            <path d="M 0 14 Q 13 0, 25 10 Q 37 0, 50 14 Q 37 9, 25 24 Q 13 9, 0 14 Z" />
+          </svg>
+        </div>
+
+        <!-- Bird 6: Agile Swallow looping in western sky -->
+        <div class="soaring-bird flight-path-6" style="top: 25%; left: 41%;">
+          <svg class="bird-svg flap-wings-fast w-6 h-3.5 sm:w-7 sm:h-4" viewBox="0 0 50 30" fill="currentColor">
+            <path d="M 0 14 Q 13 0, 25 10 Q 37 0, 50 14 Q 37 9, 25 24 Q 13 9, 0 14 Z" />
+          </svg>
+        </div>
+
+        <!-- Bird 7: Wingman Swallow trailing in formation -->
+        <div class="soaring-bird flight-path-7" style="top: 17%; left: 57%;">
+          <svg class="bird-svg flap-wings-lead w-5 h-3 sm:w-6 sm:h-3.5" viewBox="0 0 50 30" fill="currentColor">
+            <path d="M 0 14 Q 13 0, 25 10 Q 37 0, 50 14 Q 37 9, 25 24 Q 13 9, 0 14 Z" />
+          </svg>
+        </div>
+
+        <!-- Bird 8: Swiftlet swooping along eastern mountain ridge -->
+        <div class="soaring-bird flight-path-8" style="top: 32%; left: 66%;">
+          <svg class="bird-svg flap-wings-fast w-5 h-3" viewBox="0 0 50 30" fill="currentColor">
+            <path d="M 0 14 Q 13 0, 25 10 Q 37 0, 50 14 Q 37 9, 25 24 Q 13 9, 0 14 Z" />
+          </svg>
+        </div>
+
+        <!-- Bird 9: High stratosphere swallow drifting peacefully in amber clouds -->
+        <div class="soaring-bird flight-path-9" style="top: 8%; left: 50%;">
+          <svg class="bird-svg flap-wings-slow w-4 h-2.5" viewBox="0 0 50 30" fill="currentColor">
+            <path d="M 0 14 Q 13 0, 25 10 Q 37 0, 50 14 Q 37 9, 25 24 Q 13 9, 0 14 Z" />
+          </svg>
+        </div>
+
+      </div>
+
+      <!-- 4. FOREGROUND SUNLIT MIST LAYER (Soft golden mist floating in front of mountain) -->
+      <div id="foreCloudsLayer" class="cloud-layer-3d cloud-layer-fore">
+        <div class="volumetric-cloud cloud-drift-fast" style="top: 34%; left: 20%; animation-delay: -12s;">
+          <svg viewBox="0 0 280 60" class="w-72 sm:w-96 h-auto" fill="none">
+            <path
+              d="M 30 45 C 10 45, 0 34, 6 22 C 16 10, 48 12, 60 18 C 76 8, 110 6, 128 16 C 146 6, 188 8, 204 20 C 226 14, 256 22, 260 36 C 262 45, 240 45, 225 45 Z"
+              fill="url(#foreCloudGrad1)" filter="blur(2.5px)" />
+            <defs>
+              <radialGradient id="foreCloudGrad1" cx="50%" cy="30%" r="70%">
+                <stop offset="0%" stop-color="#FFF8E7" stop-opacity="0.38" />
+                <stop offset="50%" stop-color="#F2DEC0" stop-opacity="0.22" />
+                <stop offset="100%" stop-color="#DFC090" stop-opacity="0" />
+              </radialGradient>
+            </defs>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Subtle Golden Petal Embers drifting near plumeria flowers -->
+      <div
+        class="absolute petal-float-1 w-2.5 h-2.5 rounded-full bg-gradient-to-tr from-amber-400 via-yellow-300 to-amber-200 blur-[0.5px] shadow-sm"
+        style="bottom: 18%; left: 66%;"></div>
+      <div
+        class="absolute petal-float-2 w-2 h-2 rounded-full bg-gradient-to-tr from-yellow-300 via-amber-300 to-amber-100 blur-[0.5px] shadow-sm"
+        style="bottom: 14%; left: 69%;"></div>
+
+    </div>
+
+    <!-- Content Grid Container -->
+    <div class="w-full max-w-[1380px] mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16 lg:py-20 relative z-10">
+      <div class="grid lg:grid-cols-12 gap-8 lg:gap-4 items-center">
+
+        <!-- Left Column Content (Parallax Animated on Scroll) -->
+        <div id="heroTextColumn"
+          class="lg:col-span-7 space-y-6 text-left relative z-20 pl-0 sm:pl-2 lg:pl-4 transition-opacity duration-150">
+
+          <!-- Eyebrow Tag: Refined serif gold typography -->
+          <p class="font-serif text-xs sm:text-sm font-semibold tracking-widest text-[#DFB467] drop-shadow uppercase"
+            data-i18n="hero_eyebrow">
+            Preserve the Indigenous Kulitan Script
+          </p>
+
+          <!-- Main Title: ESUBLI in gold gradient and PAMANA SA SULAT in off-white -->
+          <h1
+            class="font-serif text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-white leading-[1.08] drop-shadow-xl uppercase">
+            <span class="gold-text-gradient">ESUBLI:</span><br />
+            <span class="text-[#FDFBF7] font-display">PAMANA SA SULAT</span>
+          </h1>
+
+          <!-- Tagline -->
+          <p class="text-base sm:text-lg text-slate-200 max-w-lg font-normal leading-relaxed drop-shadow"
+            data-i18n="hero_tagline">
+            Rediscover the ancient Kapampangan script through interactive tracing drills, calligraphy studio, and syllable challenges.
+          </p>
+
+          <!-- CTA Buttons -->
+          <div class="flex flex-wrap items-center gap-3.5 pt-2">
+            <button onclick="navigateToDownloadSection('apk', this)"
+              class="bg-[#d45a27] hover:bg-[#ea6832] text-white font-bold text-sm px-7 py-3.5 rounded-full shadow-glow-orange hover:scale-105 active:scale-95 transition-all flex items-center gap-2.5">
+              <i class="fa-solid fa-download text-xs"></i>
+              <span data-i18n="hero_btn_apk">Download APK (Android)</span>
+              <i class="fa-solid fa-arrow-right text-xs"></i>
+            </button>
+
+            <button onclick="navigateToDownloadSection('playstore', this)"
+              class="px-6 py-3.5 rounded-full bg-[#1A1F2C]/90 hover:bg-[#252C3D] border border-slate-700 hover:border-esubli-gold text-slate-200 hover:text-white font-semibold text-sm transition-all flex items-center gap-2.5 shadow-md hover:scale-105 active:scale-95">
+              <svg class="w-4 h-4 shrink-0" viewBox="0 0 29 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M13.54 15.28.12 29.34a3.64 3.64 0 0 0 5.33 2.16l15.1-8.6z" fill="#EA4335"/>
+                <path d="m27.11 12.89-6.53-3.74-7.35 6.45 7.38 7.28 6.48-3.7a3.55 3.55 0 0 0 0-6.29z" fill="#FBBC04"/>
+                <path d="M.12 2.66a3.46 3.46 0 0 0-.12.92v24.84a3.66 3.66 0 0 0 .12.92L14 15.64Z" fill="#4285F4"/>
+                <path d="m13.64 16 6.94-6.85L5.5.51A3.72 3.72 0 0 0 3.63 0 3.64 3.64 0 0 0 .12 2.65Z" fill="#34A853"/>
+              </svg>
+              <span>Google Play Store</span>
+            </button>
+
+            <button onclick="openDemoModal()"
+              class="px-5 py-3.5 rounded-full bg-black/40 hover:bg-black/60 border border-slate-700 hover:border-esubli-gold text-slate-300 hover:text-white font-semibold text-sm transition-all flex items-center gap-2 backdrop-blur-sm">
+              <i class="fa-regular fa-circle-play text-esubli-gold text-base"></i>
+              <span data-i18n="hero_btn_demo">Watch Demo</span>
+            </button>
+          </div>
+
+        </div>
+
+        <!-- Right Column: 3D Angled Phone shifted more to the right -->
+        <div
+          class="lg:col-span-5 flex items-center justify-center lg:justify-end relative phone-perspective py-2 lg:translate-x-10 xl:translate-x-16 2xl:translate-x-24">
+
+          <!-- 3D Ambient Floor Shadow -->
+          <div class="phone-ambient-floor-shadow"></div>
+
+          <!-- Modern Device Chassis: Tilted in 3D perspective with realistic extruded bezel & specular glow -->
+          <div id="androidDeviceChassis"
+            class="phone-tilted phone-3d-chassis animate-float-phone relative w-[280px] xs:w-[305px] sm:w-[330px] xl:w-[345px] max-w-[calc(100vw-2.5rem)] rounded-[42px] sm:rounded-[46px] p-3 sm:p-3.5 select-none z-10">
+
+            <!-- Device Hardware Bezel: Antenna Bands & 3D Hardware Buttons -->
+            <div
+              class="absolute -left-[4px] top-24 w-[4px] h-9 bg-gradient-to-r from-[#DFB467] to-[#7A5C24] rounded-l shadow-md">
+            </div>
+            <div
+              class="absolute -left-[4px] top-36 w-[4px] h-9 bg-gradient-to-r from-[#DFB467] to-[#7A5C24] rounded-l shadow-md">
+            </div>
+            <div
+              class="absolute -right-[4px] top-28 w-[4px] h-16 bg-gradient-to-l from-[#DFB467] to-[#7A5C24] rounded-r shadow-md">
+            </div>
+
+            <!-- Antenna Inset Slits -->
+            <div class="absolute top-12 -left-[2px] w-[2px] h-2 bg-black/60 rounded-full"></div>
+            <div class="absolute bottom-16 -left-[2px] w-[2px] h-2 bg-black/60 rounded-full"></div>
+            <div class="absolute top-12 -right-[2px] w-[2px] h-2 bg-black/60 rounded-full"></div>
+            <div class="absolute bottom-16 -right-[2px] w-[2px] h-2 bg-black/60 rounded-full"></div>
+
+            <!-- Device Screen Container -->
+            <div
+              class="w-full bg-[#10141D] rounded-[40px] overflow-hidden border border-slate-800/90 text-white flex flex-col aspect-[9/19.5] relative z-20 shadow-inner">
+
+              <!-- 3D Specular Glass Glare / Curved Screen Sheen -->
+              <div class="screen-specular-glare"></div>
+
+              <!-- Dynamic Island / Pill Camera Notch with Realistic Lens Reflection -->
+              <div
+                class="absolute top-3 left-1/2 -translate-x-1/2 w-18 h-4 bg-black rounded-full z-40 flex items-center justify-between px-2.5 border border-slate-800/90 shadow-md">
+                <div
+                  class="w-2.5 h-2.5 rounded-full bg-[#081226] border border-blue-900/60 relative flex items-center justify-center">
+                  <div class="w-1 h-1 rounded-full bg-blue-400/70"></div>
+                </div>
+                <div class="w-1.5 h-1.5 rounded-full bg-[#151a24]"></div>
+              </div>
+
+              <!-- Top Status Indicators (14:58, Wi-Fi, Battery) -->
+              <div
+                class="pt-2.5 px-6 pb-1 flex items-center justify-between text-[11px] text-slate-300 font-sans z-30 bg-[#10141D]/90 backdrop-blur-sm">
+                <span id="androidClock" class="font-semibold tracking-tight text-slate-200">14:58</span>
+                <div class="flex items-center gap-2 text-slate-300">
+                  <span class="text-[9px] font-mono text-esubli-gold">5G</span>
+                  <i class="fa-solid fa-wifi text-[10px]"></i>
+                  <i class="fa-solid fa-battery-three-quarters text-esubli-gold text-[11px]"></i>
+                </div>
+              </div>
+
+              <!-- Phone Interactive Sliding Viewport -->
+              <div class="flex-1 overflow-hidden relative">
+                <div id="phoneSlidesTrack" class="phone-slides-track">
+
+                  <!-- SLIDE 1: Phone Screen UI (Front Page) -->
+                  <div
+                    class="phone-slide p-4 pt-1 flex flex-col justify-between items-center text-center overflow-y-auto no-scrollbar">
+
+                    <!-- Top Header: INDIGENOUS PHILIPPINE SCRIPT Badge -->
+                    <div
+                      class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#1C2230] border border-esubli-gold/40 text-[9px] text-esubli-gold font-medium uppercase tracking-wider shadow-sm mt-1">
+                      <span class="text-[7px]">❖</span>
+                      <span id="mockupTagText">INDIGENOUS PHILIPPINE SCRIPT</span>
+                      <span class="text-[7px]">❖</span>
+                    </div>
+
+                    <!-- App Title: eSUBLI. -->
+                    <div class="flex items-baseline mt-1">
+                      <span class="font-serif font-bold text-2xl text-esubli-orange">e</span>
+                      <span class="font-serif font-extrabold text-3xl tracking-wider text-white">SUBLI<span
+                          class="text-esubli-gold">.</span></span>
+                    </div>
+
+                    <!-- Central Glowing Circular Medallion with Official Emblem Image -->
+                    <div
+                      class="relative w-36 h-36 my-1.5 rounded-full p-2 bg-gradient-to-br from-esubli-gold via-amber-200 to-esubli-orange shadow-medallion flex items-center justify-center group cursor-pointer"
+                      onclick="navigatePhoneSlide(1)" title="Click to view interactive trace screen">
+                      <div
+                        class="w-full h-full rounded-full overflow-hidden bg-[#F5ECD8] border-2 border-[#544128] relative flex items-center justify-center shadow-inner">
+                        <img id="phone-logo-img" src="assets/images/logo.jpg" alt="Official Emblem"
+                          class="w-full h-full object-cover object-center rounded-full transform scale-105"
+                          onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?w=300&auto=format&fit=crop&q=80';">
+                      </div>
+                    </div>
+
+                    <!-- Crest Pill: PAMANA SA SULAT -->
+                    <div
+                      class="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-[#202738] border border-esubli-gold/40 text-[9.5px] text-esubli-gold font-bold tracking-wider uppercase">
+                      <i class="fa-solid fa-shield-halved text-[8px]"></i>
+                      <span id="mockupBadgeText">PAMANA SA SULAT</span>
+                    </div>
+
+                    <!-- Tagline Text -->
+                    <p id="mockupDescText" class="text-[10.5px] text-slate-300 leading-tight px-1 font-light my-1">
+                      Rediscover the ancient Kapampangan script through practice drills, calligraphy studio, and syllable challenges.
+                    </p>
+
+                    <!-- Three Feature Category Pills: Trace Studio, Quiz Challenge, Syllabary -->
+                    <div class="grid grid-cols-3 gap-1.5 w-full my-1.5 text-[8.5px]">
+                      <button onclick="setPhoneSlide(1)"
+                        class="p-1 rounded-lg bg-[#1A202C] border border-slate-700 hover:border-esubli-gold text-slate-200 flex items-center justify-center gap-1 transition">
+                        <i class="fa-solid fa-pen-nib text-esubli-gold text-[8px]"></i>
+                        <span>Trace Studio</span>
+                      </button>
+                      <button onclick="setPhoneSlide(2)"
+                        class="p-1 rounded-lg bg-[#1A202C] border border-slate-700 hover:border-esubli-gold text-slate-200 flex items-center justify-center gap-1 transition">
+                        <i class="fa-solid fa-bolt text-esubli-orange text-[8px]"></i>
+                        <span>Quiz Challenge</span>
+                      </button>
+                      <button onclick="setPhoneSlide(0)"
+                        class="p-1 rounded-lg bg-[#1A202C] border border-esubli-gold text-esubli-gold flex items-center justify-center gap-1 transition">
+                        <i class="fa-solid fa-book-open text-[8px]"></i>
+                        <span>Syllabary</span>
+                      </button>
+                    </div>
+
+                    <!-- Language Switch Pills: [EN], [PH], [KPM] with [EN] active -->
+                    <div
+                      class="inline-flex items-center p-0.5 rounded-full bg-[#0A0D14] border border-slate-700 text-[9.5px] mb-1.5 font-mono">
+                      <button onclick="changeMockupLanguage('en')" id="mockLangEn"
+                        class="px-2 py-0.5 rounded-full bg-esubli-orange text-white font-bold transition">EN</button>
+                      <button onclick="changeMockupLanguage('ph')" id="mockLangPh"
+                        class="px-2 py-0.5 rounded-full text-slate-400 hover:text-white transition">PH</button>
+                      <button onclick="changeMockupLanguage('kpm')" id="mockLangKpm"
+                        class="px-2 py-0.5 rounded-full text-slate-400 hover:text-white transition">KPM</button>
+                    </div>
+
+                    <!-- Primary Action Button: START THE JOURNEY -->
+                    <button onclick="navigatePhoneSlide(1)"
+                      class="w-full py-2.5 rounded-2xl bg-esubli-orange hover:bg-esubli-orangeHover text-white text-[11px] font-bold uppercase tracking-wider shadow-glow-orange flex items-center justify-center gap-2 transition active:scale-95">
+                      <span id="mockupBtnStart">START THE JOURNEY</span>
+                      <i class="fa-solid fa-circle-arrow-right text-[10px]"></i>
+                    </button>
+
+                    <!-- Secondary Guide Pill -->
+                    <button onclick="setPhoneSlide(1)"
+                      class="w-full py-1.5 mt-1 rounded-2xl bg-[#161B26] border border-esubli-gold/40 text-esubli-gold text-[10px] font-semibold flex items-center justify-center gap-2 hover:bg-[#1E2535] transition">
+                      <i class="fa-solid fa-book-bookmark text-[9px]"></i>
+                      <span id="mockupBtnGuide">GABAY SA KULITAN (GUIDE)</span>
+                    </button>
+
+                  </div>
+
+                  <!-- SLIDE 2: Interactive Tracing Studio Lesson Screen Inside Phone -->
+                  <div class="phone-slide p-4 pt-2 flex flex-col justify-between overflow-hidden relative">
+                    <div class="flex items-center justify-between text-xs pb-1.5 border-b border-slate-800">
+                      <button onclick="setPhoneSlide(0)"
+                        class="text-esubli-gold flex items-center gap-1 hover:underline text-[11px]">
+                        <i class="fa-solid fa-chevron-left text-[9px]"></i> Back
+                      </button>
+                      <span class="text-xs font-bold text-white font-serif">Lesson: Character KA</span>
+                      <span
+                        class="text-[10px] bg-esubli-orange/20 text-esubli-orange px-2 py-0.5 rounded-md font-mono font-bold">1
+                        / 13</span>
+                    </div>
+
+                    <!-- Tracing Pad inside Phone -->
+                    <div
+                      class="relative flex-1 my-2 bg-[#090B10] rounded-2xl border border-esubli-gold/40 flex items-center justify-center overflow-hidden">
+                      <svg class="absolute inset-0 w-full h-full p-6 opacity-30" viewBox="0 0 100 100" fill="none">
+                        <path d="M50 15 L20 85 H40 L50 50 L60 85 H80 Z" stroke="#DFB467" stroke-width="5"
+                          stroke-dasharray="3 3" />
+                        <line x1="30" y1="65" x2="70" y2="65" stroke="#DFB467" stroke-width="5"
+                          stroke-dasharray="3 3" />
+                      </svg>
+
+                      <div id="virtualTracingHand"
+                        class="absolute pointer-events-none animate-finger-trace z-30 text-amber-200 drop-shadow-[0_0_12px_rgba(224,98,45,0.8)]">
+                        <i class="fa-solid fa-hand-pointer text-2xl -rotate-12"></i>
+                        <span
+                          class="absolute -top-1 -right-1 w-3 h-3 rounded-full bg-esubli-orange animate-ping"></span>
+                      </div>
+
+                      <canvas id="phoneInternalCanvas"
+                        class="w-full h-full relative z-20 cursor-crosshair touch-none"></canvas>
+
+                      <div class="absolute bottom-2 inset-x-0 text-center pointer-events-none z-10">
+                        <span class="text-[9px] bg-black/70 px-2 py-0.5 rounded-full text-slate-300 font-mono">
+                          Swipe or trace with your finger
+                        </span>
+                      </div>
+                    </div>
+
+                    <div class="space-y-1.5">
+                      <div class="flex gap-2">
+                        <button onclick="clearPhoneInternalCanvas()"
+                          class="w-1/2 py-2 rounded-xl bg-slate-800 text-[10.5px] text-slate-300 hover:text-white transition">
+                          <i class="fa-solid fa-rotate-left mr-1"></i> Reset
+                        </button>
+                        <button onclick="playGongAudio(); triggerToastNotice('Excellent! 100% Stroke Match!');"
+                          class="w-1/2 py-2 rounded-xl bg-esubli-orange text-[10.5px] font-bold text-white shadow-glow-orange transition active:scale-95">
+                          <i class="fa-solid fa-check mr-1"></i> Verify Stroke
+                        </button>
+                      </div>
+
+                      <div class="flex items-center justify-between text-[10px] text-slate-400 px-1 pt-0.5">
+                        <span>Consonant: <strong>/ka/</strong> (Indung Súlat)</span>
+                        <button onclick="setPhoneSlide(2)" class="text-esubli-gold font-semibold hover:underline">
+                          Quiz Challenge <i class="fa-solid fa-arrow-right text-[8px]"></i>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- SLIDE 3: Syllable Challenge Arena Screen Inside Phone -->
+                  <div class="phone-slide p-4 pt-2 flex flex-col justify-between overflow-hidden text-center">
+                    <div class="flex items-center justify-between text-xs pb-1.5 border-b border-slate-800">
+                      <button onclick="setPhoneSlide(0)" class="text-esubli-gold flex items-center gap-1 text-[11px]">
+                        <i class="fa-solid fa-chevron-left text-[9px]"></i> Back
+                      </button>
+                      <span class="text-xs font-bold text-esubli-orange uppercase tracking-wider">Syllable Challenge</span>
+                      <span class="text-[10px] text-emerald-400 font-mono font-bold">ACTIVE</span>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-2 my-1 text-[9.5px]">
+                      <div class="p-1.5 rounded-xl bg-[#151A24] border border-slate-800 flex items-center gap-2">
+                        <div
+                          class="w-6 h-6 rounded-full bg-esubli-orange text-white flex items-center justify-center font-bold">
+                          1</div>
+                        <div class="text-left">
+                          <div class="font-bold text-white">Mag-aaral 1</div>
+                          <div class="text-[8.5px] text-emerald-400 font-mono">Score: 120</div>
+                        </div>
+                      </div>
+                      <div class="p-1.5 rounded-xl bg-[#151A24] border border-slate-800 flex items-center gap-2">
+                        <div
+                          class="w-6 h-6 rounded-full bg-slate-700 text-slate-300 flex items-center justify-center font-bold">
+                          2</div>
+                        <div class="text-left">
+                          <div class="font-bold text-slate-300">Mag-aaral 2</div>
+                          <div class="text-[8.5px] text-slate-400 font-mono">Score: 80</div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="my-auto py-2">
+                      <div
+                        class="w-20 h-20 mx-auto rounded-2xl bg-esubli-charcoal border-2 border-esubli-gold flex items-center justify-center text-4xl font-serif text-esubli-gold shadow-glow-gold">
+                        <svg width="45" height="45" viewBox="0 0 100 100" fill="none">
+                          <path d="M25 25 H75 M50 25 V85 M35 55 H65" stroke="#DFB467" stroke-width="7"
+                            stroke-linecap="round" />
+                          <circle cx="50" cy="12" r="6" fill="#DFB467" />
+                        </svg>
+                      </div>
+                      <p class="text-[10.5px] text-slate-300 font-medium mt-2">
+                        Which syllable with <em>Gulis Babo</em> is this?
+                      </p>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-1.5 text-[10.5px] mb-1">
+                      <button onclick="triggerToastNotice('✓ Correct! The answer is TI / TE!'); playGongAudio();"
+                        class="py-2 rounded-xl bg-[#1A2130] border border-slate-700 hover:border-esubli-gold font-bold text-white transition active:scale-95">
+                        TI / TE
+                      </button>
+                      <button onclick="triggerToastNotice('✗ Incorrect, try again.')"
+                        class="py-2 rounded-xl bg-[#1A2130] border border-slate-700 hover:border-esubli-gold font-bold text-white transition active:scale-95">
+                        TA
+                      </button>
+                      <button onclick="triggerToastNotice('✗ Incorrect, try again.')"
+                        class="py-2 rounded-xl bg-[#1A2130] border border-slate-700 hover:border-esubli-gold font-bold text-white transition active:scale-95">
+                        TU / TO
+                      </button>
+                      <button onclick="triggerToastNotice('✗ Incorrect, try again.')"
+                        class="py-2 rounded-xl bg-[#1A2130] border border-slate-700 hover:border-esubli-gold font-bold text-white transition active:scale-95">
+                        TANG
+                      </button>
+                    </div>
+
+                    <button onclick="setPhoneSlide(0)"
+                      class="w-full py-1.5 rounded-xl bg-slate-800 text-[10px] text-slate-300 hover:text-white">
+                      Tapusin ang Pagsusulit (End Quiz)
+                    </button>
+                  </div>
+
+                </div>
+              </div>
+
+              <!-- Slide Dots Indicator -->
+              <div class="py-1 flex items-center justify-center gap-1.5 bg-[#10141D] z-20">
+                <button onclick="setPhoneSlide(0)" id="slideDot0"
+                  class="w-4 h-1.5 rounded-full bg-esubli-orange transition-all" aria-label="Slide 1"></button>
+                <button onclick="setPhoneSlide(1)" id="slideDot1"
+                  class="w-1.5 h-1.5 rounded-full bg-slate-700 transition-all" aria-label="Slide 2"></button>
+                <button onclick="setPhoneSlide(2)" id="slideDot2"
+                  class="w-1.5 h-1.5 rounded-full bg-slate-700 transition-all" aria-label="Slide 3"></button>
+              </div>
+
+              <!-- Bottom Status Tagline -->
+              <div
+                class="py-1 px-3 bg-gradient-to-r from-esubli-orange/20 via-esubli-charcoal to-esubli-orange/20 border-t border-esubli-borderGold/25 text-center z-20">
+                <span class="text-[8px] font-mono tracking-widest text-esubli-gold uppercase font-semibold">
+                  ❖ SÚLAT KAPAMPÁNGAN LIVING HERITAGE ❖
+                </span>
+              </div>
+
+              <!-- Bottom Android System Navigation Bar (Back Triangle, Home Circle, Recents Square) -->
+              <div
+                class="py-2.5 bg-[#090C12] border-t border-slate-900 flex items-center justify-around text-slate-500 text-xs z-30 select-none">
+                <button onclick="navigatePhoneSlide(-1)" class="hover:text-white px-3 py-1 transition" title="Back">
+                  <i class="fa-solid fa-triangle -rotate-90 text-[10px]"></i>
+                </button>
+                <button onclick="setPhoneSlide(0)" class="hover:text-white px-3 py-1 transition" title="Home">
+                  <i class="fa-regular fa-circle text-[11px]"></i>
+                </button>
+                <button onclick="navigatePhoneSlide(1)" class="hover:text-white px-3 py-1 transition" title="Recents">
+                  <i class="fa-regular fa-square text-[10px]"></i>
+                </button>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Elegant Golden Calligraphy Scroll Down Indicator (Page 1 -> Page 2) -->
+    <a href="#did-you-know" id="heroScrollPrompter"
+      class="absolute bottom-3 sm:bottom-5 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-1.5 group transition-all duration-300 hover:scale-105 pointer-events-auto cursor-pointer select-none">
+      <span
+        class="text-[9px] sm:text-[11px] font-mono font-semibold uppercase tracking-widest text-amber-200/90 group-hover:text-esubli-gold transition-colors flex items-center gap-1.5 drop-shadow"
+        data-i18n="hero_scroll">
+        <span>DISCOVER KULITAN</span>
+        <span class="text-esubli-orange">❖</span>
+        <span class="text-slate-400 font-sans normal-case">Tuklasin ang Pamana</span>
+      </span>
+      <div
+        class="w-6 h-10 rounded-full border border-esubli-gold/60 group-hover:border-esubli-gold flex items-start justify-center p-1 bg-black/50 backdrop-blur-sm shadow-[0_0_15px_rgba(223,180,103,0.3)] transition-all">
+        <div class="w-1.5 h-2.5 bg-gradient-to-b from-esubli-orange to-esubli-gold rounded-full animate-bounce"></div>
+      </div>
+      <i class="fa-solid fa-chevron-down text-[9px] text-esubli-gold/80 group-hover:text-esubli-gold animate-pulse"></i>
+    </a>
+  </section>
+  <!-- =====================================================================
+           5. DID YOU KNOW? SULAT KAPAMPANGAN (KULITAN) HERITAGE DISCOVERY
+           ===================================================================== -->
+  <section id="did-you-know"
+    class="py-24 md:py-32 bg-[#06080E] border-b border-esubli-borderGold/30 relative overflow-hidden">
+    <!-- Backward-compatibility Anchor for #features links -->
+    <span id="features" class="absolute -top-24 pointer-events-none"></span>
+
+    <!-- Ambient Atmospheric Lighting & Geometric Grids -->
+    <div class="absolute inset-0 pointer-events-none">
+      <div
+        class="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[400px] bg-gradient-to-b from-amber-500/10 via-esubli-orange/5 to-transparent blur-3xl opacity-70 dyk-orb-anim-1">
+      </div>
+      <div class="absolute bottom-10 -left-20 w-96 h-96 bg-esubli-orange/5 rounded-full blur-3xl dyk-orb-anim-2"></div>
+      <div class="absolute top-1/3 -right-20 w-96 h-96 bg-amber-500/5 rounded-full blur-3xl dyk-orb-anim-1"></div>
+      <!-- Faint Antique Calligraphic Watermark in Background with Scroll Parallax (Kulitan 'NGA' character) -->
+      <div id="dykWatermark"
+        class="absolute -right-12 sm:-right-8 top-1/4 select-none pointer-events-none transition-transform duration-700 ease-out will-change-transform w-72 sm:w-96 md:w-[440px] opacity-[0.08] sm:opacity-[0.09] filter drop-shadow-[0_0_35px_rgba(223,180,103,0.5)]">
+        <img src="symbols/pure/nga.png" alt="Kulitan NGA character watermark"
+          class="w-full h-auto object-contain select-none pointer-events-none filter invert brightness-150 contrast-125 sepia hue-rotate-15"
+          onerror="this.onerror=null; this.src='symbols/nga.png';">
+      </div>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+
+      <!-- Section Header: Badge, Heading, and In-depth Story -->
+      <div class="text-center max-w-4xl mx-auto mb-16 sm:mb-20">
+        <!-- Eyebrow Pill Badge -->
+        <div
+          class="dyk-reveal inline-flex items-center gap-2.5 px-5 py-2 rounded-full bg-[#121724]/90 border border-esubli-gold/30 text-esubli-gold text-xs font-mono font-semibold tracking-widest uppercase mb-5 shadow-[0_0_20px_rgba(223,180,103,0.15)] backdrop-blur-md"
+          data-dyk-delay="0">
+          <span class="w-2 h-2 rounded-full bg-esubli-orange animate-pulse"></span>
+          <span data-i18n="dyk_badge">❖ DID YOU KNOW? • ALAM MO BA? ❖</span>
+        </div>
+
+        <!-- Main Display Heading -->
+        <h2
+          class="dyk-reveal font-serif text-3xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-tight"
+          data-dyk-delay="80" data-i18n="dyk_heading">
+          Pampanga Has Its Own Indigenous Writing System Called <span
+            class="bg-gradient-to-r from-amber-200 via-esubli-gold to-esubli-orange bg-clip-text text-transparent">Kulitan</span>
+          <span class="text-amber-100/80 font-serif font-normal text-2xl sm:text-4xl block mt-2 sm:mt-1">(Sulat
+            Kapampangan)</span>
+        </h2>
+
+        <!-- Lead Paragraph & Historical Depth -->
+        <p class="dyk-reveal text-base sm:text-xl text-slate-300 mt-6 leading-relaxed max-w-3xl mx-auto"
+          data-dyk-delay="160" data-i18n="dyk_lead">
+          The Kapampangan people possess their own distinct ancient writing system known as <strong
+            class="text-esubli-gold font-semibold">Kulitan</strong> or <strong class="text-white font-semibold">Sulat
+            Kapampangan</strong>. It is one of the most structurally unique pre-colonial scripts in the Philippines.
+        </p>
+
+        <p class="dyk-reveal text-sm sm:text-base text-slate-400 mt-4 leading-relaxed max-w-3xl mx-auto"
+          data-dyk-delay="220" data-i18n="dyk_about_desc">
+          <strong class="text-white font-medium">Kulitan</strong> (also known as <em
+            class="text-esubli-gold font-normal">Súlat Kapampángan</em> or <em
+            class="text-esubli-gold font-normal">Pamagkulit</em>) is the pre-colonial indigenous writing system of the
+          Kapampangan people. It is an abugida (alphasyllabary) traditionally composed vertically from top to bottom
+          (<em class="text-amber-300 font-medium">Tínduk</em>) in right-to-left columns. Syllables are formed through
+          architectural stacking: an <strong class="text-amber-300 font-semibold">Indung Súlat</strong> (root consonant
+          with an inherent /a/ sound) is paired with <strong class="text-esubli-orange font-semibold">Ának
+            Súlat</strong> (diacritical marks and codas) into compact, expressive syllabic characters.
+        </p>
+      </div>
+
+      <!-- =================================================================
+               INTERACTIVE KULITAN ANATOMY & VERTICAL SHOWCASE TABLET
+               ================================================================= -->
+      <div id="dykSteleContainer"
+        class="dyk-reveal-scale mb-20 rounded-3xl bg-[#0B0F19]/90 border border-esubli-gold/25 p-6 sm:p-10 shadow-[0_20px_60px_rgba(0,0,0,0.8)] backdrop-blur-xl relative overflow-hidden transition-all duration-500 hover:border-esubli-gold/45"
+        data-dyk-delay="150">
+        <!-- Subtle Gold Filigree Top Border -->
+        <div
+          class="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-esubli-gold/60 to-transparent">
+        </div>
+
+        <div class="grid lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+
+          <!-- Left Visual: The Traditional Vertical Stacking Column (Stele) -->
+          <div class="lg:col-span-5 flex flex-col items-center">
+            <div
+              class="relative w-full max-w-sm rounded-2xl bg-[#070911] border border-esubli-gold/30 p-6 shadow-2xl text-center group transition-transform duration-300 hover:scale-[1.01]">
+              <!-- Stele Header Badge -->
+              <div
+                class="flex items-center justify-between pb-4 border-b border-slate-800 text-xs font-mono text-esubli-gold">
+                <span class="flex items-center gap-1.5"><i
+                    class="fa-solid fa-arrow-down text-esubli-orange animate-bounce"></i> Tinduk (Top-to-Bottom
+                  Flow)</span>
+                <span class="text-slate-400">Word Example (Halimbawa)</span>
+              </div>
+
+              <!-- Traditional Vertical Calligraphy Display -->
+              <div id="verticalKulitanDisplay"
+                class="py-6 flex flex-col items-center justify-center min-h-[320px] transition-all duration-300">
+                <div class="flex flex-col items-center gap-3 w-full">
+                  <!-- Syllables populated by setKulitanShowcase -->
+                </div>
+              </div>
+
+              <!-- Word Selectors for Interactive Examination -->
+              <div class="pt-4 border-t border-slate-800 flex items-center justify-center gap-2.5">
+                <span class="text-[11px] text-slate-400 mr-1">Select Word:</span>
+                <button onclick="setKulitanShowcase('kapampangan')" id="btnShowcaseKap"
+                  class="px-3.5 py-1.5 rounded-full text-xs font-mono font-bold bg-esubli-orange text-white shadow-glow-orange hover:scale-105 active:scale-95 transition-all">
+                  Kapampangan
+                </button>
+                <button onclick="setKulitanShowcase('esubli')" id="btnShowcaseEsu"
+                  class="px-3.5 py-1.5 rounded-full text-xs font-mono text-slate-300 bg-slate-800 hover:text-white border border-slate-700 hover:scale-105 active:scale-95 transition-all">
+                  eSUBLI
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Description: Anatomy of the Script -->
+          <div class="lg:col-span-7 space-y-6">
+            <div>
+              <div
+                class="inline-flex items-center gap-2 px-3 py-1 rounded-lg bg-amber-500/10 border border-amber-500/30 text-amber-300 text-xs font-mono font-bold uppercase mb-3">
+                <i class="fa-solid fa-diagram-project"></i> Estruktura ng Sulat (Script Architecture)
+              </div>
+              <h3 id="showcaseTitle"
+                class="font-serif text-2xl sm:text-3xl font-bold text-white transition-opacity duration-300">
+                Anatomy of the Word <span class="text-esubli-gold">"Ka-pam-pa-ngan"</span>
+              </h3>
+              <p id="showcaseDesc"
+                class="text-sm sm:text-base text-slate-300 mt-2 leading-relaxed transition-opacity duration-300">
+                Notice how each syllable is aligned vertically downward. The <strong>Indung Súlat</strong> (mother root
+                consonant) serves as the foundation, while consonants and vowel markers stack (<strong>Sikami</strong>)
+                into a single vertical block.
+              </p>
+            </div>
+
+            <!-- 3 Structural Pillars -->
+            <div class="grid sm:grid-cols-3 gap-4 pt-2">
+              <div
+                class="dyk-reveal tilt-card p-4 rounded-2xl bg-[#090C14] border border-slate-800 hover:border-esubli-gold/50 transition-all duration-300 hover:-translate-y-1 group"
+                data-dyk-delay="80">
+                <div
+                  class="w-8 h-8 rounded-lg bg-amber-500/20 text-amber-300 flex items-center justify-center text-sm font-bold mb-2 group-hover:scale-110 transition-transform">
+                  1
+                </div>
+                <h4 class="font-serif font-bold text-white text-sm">Indung Súlat</h4>
+                <p class="text-xs text-slate-400 mt-1 leading-normal">
+                  13 primary consonants with inherent /a/ sound. The core backbone of every syllable.
+                </p>
+              </div>
+
+              <div
+                class="dyk-reveal tilt-card p-4 rounded-2xl bg-[#090C14] border border-slate-800 hover:border-esubli-gold/50 transition-all duration-300 hover:-translate-y-1 group"
+                data-dyk-delay="160">
+                <div
+                  class="w-8 h-8 rounded-lg bg-esubli-orange/20 text-esubli-orange flex items-center justify-center text-sm font-bold mb-2 group-hover:scale-110 transition-transform">
+                  2
+                </div>
+                <h4 class="font-serif font-bold text-white text-sm">Ának Súlat</h4>
+                <p class="text-xs text-slate-400 mt-1 leading-normal">
+                  Diacritical marks (Gulis Babo &amp; Gulis Lalam) that change vowels to /i, e/ or /u, o/.
+                </p>
+              </div>
+
+              <div
+                class="dyk-reveal tilt-card p-4 rounded-2xl bg-[#090C14] border border-slate-800 hover:border-esubli-gold/50 transition-all duration-300 hover:-translate-y-1 group"
+                data-dyk-delay="240">
+                <div
+                  class="w-8 h-8 rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-sm font-bold mb-2 group-hover:scale-110 transition-transform">
+                  3
+                </div>
+                <h4 class="font-serif font-bold text-white text-sm">Sikami Stacking</h4>
+                <p class="text-xs text-slate-400 mt-1 leading-normal">
+                  Vertical stacking of the final consonant (coda) beneath the root letter.
+                </p>
+              </div>
+            </div>
+
+            <!-- Ancient Kapampangan Proverb Callout -->
+            <div
+              class="dyk-reveal p-4.5 sm:p-5 rounded-2xl bg-gradient-to-r from-amber-500/10 via-[#101420] to-transparent border-l-4 border-esubli-gold hover:border-amber-400 transition"
+              data-dyk-delay="300">
+              <p class="text-xs font-mono uppercase tracking-wider text-esubli-gold font-bold mb-1">
+                Kasabihang Kapampangan sa Pagsulat (Cultural Proverb):
+              </p>
+              <p class="font-serif italic text-sm sm:text-base text-amber-100">
+                "Ing taung e mamye ulaga king kekang amanung sisuan, mekad e na balu ing tutu nang pigmulan."
+              </p>
+              <p class="text-xs text-slate-400 mt-1">
+                Tagalog: <em>(Ang taong hindi nagpapahalaga sa kanyang wikang sinuso ay baka hindi alam ang kanyang
+                  pinagmulan.)</em>
+              </p>
+              <p class="text-xs text-amber-200/80 mt-0.5">
+                English: <em>(One who gives no honor to their mother tongue may not know their true origin.)</em>
+              </p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- =================================================================
+               KEY FACTS ABOUT KULITAN (The 5 Core Principles Grid)
+               ================================================================= -->
+      <div class="mb-16 sm:mb-20">
+        <div class="dyk-reveal flex flex-col sm:flex-row sm:items-end justify-between mb-8 gap-4" data-dyk-delay="50">
+          <div>
+            <span class="text-xs uppercase font-extrabold tracking-widest text-esubli-orange block mb-1"
+              data-i18n="dyk_facts_tag">ANCIENT SCRIPT CHARACTERISTICS ❖ Katangian ng Sinaunang Titik</span>
+            <h3 class="font-serif text-2xl sm:text-4xl font-bold text-white" data-i18n="dyk_facts_title">
+              Key Facts About Kulitan
+            </h3>
+          </div>
+          <p class="text-xs sm:text-sm text-slate-400 max-w-md" data-i18n="dyk_facts_desc">
+            The five defining principles that distinguish Sulat Kapampangan from every other indigenous writing system
+            in the Philippine archipelago.
+          </p>
+        </div>
+
+        <!-- 5 Cards Layout (3 on top row, 2 large on bottom row) -->
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+
+          <!-- FACT 1: Written Vertically -->
+          <div
+            class="dyk-reveal dyk-card-shine tilt-card rounded-3xl bg-[#0D111A]/95 border border-slate-800 hover:border-esubli-gold/60 p-6 sm:p-8 flex flex-col justify-between shadow-xl transition-all duration-300 hover:-translate-y-2 group"
+            data-dyk-delay="100">
+            <div>
+              <div class="flex items-center justify-between mb-5">
+                <div
+                  class="w-12 h-12 rounded-2xl bg-esubli-orange/20 border border-esubli-orange/40 text-esubli-orange flex items-center justify-center text-xl group-hover:scale-110 transition-transform shadow-glow-orange">
+                  <i class="fa-solid fa-arrows-up-to-line"></i>
+                </div>
+                <span
+                  class="px-2.5 py-1 rounded-full bg-slate-900 border border-slate-700 text-[10px] font-mono font-bold text-esubli-gold shimmer-badge">
+                  Tínduk Flow
+                </span>
+              </div>
+
+              <h4
+                class="font-serif text-xl sm:text-2xl font-bold text-white mb-3 group-hover:text-amber-200 transition-colors uppercase">
+                Written Vertically
+              </h4>
+              <p class="text-sm text-slate-300 leading-relaxed">
+                <strong class="text-esubli-gold">Traditional Kulitan is read top-to-bottom, starting from top-right to bottom-left.</strong>
+              </p>
+              <p class="text-xs text-slate-400 mt-2.5 leading-relaxed">
+                Unlike horizontal scripts like Baybayin or the Latin alphabet, Kulitan cascades downward in vertical columns (Tínduk). When writing multiple columns, lines advance from right to left—reflecting ancient inscriptions carved into bamboo slats and tree bark.
+              </p>
+            </div>
+
+            <div
+              class="pt-5 mt-5 border-t border-slate-800/80 flex items-center justify-between text-xs text-slate-400 font-mono">
+              <span>Direction (Direksyon):</span>
+              <span class="text-esubli-gold font-bold">Top-to-Bottom, Right-to-Left (Tínduk)</span>
+            </div>
+          </div>
+
+          <!-- FACT 2: An Abugida System -->
+          <div
+            class="dyk-reveal dyk-card-shine tilt-card rounded-3xl bg-[#0D111A]/95 border border-slate-800 hover:border-esubli-gold/60 p-6 sm:p-8 flex flex-col justify-between shadow-xl transition-all duration-300 hover:-translate-y-2 group"
+            data-dyk-delay="200">
+            <div>
+              <div class="flex items-center justify-between mb-5">
+                <div
+                  class="w-12 h-12 rounded-2xl bg-esubli-gold/20 border border-esubli-gold/40 text-esubli-gold flex items-center justify-center text-xl group-hover:scale-110 transition-transform shadow-glow-gold">
+                  <i class="fa-solid fa-cubes"></i>
+                </div>
+                <span
+                  class="px-2.5 py-1 rounded-full bg-slate-900 border border-slate-700 text-[10px] font-mono font-bold text-amber-300 shimmer-badge">
+                  Alphasyllabary
+                </span>
+              </div>
+
+              <h4
+                class="font-serif text-xl sm:text-2xl font-bold text-white mb-3 group-hover:text-amber-200 transition-colors uppercase">
+                An Abugida System
+              </h4>
+              <p class="text-sm text-slate-300 leading-relaxed">
+                <strong class="text-esubli-gold">Kulitan is an abugida (alphasyllabary) script where every base character represents a consonant with an inherent vowel.</strong>
+              </p>
+              <p class="text-xs text-slate-400 mt-2.5 leading-relaxed">
+                Each mother consonant (Indûng Sûlat) naturally carries the vowel sound /a/. To modify this sound to /i, e/ or /u, o/, diacritical marks known as Ának Sûlat (such as Gilit Babo or Gilit Lalam) are placed on the character without writing separate letters.
+              </p>
+            </div>
+
+            <div
+              class="pt-5 mt-5 border-t border-slate-800/80 flex items-center justify-between text-xs text-slate-400 font-mono">
+              <span>Inherent Vowel:</span>
+              <span class="text-esubli-gold font-bold">Inherent /a/ + Gilit Modifiers</span>
+            </div>
+          </div>
+
+          <!-- FACT 3: Vertical Stacking -->
+          <div
+            class="dyk-reveal dyk-card-shine tilt-card rounded-3xl bg-[#0D111A]/95 border border-slate-800 hover:border-esubli-gold/60 p-6 sm:p-8 flex flex-col justify-between shadow-xl transition-all duration-300 hover:-translate-y-2 group"
+            data-dyk-delay="300">
+            <div>
+              <div class="flex items-center justify-between mb-5">
+                <div
+                  class="w-12 h-12 rounded-2xl bg-amber-500/20 border border-amber-500/40 text-amber-300 flex items-center justify-center text-xl group-hover:scale-110 transition-transform">
+                  <i class="fa-solid fa-layer-group"></i>
+                </div>
+                <span
+                  class="px-2.5 py-1 rounded-full bg-slate-900 border border-slate-700 text-[10px] font-mono font-bold text-emerald-400 shimmer-badge">
+                  Stacking Architecture
+                </span>
+              </div>
+
+              <h4
+                class="font-serif text-xl sm:text-2xl font-bold text-white mb-3 group-hover:text-amber-200 transition-colors uppercase">
+                Vertical Stacking
+              </h4>
+              <p class="text-sm text-slate-300 leading-relaxed">
+                <strong class="text-esubli-gold">Characters, vowel modifiers, and consonant clusters stack directly onto root letters to form complete syllabic blocks.</strong>
+              </p>
+              <p class="text-xs text-slate-400 mt-2.5 leading-relaxed">
+                Letters are never aligned side by side horizontally. Final consonants (coda) and affix characters attach directly below the mother letter (Indûng Sûlat), creating an elegant, compact vertical tower for each syllable. Special homorganic nasal pairings are formed using Sikami rules.
+              </p>
+            </div>
+
+            <div
+              class="pt-5 mt-5 border-t border-slate-800/80 flex items-center justify-between text-xs text-slate-400 font-mono">
+              <span>Syllable Formation:</span>
+              <span class="text-esubli-gold font-bold">Architectural Stacking</span>
+            </div>
+          </div>
+
+          <!-- FACT 4: Built for Kapampangan Phonetics -->
+          <div
+            class="dyk-reveal dyk-card-shine tilt-card rounded-3xl bg-[#0D111A]/95 border border-slate-800 hover:border-esubli-gold/60 p-6 sm:p-8 flex flex-col justify-between shadow-xl transition-all duration-300 hover:-translate-y-2 group md:col-span-1 lg:col-span-2"
+            data-dyk-delay="400">
+            <div>
+              <div class="flex items-center justify-between mb-5">
+                <div
+                  class="w-12 h-12 rounded-2xl bg-emerald-500/20 border border-emerald-500/40 text-emerald-400 flex items-center justify-center text-xl group-hover:scale-110 transition-transform">
+                  <i class="fa-solid fa-microphone-lines"></i>
+                </div>
+                <span
+                  class="px-2.5 py-1 rounded-full bg-slate-900 border border-slate-700 text-[10px] font-mono font-bold text-esubli-orange shimmer-badge">
+                  Amánung Sísuan Phonology
+                </span>
+              </div>
+
+              <h4
+                class="font-serif text-xl sm:text-2xl font-bold text-white mb-3 group-hover:text-amber-200 transition-colors uppercase">
+                Built for Kapampangan Phonetics
+              </h4>
+              <p class="text-sm text-slate-300 leading-relaxed">
+                <strong class="text-esubli-gold">Kulitan was engineered specifically to fit the distinct linguistic roots and nasal sound pairings of the Kapampangan language.</strong>
+              </p>
+              <p class="text-xs sm:text-sm text-slate-400 mt-2.5 leading-relaxed">
+                The orthography of Kulitan is tailored exactly for Amánung Sísuan (the beloved mother tongue of Pampanga). It accurately accommodates native homorganic nasal pairings such as <code>ng</code>, <code>mp</code>, <code>nt</code>, and <code>mb</code>, along with glottal stops that Latin characters and other regional scripts fail to capture.
+              </p>
+            </div>
+
+            <div
+              class="pt-5 mt-5 border-t border-slate-800/80 flex flex-wrap items-center justify-between gap-2 text-xs text-slate-400 font-mono">
+              <span>Linguistic Precision:</span>
+              <span class="text-emerald-400 font-bold">Homorganic Nasals &amp; Glottal System</span>
+            </div>
+          </div>
+
+          <!-- FACT 5: Modern Revival -->
+          <div
+            class="dyk-reveal dyk-card-shine tilt-card rounded-3xl bg-[#0D111A]/95 border border-slate-800 hover:border-esubli-gold/60 p-6 sm:p-8 flex flex-col justify-between shadow-xl transition-all duration-300 hover:-translate-y-2 group md:col-span-2 lg:col-span-1"
+            data-dyk-delay="500">
+            <div>
+              <div class="flex items-center justify-between mb-5">
+                <div
+                  class="w-12 h-12 rounded-2xl bg-purple-500/20 border border-purple-500/40 text-purple-300 flex items-center justify-center text-xl group-hover:scale-110 transition-transform">
+                  <i class="fa-solid fa-brush"></i>
+                </div>
+                <span
+                  class="px-2.5 py-1 rounded-full bg-slate-900 border border-slate-700 text-[10px] font-mono font-bold text-purple-300 shimmer-badge">
+                  Living Renaissance
+                </span>
+              </div>
+
+              <h4
+                class="font-serif text-xl sm:text-2xl font-bold text-white mb-3 group-hover:text-amber-200 transition-colors uppercase">
+                Modern Revival
+              </h4>
+              <p class="text-sm text-slate-300 leading-relaxed">
+                <strong class="text-esubli-gold">Local historians, cultural advocates, artists, and typography designers in Pampanga actively preserve Kulitan today through calligraphy, public installations, and digital fonts.</strong>
+              </p>
+              <p class="text-xs text-slate-400 mt-2.5 leading-relaxed">
+                Kulitan is vibrant and alive! From municipal border arches across Angeles City and San Fernando to calligraphy exhibits, academic workshops, and modern interactive apps like eSUBLI, this sacred script is being proudly reclaimed by the next generation.
+              </p>
+            </div>
+
+            <div
+              class="pt-5 mt-5 border-t border-slate-800/80 flex items-center justify-between text-xs text-slate-400 font-mono">
+              <span>Preservation (Pangangalaga):</span>
+              <span class="text-purple-300 font-bold">Digital Fonts, Public Art &amp; eSUBLI</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- =================================================================
+               FOUR HERITAGE PILLARS STAT STRIP
+               ================================================================= -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 mb-12">
+        <div
+          class="dyk-reveal p-5 rounded-2xl bg-[#0A0D16] border border-esubli-gold/20 text-center hover:border-esubli-gold/50 hover:scale-105 transition-all duration-300 group"
+          data-dyk-delay="80">
+          <span
+            class="font-serif text-3xl sm:text-4xl font-extrabold text-esubli-gold block group-hover:scale-110 transition-transform">13</span>
+          <span class="text-xs font-mono text-slate-400 uppercase tracking-wider mt-1 block">Indung Súlat (Root
+            Consonants)</span>
+        </div>
+        <div
+          class="dyk-reveal p-5 rounded-2xl bg-[#0A0D16] border border-esubli-gold/20 text-center hover:border-esubli-gold/50 hover:scale-105 transition-all duration-300 group"
+          data-dyk-delay="160">
+          <span
+            class="font-serif text-3xl sm:text-4xl font-extrabold text-esubli-orange block group-hover:scale-110 transition-transform">3</span>
+          <span class="text-xs font-mono text-slate-400 uppercase tracking-wider mt-1 block">Ának Súlat (Vowel
+            Markers)</span>
+        </div>
+        <div
+          class="dyk-reveal p-5 rounded-2xl bg-[#0A0D16] border border-esubli-gold/20 text-center hover:border-esubli-gold/50 hover:scale-105 transition-all duration-300 group"
+          data-dyk-delay="240">
+          <span
+            class="font-serif text-3xl sm:text-4xl font-extrabold text-amber-300 block group-hover:scale-110 transition-transform">Vertical</span>
+          <span class="text-xs font-mono text-slate-400 uppercase tracking-wider mt-1 block">Tinduk Direction
+            Flow</span>
+        </div>
+        <div
+          class="dyk-reveal p-5 rounded-2xl bg-[#0A0D16] border border-esubli-gold/20 text-center hover:border-esubli-gold/50 hover:scale-105 transition-all duration-300 group"
+          data-dyk-delay="320">
+          <span
+            class="font-serif text-3xl sm:text-4xl font-extrabold text-emerald-400 block group-hover:scale-110 transition-transform">Súlat</span>
+          <span class="text-xs font-mono text-slate-400 uppercase tracking-wider mt-1 block">Kapampangan (Sulat
+            Kapampangan)</span>
+        </div>
+      </div>
+
+
+
+    </div>
+  </section>
+
+
+
+  <!-- =====================================================================
+           6. INTERACTIVE DESKTOP TRACE STUDIO (Full responsive canvas & controls)
+           ===================================================================== -->
+  <section id="trace-studio"
+    class="py-20 md:py-24 border-b border-esubli-borderGold/30 relative overflow-hidden bg-[#0C0E14]">
+
+    <!-- Background: Antique Pinatubo Parchment & Crater Lake Artwork (Clearly visible with gentle dark vignette) -->
+    <div class="absolute inset-0 z-0 pointer-events-none select-none">
+      <img id="traceStudioBgImg" src="assets/images/interactive-bg.jpg" alt="Mount Pinatubo Antique Landscape Background"
+        class="w-full h-full object-cover object-center pointer-events-none filter brightness-[0.85] contrast-[1.04] transition-transform duration-700 ease-out will-change-transform">
+
+      <!-- Subtle Dark Vignette & Atmospheric Tint (Preserves visibility of crater lake & parchment) -->
+      <div class="absolute inset-0 bg-gradient-to-b from-[#06080E]/60 via-black/30 to-[#0E1118]/75 pointer-events-none">
+      </div>
+      <div
+        class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(0,0,0,0.1)_0%,rgba(6,8,14,0.65)_90%)] pointer-events-none">
+      </div>
+
+      <!-- Smooth Top & Bottom Transitions into Neighbor Sections -->
+      <div
+        class="absolute inset-0 bg-gradient-to-b from-[#06080E]/70 via-transparent to-[#0E1118]/80 pointer-events-none">
+      </div>
+    </div>
+
+    <!-- Ambient Glowing Aura Bloom & Floating Calligraphy Watermark -->
+    <div id="traceStudioAura"
+      class="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[400px] bg-gradient-to-b from-amber-500/15 via-esubli-orange/10 to-transparent blur-3xl pointer-events-none transition-opacity duration-700 opacity-60 z-0">
+    </div>
+    <div id="traceStudioWatermark"
+      class="absolute -left-12 sm:-left-6 top-1/4 select-none pointer-events-none transition-transform duration-700 ease-out will-change-transform w-64 sm:w-80 md:w-96 opacity-[0.065] filter drop-shadow-[0_0_35px_rgba(223,180,103,0.4)] z-0">
+      <img src="symbols/pure/ka.png" alt="Kulitan KA watermark"
+        class="w-full h-auto object-contain filter invert brightness-150 contrast-125 sepia hue-rotate-15">
+    </div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+
+      <div class="lg:max-w-2xl lg:text-left text-center mb-8 lg:ml-8 xl:ml-12">
+        <div
+          class="esubli-reveal inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-esubli-orange/15 border border-esubli-orange/40 text-xs text-amber-200 font-mono tracking-widest uppercase mb-2 shadow-glow-orange"
+          data-reveal-delay="0">
+          <span class="w-1.5 h-1.5 rounded-full bg-esubli-orange animate-pulse"></span>
+          <span data-i18n="studio_tag">TRY IT ON DESKTOP &amp; TABLET ❖ Subukan Mismo</span>
+        </div>
+        <h2 class="esubli-reveal font-serif text-3xl sm:text-5xl font-bold text-white mt-1 leading-tight"
+          data-reveal-delay="100">
+          Interactive Trace Studio
+        </h2>
+        <p class="esubli-reveal text-sm text-slate-200 mt-2 max-w-xl" data-reveal-delay="180" data-i18n="studio_desc">
+          Use your mouse or touch display to draw and trace the root character <strong>KA (Indung Súlat)</strong> below.
+        </p>
+      </div>
+
+      <!-- Trace Studio Card shifted to the left with lighter translucent glass to showcase background -->
+      <div id="traceStudioCard"
+        class="esubli-reveal-scale tilt-card trace-studio-card-glow max-w-2xl lg:max-w-2xl xl:max-w-3xl lg:mr-auto lg:ml-8 xl:ml-12 mx-auto rounded-3xl bg-[#161B26]/80 backdrop-blur-xl p-5 sm:p-8 shadow-[0_16px_50px_rgba(0,0,0,0.6)] border border-esubli-borderGold/50 relative"
+        data-reveal-delay="220">
+
+        <!-- Controls Bar -->
+        <div class="flex flex-wrap items-center justify-between gap-4 pb-5 border-b border-slate-700/60">
+          <div class="flex items-center gap-2.5">
+            <span class="text-xs text-slate-200 font-semibold" data-i18n="studio_char">Character to Trace
+              (Titik):</span>
+            <div
+              class="px-4 py-1.5 rounded-xl bg-esubli-orange text-white font-bold text-xs shadow-glow-orange flex items-center gap-1.5 ring-1 ring-amber-400/40">
+              <span class="font-serif text-sm">KA</span>
+              <span class="text-[10px] text-amber-200 uppercase font-mono">(Ugat / Root)</span>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-3">
+            <label class="text-xs text-slate-300 flex items-center gap-2 cursor-pointer font-medium">
+              <span data-i18n="studio_color">Ink Color (Kulay):</span>
+              <input type="color" id="inkColor" value="#dfb467"
+                class="w-7 h-7 rounded border-0 bg-transparent cursor-pointer">
+            </label>
+            <button onclick="clearTraceStudioCanvas()"
+              class="px-3.5 py-1.5 rounded-xl bg-slate-800/80 hover:bg-slate-700 border border-slate-600/60 text-slate-200 text-xs font-semibold transition flex items-center gap-1.5">
+              <i class="fa-solid fa-rotate-left"></i>
+              <span data-i18n="studio_clear">Clear Canvas (Burahin)</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Canvas Drawing Field (Lighter translucent field) -->
+        <div
+          class="relative w-full h-[360px] sm:h-[380px] rounded-2xl bg-[#0D121B]/60 backdrop-blur-md border border-esubli-gold/30 my-5 overflow-hidden flex items-center justify-center shadow-inner group/canvas">
+          <div id="traceGuideOverlay"
+            class="absolute inset-0 flex items-center justify-center pointer-events-none opacity-50 select-none canvas-guide-anim">
+          </div>
+
+          <!-- Subtle inviting calligraphy hint cue (fades when drawing) -->
+          <div id="traceCanvasPulseCue"
+            class="absolute top-4 left-4 z-20 pointer-events-none flex items-center gap-2 px-3 py-1 rounded-full bg-black/75 border border-esubli-gold/50 text-[11px] font-mono text-amber-200 shadow-[0_0_15px_rgba(223,180,103,0.3)] transition-opacity duration-500">
+            <i class="fa-solid fa-paintbrush text-esubli-orange animate-bounce"></i>
+            <span>Guhitan o i-trace ang titik KA</span>
+          </div>
+
+          <canvas id="desktopStudioCanvas" class="w-full h-full relative z-10 cursor-crosshair touch-none"></canvas>
+        </div>
+
+        <!-- Status & Stroke Counter -->
+        <div class="flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-300">
+          <div class="flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-esubli-gold animate-pulse"></span>
+            <span data-i18n="studio_guide">Follow stroke guides from top to bottom (Patindag vertical script
+              convention).</span>
+          </div>
+          <div class="font-mono text-esubli-gold font-bold" id="studioStrokeCounter">
+            Strokes (Mga Hagod): 0
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- =====================================================================
+           8. OFFICIAL APP RELEASE & APK DOWNLOAD SECTION
+           ===================================================================== -->
+  <section id="download" class="py-20 md:py-24 bg-[#0E1118] border-b border-esubli-borderGold/30 relative scroll-mt-20">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6 flex flex-col items-center">
+
+      <div
+        class="esubli-reveal inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-esubli-charcoal border border-esubli-borderGold/40 text-xs text-esubli-gold shimmer-badge">
+        <span class="font-mono" data-i18n="down_badge">Official Android Release • v1.0.4 Stable</span>
+      </div>
+
+      <h2 class="esubli-reveal font-serif text-3xl sm:text-5xl font-bold text-white leading-tight max-w-2xl"
+        data-reveal-delay="100" data-i18n="down_title">
+        Download the Official eSUBLI Android App
+      </h2>
+
+      <p class="esubli-reveal text-sm sm:text-base text-slate-300 leading-relaxed max-w-2xl" data-reveal-delay="200"
+        data-i18n="down_sub">
+        Experience the complete power of <strong>eSUBLI: Pamana sa Sulat</strong> on your Android device. Complete
+        offline mode for classroom learning, interactive trace haptics, and instant verification drills.
+      </p>
+
+      <div class="grid sm:grid-cols-2 gap-4 w-full max-w-2xl pt-2 text-left">
+        <div id="cardDirectApk"
+          class="esubli-reveal tilt-card flex items-start gap-3.5 p-4 rounded-2xl bg-esubli-surface border border-slate-800 hover:border-esubli-gold/60 transition-all duration-500"
+          data-reveal-delay="250">
+          <i class="fa-solid fa-cloud-arrow-down text-esubli-orange mt-1 text-lg"></i>
+          <div>
+            <h4 class="text-xs font-bold text-white uppercase tracking-wider" data-i18n="down_apk_title">Direct APK
+              Download (Direkta)</h4>
+            <p class="text-xs text-slate-400 mt-0.5" data-i18n="down_apk_desc">Download the package file (~24.5 MB)
+              directly to your device and install quickly without complicated steps.</p>
+          </div>
+        </div>
+
+        <div id="cardGooglePlay"
+          class="esubli-reveal tilt-card flex items-start gap-3.5 p-4 rounded-2xl bg-esubli-surface border border-slate-800 hover:border-esubli-gold/60 transition-all duration-500"
+          data-reveal-delay="350">
+          <svg class="w-5 h-5 shrink-0 mt-0.5" viewBox="0 0 29 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M13.54 15.28.12 29.34a3.64 3.64 0 0 0 5.33 2.16l15.1-8.6z" fill="#EA4335"/>
+            <path d="m27.11 12.89-6.53-3.74-7.35 6.45 7.38 7.28 6.48-3.7a3.55 3.55 0 0 0 0-6.29z" fill="#FBBC04"/>
+            <path d="M.12 2.66a3.46 3.46 0 0 0-.12.92v24.84a3.66 3.66 0 0 0 .12.92L14 15.64Z" fill="#4285F4"/>
+            <path d="m13.64 16 6.94-6.85L5.5.51A3.72 3.72 0 0 0 3.63 0 3.64 3.64 0 0 0 .12 2.65Z" fill="#34A853"/>
+          </svg>
+          <div>
+            <h4 class="text-xs font-bold text-white uppercase tracking-wider" data-i18n="down_play_title">Google Play
+              Store</h4>
+            <p class="text-xs text-slate-400 mt-0.5" data-i18n="down_play_desc">Install securely from the Google Play
+              Store for automatic background updates and certified security checks.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="esubli-reveal flex flex-wrap justify-center gap-4 pt-4" data-reveal-delay="400">
+        <button id="btnDownloadApkBottom" onclick="startApkDownload()"
+          class="pulse-glow-gold bg-[#d45a27] hover:bg-[#ea6832] text-white font-bold text-xs uppercase tracking-wider px-8 py-4 rounded-xl shadow-glow-orange transition-all duration-300 flex items-center gap-2.5 active:scale-95 hover:scale-105">
+          <i class="fa-solid fa-download text-sm"></i>
+          <span data-i18n="down_btn_apk">Download APK (24.5 MB)</span>
+        </button>
+        <button id="btnGooglePlayBottom" onclick="openPlayStoreLink()"
+          class="px-7 py-4 rounded-xl bg-esubli-surface border border-slate-700 hover:border-esubli-gold text-slate-200 text-xs font-semibold transition-all duration-300 flex items-center gap-2 active:scale-95 hover:scale-105">
+          <svg class="w-4 h-4 shrink-0" viewBox="0 0 29 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M13.54 15.28.12 29.34a3.64 3.64 0 0 0 5.33 2.16l15.1-8.6z" fill="#EA4335"/>
+            <path d="m27.11 12.89-6.53-3.74-7.35 6.45 7.38 7.28 6.48-3.7a3.55 3.55 0 0 0 0-6.29z" fill="#FBBC04"/>
+            <path d="M.12 2.66a3.46 3.46 0 0 0-.12.92v24.84a3.66 3.66 0 0 0 .12.92L14 15.64Z" fill="#4285F4"/>
+            <path d="m13.64 16 6.94-6.85L5.5.51A3.72 3.72 0 0 0 3.63 0 3.64 3.64 0 0 0 .12 2.65Z" fill="#34A853"/>
+          </svg>
+          <span>Google Play Store</span>
+        </button>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- =====================================================================
+           9. WEBSITE FOOTER (With Dark-Blended Pampanga Heritage Artwork)
+           ===================================================================== -->
+  <footer
+    class="relative bg-[#07090F] py-14 border-t border-esubli-borderGold/30 text-xs text-slate-400 overflow-hidden group">
+
+    <!-- Pampanga Heritage Panorama Artwork with Atmospheric Dark Blend -->
+    <div class="absolute inset-0 z-0 pointer-events-none overflow-hidden select-none">
+      <img src="assets/images/pampanga-heritage.jpg" alt="Pampanga Cultural Heritage Artwork"
+        class="w-full h-full object-cover opacity-40 filter brightness-[0.85] contrast-[1.12] sepia-[0.35] pointer-events-none transition-all duration-700 group-hover:opacity-50"
+        style="object-position: center bottom;">
+
+      <!-- Smooth Top-to-Bottom Obsidian Fade: Solid dark at the top for crystal-clear links, softly revealing the heritage skyline towards the base -->
+      <div class="absolute inset-0 bg-gradient-to-b from-[#07090F] via-[#07090F]/80 to-[#07090F]/45"></div>
+
+      <!-- Gentle Horizontal Edge Feathering so the panoramic edges blend smoothly into margins without hiding the church and mountains -->
+      <div class="absolute inset-0 bg-gradient-to-r from-[#07090F]/70 via-transparent to-[#07090F]/70"></div>
+
+      <!-- Warm Golden Heritage Glow at the bottom edge -->
+      <div class="absolute bottom-0 left-0 right-0 h-28 bg-gradient-to-t from-amber-500/10 via-transparent to-transparent pointer-events-none"></div>
+
+      <!-- Subtle Top Gold Trim Glow -->
+      <div
+        class="absolute top-0 left-0 right-0 h-[1.5px] bg-gradient-to-r from-transparent via-esubli-gold/60 to-transparent">
+      </div>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8 pb-10">
+        <!-- Brand & Mission -->
+        <div class="esubli-reveal space-y-3" data-reveal-delay="0">
+          <div class="flex items-baseline">
+            <span class="font-serif font-bold text-xl text-esubli-orange">e</span>
+            <span class="font-serif font-extrabold text-xl text-white">SUBLI</span>
+          </div>
+          <p class="text-xs text-slate-400 leading-relaxed" data-i18n="footer_desc">
+            Pamana ning Sûlat. A digital learning portal and cultural preservation platform dedicated to the indigenous
+            Kulitan script of Pampanga.
+          </p>
+        </div>
+
+        <!-- Navigation Links -->
+        <div class="esubli-reveal" data-reveal-delay="80">
+          <h4 class="font-serif font-bold text-white text-xs uppercase tracking-wider mb-3"
+            data-i18n="footer_nav_title">Navigation (Mga Seksyon)</h4>
+          <ul class="space-y-2">
+            <li><a href="#about" class="hover:text-esubli-gold transition" data-i18n="nav_about">About the App (Tungkol
+                sa App)</a></li>
+            <li><a href="#did-you-know" class="hover:text-esubli-gold transition" data-i18n="nav_dyk">Did You Know?
+                (Alam Ba Ninyo?)</a></li>
+            <li><a href="#trace-studio" class="hover:text-esubli-gold transition" data-i18n="nav_trace">Trace Studio
+                (Pagsasanay)</a></li>
+            <li><a href="#download" class="hover:text-esubli-gold transition" data-i18n="nav_btn_apk">Download App
+                (I-download)</a></li>
+          </ul>
+        </div>
+
+        <!-- App Distribution -->
+        <div class="esubli-reveal" data-reveal-delay="160">
+          <h4 class="font-serif font-bold text-white text-xs uppercase tracking-wider mb-3">App Distribution</h4>
+          <ul class="space-y-2">
+            <li><a href="javascript:void(0)" onclick="startApkDownload()"
+                class="hover:text-esubli-gold transition">Direct APK Download</a></li>
+            <li><a href="javascript:void(0)" onclick="openPlayStoreLink()"
+                class="hover:text-esubli-gold transition">Google Play Store</a></li>
+            <li><a href="javascript:void(0)" onclick="openDemoModal()"
+                class="hover:text-esubli-gold transition">Installation Guide</a></li>
+          </ul>
+        </div>
+
+        <!-- Cultural Partner Column -->
+        <div class="esubli-reveal space-y-2.5" data-reveal-delay="240">
+          <h4 class="font-serif font-bold text-white text-xs uppercase tracking-wider mb-3 flex items-center gap-2">
+            <i class="fa-solid fa-landmark text-esubli-gold"></i>
+            <span>CULTURAL PARTNER</span>
+          </h4>
+          <p class="text-xs text-slate-200 font-semibold leading-relaxed">
+            Arts, Culture and Tourism Office of Pampanga <span class="text-amber-400 font-mono font-bold">(ACTOP)</span>
+          </p>
+          <p class="text-xs text-esubli-gold/90 font-medium leading-relaxed italic">
+            Katuwang sa Kalinangan ning Kapampangan
+          </p>
+        </div>
+      </div>
+
+      <!-- Highlight Cards: Development Team & Institutional Partner -->
+      <div class="my-8 grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div
+          class="p-4 rounded-2xl bg-[#090C14]/90 backdrop-blur-md border border-esubli-gold/25 flex items-center gap-3.5 shadow-xl hover:border-esubli-gold/50 transition">
+          <div
+            class="w-10 h-10 rounded-xl bg-esubli-orange/20 border border-esubli-orange/40 text-esubli-orange flex items-center justify-center text-lg shrink-0">
+            <i class="fa-solid fa-laptop-code"></i>
+          </div>
+          <div>
+            <span class="text-[10px] font-mono text-esubli-gold uppercase tracking-wider block font-bold">eSUBLI
+              Developers</span>
+            <p class="text-xs text-white font-semibold mt-0.5">
+              Richard Ken D. Magat <span class="text-slate-500">•</span> Justine Micole R. David <span
+                class="text-slate-500">•</span> Justine Paul S. Payumo
+            </p>
+          </div>
+        </div>
+
+        <div
+          class="p-4 rounded-2xl bg-[#090C14]/90 backdrop-blur-md border border-esubli-gold/25 flex items-center gap-3.5 shadow-xl hover:border-esubli-gold/50 transition">
+          <div
+            class="w-10 h-10 rounded-xl bg-amber-500/20 border border-amber-500/40 text-amber-300 flex items-center justify-center text-lg shrink-0">
+            <i class="fa-solid fa-landmark"></i>
+          </div>
+          <div>
+            <span class="text-[10px] font-mono text-amber-300 uppercase tracking-wider block font-bold">Local Heritage
+              Partner ❖ Turismo ng Pampanga</span>
+            <p class="text-xs text-white font-semibold mt-0.5">
+              Arts, Culture and Tourism Office of Pampanga <span
+                class="text-esubli-gold font-mono font-bold">(ACTOP)</span>
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom Copyright Bar -->
+      <div
+        class="pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-slate-500">
+        <p>© 2026 eSUBLI: Pamana sa Sulat. Developed by Richard Ken D. Magat, Justine Micole R. David, and Justine Paul
+          S. Payumo in partnership with ACTOP Pampanga.</p>
+        <div class="flex flex-wrap gap-4 sm:gap-6 justify-center">
+          <a href="#" class="hover:text-slate-300 transition">Privacy Policy (Pagkapribado)</a>
+          <a href="#" class="hover:text-slate-300 transition">Terms of Service (Tuntunin)</a>
+          <a href="javascript:void(0)" onclick="openPlayStoreLink()" class="hover:text-slate-300 transition">Google Play
+            Store &amp; Android APK</a>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- =========================================================================
+       MODALS & TOAST NOTIFICATIONS
+       ========================================================================= -->
+
+  <!-- Modal: Watch Demo -->
+  <div id="demoModal" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-md hidden items-center justify-center p-4">
+    <div
+      class="bg-esubli-charcoal border border-esubli-borderGold/60 rounded-3xl p-6 sm:p-8 max-w-2xl w-full text-center space-y-4 shadow-2xl relative">
+      <button onclick="closeDemoModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white text-lg"
+        aria-label="Close dialog">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
+      <h3 class="font-serif text-2xl font-bold text-white">eSUBLI App Interactive Preview</h3>
+
+      <div
+        class="aspect-video bg-esubli-charcoalDark rounded-2xl border border-slate-800 flex flex-col items-center justify-center p-6 text-center relative overflow-hidden">
+        <div
+          class="w-16 h-16 rounded-full bg-esubli-orange/20 border border-esubli-orange flex items-center justify-center text-esubli-orange text-2xl mb-3">
+          <i class="fa-solid fa-play ml-1"></i>
+        </div>
+        <p class="text-sm font-semibold text-slate-200">Interactive Walkthrough: Trace Studio, Interactive Quiz &amp; Syllabary
+        </p>
+        <p class="text-xs text-slate-400 mt-2 max-w-md">
+          You can test the interactive screens directly inside the 3D Android phone mockup above using the slide
+          navigation buttons!
+        </p>
+      </div>
+
+      <div class="flex flex-wrap justify-center gap-3 pt-2">
+        <button onclick="startApkDownload(); closeDemoModal();"
+          class="px-6 py-2.5 rounded-xl bg-esubli-orange hover:bg-esubli-orangeHover text-white text-xs font-bold uppercase transition flex items-center gap-2">
+          <i class="fa-solid fa-download"></i>
+          <span>Download APK (I-download)</span>
+        </button>
+        <button onclick="openPlayStoreLink(); closeDemoModal();"
+          class="px-6 py-2.5 rounded-xl bg-[#1A1F2C] hover:bg-[#252C3D] border border-slate-700 text-white text-xs font-bold uppercase transition flex items-center gap-2">
+          <svg class="w-4 h-4 shrink-0" viewBox="0 0 29 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M13.54 15.28.12 29.34a3.64 3.64 0 0 0 5.33 2.16l15.1-8.6z" fill="#EA4335"/>
+            <path d="m27.11 12.89-6.53-3.74-7.35 6.45 7.38 7.28 6.48-3.7a3.55 3.55 0 0 0 0-6.29z" fill="#FBBC04"/>
+            <path d="M.12 2.66a3.46 3.46 0 0 0-.12.92v24.84a3.66 3.66 0 0 0 .12.92L14 15.64Z" fill="#4285F4"/>
+            <path d="m13.64 16 6.94-6.85L5.5.51A3.72 3.72 0 0 0 3.63 0 3.64 3.64 0 0 0 .12 2.65Z" fill="#34A853"/>
+          </svg>
+          <span>Google Play Store</span>
+        </button>
+        <button onclick="closeDemoModal()"
+          class="px-6 py-2.5 rounded-xl bg-slate-800 text-xs font-semibold text-slate-300 hover:text-white transition">
+          Close (Isara)
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: If you want to learn more, download the app -->
+  <div id="traceLearnMoreModal"
+    class="fixed inset-0 z-50 bg-black/85 backdrop-blur-md hidden items-center justify-center p-4 transition-all duration-300">
+    <div
+      class="bg-gradient-to-b from-[#181B26] to-[#0E1118] border border-esubli-borderGold/60 rounded-3xl p-6 sm:p-8 max-w-lg w-full text-center space-y-5 shadow-2xl relative">
+      <button onclick="closeTraceLearnModal()"
+        class="absolute top-4 right-4 text-slate-400 hover:text-white text-lg p-1 transition" aria-label="Close dialog">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
+      <!-- Badge / Icon -->
+      <div
+        class="w-16 h-16 mx-auto rounded-2xl bg-amber-500/10 border border-esubli-gold/40 flex items-center justify-center text-esubli-gold shadow-glow-gold animate-bounce">
+        <i class="fa-solid fa-feather-pointed text-esubli-orange text-3xl"></i>
+      </div>
+
+      <div class="space-y-2">
+        <div
+          class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-esubli-charcoal border border-esubli-borderGold/40 text-[11px] font-mono text-esubli-gold">
+          <span>✨ Successfully Traced the Character KA! ❖ Matagumpay!</span>
+        </div>
+        <h3 class="font-serif text-2xl sm:text-3xl font-bold text-white">
+          Want to Learn More? (Gusto Mo Pang Matuto?)
+        </h3>
+        <p class="font-bold text-esubli-gold text-base sm:text-lg">
+          If you want to learn more, download the app!
+        </p>
+        <p class="text-xs sm:text-sm text-slate-300 leading-relaxed max-w-sm mx-auto">
+          Unlock the complete Kulitan syllabary (all Indung Súlat and Ának Súlat), vowel markers, and interactive quiz
+          drills on the official eSUBLI Android app.
+        </p>
+      </div>
+
+      <!-- Auto-scroll countdown progress bar -->
+      <div class="space-y-1.5 pt-1">
+        <div class="text-[11px] text-slate-400 font-mono flex items-center justify-center gap-1.5">
+          <i class="fa-solid fa-arrow-down text-esubli-gold animate-bounce text-xs"></i>
+          <span>Automatically proceeding to download section in</span>
+          <span id="autoScrollCountdown" class="text-esubli-gold font-bold">2s...</span>
+        </div>
+        <div class="w-full bg-slate-800 h-1.5 rounded-full overflow-hidden max-w-xs mx-auto border border-slate-700">
+          <div id="autoScrollProgressBar" class="bg-gradient-to-r from-esubli-orange to-esubli-gold h-full w-0"></div>
+        </div>
+      </div>
+
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2">
+        <button onclick="goToDownloadSection()"
+          class="w-full sm:w-auto px-6 py-3.5 rounded-xl bg-esubli-orange hover:bg-esubli-orangeHover text-white text-xs sm:text-sm font-bold uppercase tracking-wider shadow-glow-orange hover:scale-105 active:scale-95 transition flex items-center justify-center gap-2">
+          <i class="fa-solid fa-download"></i>
+          <span>Go to Download Page (Pumunta)</span>
+        </button>
+        <button onclick="closeTraceLearnModal()"
+          class="w-full sm:w-auto px-4 py-3.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-xs font-semibold text-slate-300 hover:text-white transition">
+          Keep Practicing Here (Mag-practice Pa)
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Site Notification Toast -->
+  <div id="siteToastBox" class="fixed bottom-6 right-6 z-50 hidden transition-all duration-300">
+    <div
+      class="flex items-center gap-3 bg-esubli-charcoal text-white px-5 py-3 rounded-2xl shadow-2xl border border-esubli-borderGold">
+      <span class="text-esubli-gold text-base">❖</span>
+      <span id="siteToastMessage" class="text-xs font-semibold">Notice (Abiso)</span>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       APPLICATION LOGIC JAVASCRIPT
+       ========================================================================= -->
+  <script>
+    // =========================================================================
+    // MULTILINGUAL TRANSLATION SYSTEM (English / Tagalog / Kapampangan)
+    // =========================================================================
+    const I18N = {
+      en: {
+        nav_about: "About",
+        nav_dyk: "Did You Know?",
+        nav_trace: "Try Interactive",
+        nav_btn_apk: "DOWNLOAD APK",
+        hero_eyebrow: "Preserve the Indigenous Kulitan Script",
+        hero_tagline: "Rediscover the ancient Kapampangan script through interactive tracing drills, calligraphy studio, and syllable challenges.",
+        hero_btn_apk: "Download APK (Android)",
+        hero_btn_demo: "Watch Demo",
+        hero_scroll: "<span>DISCOVER KULITAN</span> <span class=\"text-esubli-orange\">❖</span> <span class=\"text-slate-400 font-sans normal-case\">Explore Heritage</span>",
+        dyk_badge: "❖ DID YOU KNOW? • ALAM MO BA? ❖",
+        dyk_heading: "Pampanga Has Its Own Indigenous Writing System Called <span class=\"bg-gradient-to-r from-amber-200 via-esubli-gold to-esubli-orange bg-clip-text text-transparent\">Kulitan</span><span class=\"text-amber-100/80 font-serif font-normal text-2xl sm:text-4xl block mt-2 sm:mt-1\">(Sulat Kapampangan)</span>",
+        dyk_lead: "The Kapampangan people possess their own distinct ancient writing system known as <strong class=\"text-esubli-gold font-semibold\">Kulitan</strong> or <strong class=\"text-white font-semibold\">Sulat Kapampangan</strong>. It is one of the most structurally unique pre-colonial scripts in the Philippines.",
+        dyk_about_tag: "❖ ABOUT KULITAN • TUNGKOL SA KULITAN ❖",
+        dyk_about_desc: "<strong class=\"text-white font-semibold\">Kulitan</strong> (also known as <em class=\"text-esubli-gold font-normal\">Súlat Kapampángan</em> or <em class=\"text-esubli-gold font-normal\">Pamagkulit</em>) is the pre-colonial indigenous writing system of the Kapampangan people. It is an abugida (alphasyllabary) traditionally composed vertically from top to bottom (<em class=\"text-amber-300 font-medium\">Tínduk</em>) in right-to-left columns. Syllables are formed through architectural stacking: an <strong class=\"text-amber-300 font-semibold\">Indung Súlat</strong> (root consonant with an inherent /a/ sound) is paired with <strong class=\"text-esubli-orange font-semibold\">Ának Súlat</strong> (diacritical marks and codas) into compact, expressive syllabic characters.",
+        dyk_facts_tag: "ANCIENT SCRIPT CHARACTERISTICS ❖ Katangian ng Sinaunang Titik",
+        dyk_facts_title: "Key Facts About Kulitan",
+        dyk_facts_desc: "The five defining principles that distinguish Sulat Kapampangan from every other indigenous writing system in the Philippine archipelago.",
+        dyk_cta_title: "Ready to try writing in Kulitan? ❖ Nais mo bang sumulat?",
+        dyk_cta_desc: "Practice with our interactive calligraphy engine below or download the Android mobile app.",
+        dyk_cta_studio: "Try in Trace Studio",
+        dyk_cta_app: "Download App (I-download)",
+        studio_tag: "TRY IT ON DESKTOP &amp; TABLET ❖ Subukan Mismo",
+        studio_desc: "Use your mouse or touch display to draw and trace the root character <strong>KA (Indung Súlat)</strong> below.",
+        studio_char: "Character to Trace (Titik):",
+        studio_color: "Ink Color (Kulay):",
+        studio_clear: "Clear Canvas (Burahin)",
+        studio_guide: "Follow stroke guides from top to bottom (Patindag vertical script convention).",
+        down_badge: "Official Android Release • v1.0.4 Stable",
+        down_title: "Download the Official eSUBLI Android App",
+        down_sub: "Experience the complete power of <strong>eSUBLI: Pamana sa Sulat</strong> on your Android device. Complete offline mode for classroom learning, interactive trace haptics, and instant verification drills.",
+        down_apk_title: "Direct APK Download (Direkta)",
+        down_apk_desc: "Download the package file (~24.5 MB) directly to your device and install quickly without complicated steps.",
+        down_play_title: "Google Play Store",
+        down_play_desc: "Install securely from the Google Play Store for automatic background updates and certified security checks.",
+        down_btn_apk: "Download APK (24.5 MB)",
+        footer_desc: "Pamana ning Sûlat. A digital learning portal and cultural preservation platform dedicated to the indigenous Kulitan script of Pampanga.",
+        footer_nav_title: "Navigation (Mga Seksyon)",
+        footer_dev_title: "Developers (Mga Developer)",
+        toast_switched: "Language set to English (EN)."
+      },
+      tl: {
+        nav_about: "Tungkol sa App",
+        nav_dyk: "Alam Ba Ninyo?",
+        nav_trace: "Subukan Mismo",
+        nav_btn_apk: "I-DOWNLOAD ANG APK",
+        hero_eyebrow: "Pangalagaan ang Katutubong Sulat Kulitan",
+        hero_tagline: "Tuklasin muli ang sinaunang sulat Kapampangan sa pamamagitan ng interactive na pagsasanay, calligraphy studio, at pagsusulit sa kaalaman.",
+        hero_btn_apk: "I-download ang APK (Android)",
+        hero_btn_demo: "Panoorin ang Demo",
+        hero_scroll: "<span>TUKLASIN ANG KULITAN</span> <span class=\"text-esubli-orange\">❖</span> <span class=\"text-slate-400 font-sans normal-case\">Mag-scroll Pababa</span>",
+        dyk_badge: "❖ ALAM BA NINYO? • DID YOU KNOW? ❖",
+        dyk_heading: "Ang Pampanga ay May Sariling Katutubong Panulat na Tinatawag na <span class=\"bg-gradient-to-r from-amber-200 via-esubli-gold to-esubli-orange bg-clip-text text-transparent\">Kulitan</span><span class=\"text-amber-100/80 font-serif font-normal text-2xl sm:text-4xl block mt-2 sm:mt-1\">(Sulat Kapampangan)</span>",
+        dyk_lead: "Ang mga mamamayan ng Pampanga ay may sarili at bukod-tanging sinaunang paraan ng pagsulat na tinatawag na <strong class=\"text-esubli-gold font-semibold\">Kulitan</strong> o <strong class=\"text-white font-semibold\">Sulat Kapampangan</strong>. Isa ito sa may pinakanatatanging estruktura bago pa man dumating ang mga Kastila.",
+        dyk_about_tag: "❖ TUNGKOL SA KULITAN • ABOUT KULITAN ❖",
+        dyk_about_desc: "Ang <strong class=\"text-white font-semibold\">Kulitan</strong> (kilala rin bilang <em class=\"text-esubli-gold font-normal\">Súlat Kapampángan</em> o <em class=\"text-esubli-gold font-normal\">Pamagkulit</em>) ay ang sinaunang katutubong paraan ng pagsulat ng mga Kapampangan bago pa man dumating ang mga dayuhan. Ito ay isang abugida (alphasyllabary) na tradisyonal na isinusulat nang patayo mula itaas pababa (<em class=\"text-amber-300 font-medium\">Tínduk</em>) sa mga hanay mula kanan pakaliwa. Nabubuo ang bawat pantig sa pagsasama ng <strong class=\"text-amber-300 font-semibold\">Indung Súlat</strong> (inang katinig na may likas na tunog na /a/) at <strong class=\"text-esubli-orange font-semibold\">Ának Súlat</strong> (mga kudlit at markang pamboses o pambuntot) sa isang maayos na salansan ng titik.",
+        dyk_facts_tag: "MGA KATANGIAN NG SINAUNANG TITIK ❖ Core Principles",
+        dyk_facts_title: "Mga Katotohanan Tungkol sa Kulitan",
+        dyk_facts_desc: "Ang limang natatanging patakaran na naghihiwalay sa Sulat Kapampangan sa lahat ng iba pang katutubong panulat sa kapuluan.",
+        dyk_cta_title: "Nais mo bang subukang sumulat sa Kulitan?",
+        dyk_cta_desc: "Magsanay gamit ang aming interactive calligraphy engine sa ibaba o i-download ang Android mobile app.",
+        dyk_cta_studio: "Subukan sa Trace Studio",
+        dyk_cta_app: "I-download ang App",
+        studio_tag: "SUBUKAN SA DESKTOP &amp; TABLET ❖ Live Canvas",
+        studio_desc: "Gamitin ang iyong mouse o touch display upang iguhit at i-trace ang inang titik na <strong>KA (Indung Súlat)</strong> sa ibaba.",
+        studio_char: "Titik na I-trace:",
+        studio_color: "Kulay ng Tinta:",
+        studio_clear: "Burahin ang Canvas",
+        studio_guide: "Sundin ang gabay mula sa itaas pababa (Patindag vertical script convention).",
+        down_badge: "Opisyal na Paglabas sa Android • v1.0.4 Stable",
+        down_title: "I-download ang Opisyal na eSUBLI Android App",
+        down_sub: "Tangkilikin ang buong karanasan ng <strong>eSUBLI: Pamana sa Sulat</strong> sa iyong Android device. Kumpletong offline mode para sa mga klase sa paaralan, interactive trace haptics, at mabilis na pagsusulit.",
+        down_apk_title: "Direktang Pag-install ng APK",
+        down_apk_desc: "I-download ang package file (~24.5 MB) sa iyong aparato at i-install kaagad nang walang kumplikadong hakbang.",
+        down_play_title: "Google Play Store",
+        down_play_desc: "I-install nang ligtas mula sa Google Play Store para sa awtomatikong updates at certified security checks.",
+        down_btn_apk: "I-download ang APK (24.5 MB)",
+        footer_desc: "Pamana ning Sûlat. Isang digital learning portal at plataporma para sa preserbasyon ng katutubong sulat Kulitan ng Pampanga.",
+        footer_nav_title: "Mga Seksyon ng Website",
+        footer_dev_title: "Mga Developer",
+        toast_switched: "Pinalitan ang wika sa Tagalog (TL)."
+      },
+      kpm: {
+        nav_about: "Tungkul king App",
+        nav_dyk: "Balu Yu Kasi?",
+        nav_trace: "Subukan king Studio",
+        nav_btn_apk: "KUNAN ING APK",
+        hero_eyebrow: "Ingatan ing Katutubung Súlat Kulitan",
+        hero_tagline: "Balikan ing matwang súlat Kapampángan kapamilatan ning interactive a pamanyúlat, calligraphy studio, at pamanyubuk king kabalwan.",
+        hero_btn_apk: "I-download ing APK (Android)",
+        hero_btn_demo: "Lawen ing Demo",
+        hero_scroll: "<span>TUKLASAN ING KULITAN</span> <span class=\"text-esubli-orange\">❖</span> <span class=\"text-slate-400 font-sans normal-case\">Dumuslus Pababa</span>",
+        dyk_badge: "❖ BALU YU KASI? • KULITAN ❖",
+        dyk_heading: "Ing Pampanga Atin Yang Sariling Katutubung Panyulat a Ausan Dang <span class=\"bg-gradient-to-r from-amber-200 via-esubli-gold to-esubli-orange bg-clip-text text-transparent\">Kulitan</span><span class=\"text-amber-100/80 font-serif font-normal text-2xl sm:text-4xl block mt-2 sm:mt-1\">(Súlat Kapampángan)</span>",
+        dyk_lead: "Ding Kapampángan atin lang sariling matwang panyúlat a ausan dang <strong class=\"text-esubli-gold font-semibold\">Kulitan</strong> o <strong class=\"text-white font-semibold\">Súlat Kapampángan</strong>. Metung ya kareng pekabukud a sulat king kabilugan ning kapuluan Pilipinas.",
+        dyk_about_tag: "❖ TUNGKUL KING KULITAN • ABOUT KULITAN ❖",
+        dyk_about_desc: "Ing <strong class=\"text-white font-semibold\">Kulitan</strong> (ausan mu rin <em class=\"text-esubli-gold font-normal\">Súlat Kapampángan</em> o <em class=\"text-esubli-gold font-normal\">Pamagkulit</em>) metung yang katutubung matwang paralan ning pamanyúlat ding Kapampángan. Metung yang abugida a tradisyonal a masusúlat patinduk ibat babo pababa (<em class=\"text-amber-300 font-medium\">Tínduk</em>) manibat wanan pakayli. Mabubuu ya ing balang pantig kapamilatan ning pamiugnay ning <strong class=\"text-amber-300 font-semibold\">Indung Súlat</strong> (inang titik a maki likas a katning /a/) ampo <strong class=\"text-esubli-orange font-semibold\">Ának Súlat</strong> (kudlit at gulis a panaliling katni o coda) king metung a masalansan a baytang.",
+        dyk_facts_tag: "KATANGIAN NING MATWANG TITIK ❖ Tuntunan",
+        dyk_facts_title: "Ding Katutwan Tungkul king Kulitan",
+        dyk_facts_desc: "Ding limang makabukud a tuntunan a maglayo king Súlat Kapampángan karing aliwang katutubung panúlat king kapuluan.",
+        dyk_cta_title: "Bisa kang subukang sumulat king Kulitan?",
+        dyk_cta_desc: "Maniensayu kapamilatan ning interactive calligraphy engine king lalam o i-download ing mobile app.",
+        dyk_cta_studio: "Subukan king Trace Studio",
+        dyk_cta_app: "Kunan ing App",
+        studio_tag: "SUBUKAN KING DESKTOP &amp; TABLET ❖ Live Canvas",
+        studio_desc: "Gamitan ing kekang mouse o touch display bang igulis at i-trace ing inang titik <strong>KA (Indung Súlat)</strong> king lalam.",
+        studio_char: "Titik a Igulis:",
+        studio_color: "Kule ning Tinta:",
+        studio_clear: "Lisen ing Canvas",
+        studio_guide: "Tukian ing panatun ibat babo pababa (Patindag vertical script convention).",
+        down_badge: "Opisyal a Pagpalwal king Android • v1.0.4 Stable",
+        down_title: "Kunan ing Opisyal a eSUBLI Android App",
+        down_sub: "Damdaman ing kumpletung sikanan ning <strong>eSUBLI: Pamana sa Sulat</strong> king kekang Android device. Kumpletung offline mode para king pipagaralan, interactive trace haptics, at mabilis a pamagsulit.",
+        down_apk_title: "Direktang Pamag-install king APK",
+        down_apk_desc: "I-download ing package file (~24.5 MB) king kekang gamit at i-install agad anggang alang masakit a dapat.",
+        down_play_title: "Google Play Store",
+        down_play_desc: "I-install nang ligtas ibat king Google Play Store para king kusa nang updates at lisensyadung pagsuri.",
+        down_btn_apk: "Kunan ing APK (24.5 MB)",
+        footer_desc: "Pamana ning Sûlat. Metung a digital learning portal at plataporma para king pamag-ingat king katutubung súlat Kulitan ning Pampanga.",
+        footer_nav_title: "Dalerayan king Website",
+        footer_dev_title: "Ding Developer",
+        toast_switched: "Miyalilan ya ing amánu king Kapampangan (KPM)."
+      }
+    };
+
+    let currentSiteLanguage = 'en';
+
+    function setSiteLanguage(lang, silent = false) {
+      if (!I18N[lang]) lang = 'en';
+      currentSiteLanguage = lang;
+      try {
+        localStorage.setItem('esubli_site_lang', lang);
+      } catch (e) { }
+
+      // Update switcher buttons styling (Desktop header and Mobile drawer)
+      ['en', 'tl', 'kpm'].forEach(l => {
+        const btn = document.getElementById(`langBtn${l.charAt(0).toUpperCase() + l.slice(1)}`);
+        const mobBtn = document.getElementById(`mobLangBtn${l.charAt(0).toUpperCase() + l.slice(1)}`);
+        const activeClass = "px-2.5 py-1 rounded-full text-xs font-mono font-bold transition-all duration-300 bg-esubli-orange text-white shadow-glow-orange scale-105";
+        const inactiveClass = "px-2.5 py-1 rounded-full text-xs font-mono font-bold transition-all duration-300 text-slate-400 hover:text-white";
+        if (btn) btn.className = l === lang ? activeClass : inactiveClass;
+        if (mobBtn) mobBtn.className = l === lang ? "px-2.5 py-1 rounded-full font-bold bg-esubli-orange text-white" : "px-2.5 py-1 rounded-full font-bold text-slate-400 hover:text-white";
+      });
+
+      // Update all elements with data-i18n
+      const dict = I18N[lang];
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (dict && dict[key]) {
+          el.innerHTML = dict[key];
+        }
+      });
+
+      // Sync phone mockup slide language
+      const mockKey = lang === 'tl' ? 'ph' : lang;
+      syncMockupLanguageUI(mockKey);
+
+      if (!silent && typeof triggerToastNotice === 'function') {
+        triggerToastNotice(dict.toast_switched);
+      }
+    }
+
+    // --- 1. Dataset for Kulitan (13 Indung Súlat Root Consonants) ---
+    const kulitanAlphabet = [
+      { id: 'ka', name: 'KA', ipa: '/ka/', desc: 'First consonant of Kulitan (Indung Súlat); symbolizes origin, creation, and fellowship (pakikipagkapwa).', path: 'M50 15 L20 85 H40 L50 50 L60 85 H80 Z M30 65 H70' },
+      { id: 'ga', name: 'GA', ipa: '/ga/', desc: 'Consonant of the fertile soil (lupa), resilience, and nature\'s abundance.', path: 'M25 80 V25 H75 V55 H50 V80' },
+      { id: 'nga', name: 'NGA', ipa: '/ŋa/', desc: 'Native indigenous sound of Amánung Sísuan and cultural heritage preservation.', path: 'M20 75 C30 30, 70 30, 80 75 M50 30 V80' },
+      { id: 'ta', name: 'TA', ipa: '/ta/', desc: 'Symbol of time (panahon), progression, and life\'s measured footsteps.', path: 'M25 25 H75 M50 25 V85 M35 55 H65' },
+      { id: 'da', name: 'DA / RA', ipa: '/da/ /ra/', desc: 'Interchangeable consonant pair in classical Kapampangan grammar.', path: 'M25 25 H70 C85 45, 85 65, 70 85 H25 V25 Z' },
+      { id: 'na', name: 'NA', ipa: '/na/', desc: 'Symbol of lineage (lahi), family kinship, and revered ancestors (ninuno).', path: 'M25 80 V30 H55 V80 M55 50 H80 V80' },
+      { id: 'pa', name: 'PA', ipa: '/pa/', desc: 'Symbol of wind (hangin), breath of life, and voyages across the plains.', path: 'M25 25 V80 H60 C80 80, 80 50, 60 50 H25' },
+      { id: 'ba', name: 'BA', ipa: '/ba/', desc: 'Home sanctuary (tahanan), sacred waters, and the cradle of civilization.', path: 'M20 50 C20 25, 80 25, 80 50 C80 75, 20 75, 20 50 Z M50 25 V75' },
+      { id: 'ma', name: 'MA', ipa: '/ma/', desc: 'Mother (Ina), maternal warmth, and deep devotion to language.', path: 'M25 80 V25 C45 25, 55 55, 55 80 M55 25 C75 25, 85 55, 85 80' },
+      { id: 'ya', name: 'YA', ipa: '/ja/', desc: 'Flow of the sacred Pampanga River (Rio Grande) and spiritual life.', path: 'M20 30 L50 65 L80 30 M50 65 V85' },
+      { id: 'la', name: 'LA', ipa: '/la/', desc: 'Song of the heart (awit ng puso) and gentle winds over Mount Arayat.', path: 'M25 25 H75 V50 H25 V80 H75' },
+      { id: 'wa', name: 'WA', ipa: '/wa/', desc: 'Expansive verdant fields and farmlands of Central Luzon.', path: 'M20 30 C35 85, 65 85, 80 30' },
+      { id: 'sa', name: 'SA', ipa: '/sa/', desc: 'Sunlight (liwanag ng araw), dawn in the east (Aláya), and resilient hope.', path: 'M75 30 C45 20, 25 50, 55 60 C85 70, 55 90, 25 80' }
+    ];
+
+    let currentDiacritic = 'a';
+    let currentInspectorGlyph = kulitanAlphabet[0];
+
+    // Helper: Kulitan Glyph rendering (Supports custom PNG/SVG files in symbols/ folder with SVG fallback)
+    function createGlyphSvg(path, dia = 'a', size = 50, glyphId = '') {
+      let mark = '';
+      if (dia === 'i') {
+        mark = '<circle cx="50" cy="10" r="7" fill="#dfb467" stroke="#b84518" stroke-width="2"/>';
+      } else if (dia === 'u') {
+        mark = '<circle cx="50" cy="92" r="7" fill="#dfb467" stroke="#b84518" stroke-width="2"/>';
+      } else if (dia === 'pamudpod') {
+        mark = '<line x1="70" y1="70" x2="94" y2="94" stroke="#e0622d" stroke-width="8" stroke-linecap="round"/>';
+      }
+
+      const folder = (window.APP_CONFIG && window.APP_CONFIG.symbolsFolder) || 'symbols/pure/';
+      const ext = (window.APP_CONFIG && window.APP_CONFIG.symbolExtension) || 'png';
+
+      let resolvedFile = '';
+      if (glyphId) {
+        let base = glyphId.toLowerCase();
+        let prefix = base.replace(/a$/, ''); // "k", "g", "ng", "t", "d", "n", "p", "b", "m", "s", "l"
+        if (dia === 'i') {
+          resolvedFile = prefix + 'i';
+        } else if (dia === 'u') {
+          resolvedFile = prefix + 'u';
+        } else if (dia === 'pamudpod') {
+          resolvedFile = prefix === 'k' ? 'kank' : prefix + 'ang';
+        } else {
+          resolvedFile = base; // "ka", "ba", "da", etc.
+        }
+      }
+
+      const imgFile = resolvedFile ? `${folder}${resolvedFile}.${ext}` : '';
+
+      if (imgFile) {
+        return `
+          <div class="relative inline-flex items-center justify-center overflow-visible" style="width:${size}px; height:${size}px;">
+            <img src="${imgFile}" alt="${glyphId}" class="w-full h-full object-contain filter drop-shadow-[0_2px_8px_rgba(223,180,103,0.35)]" 
+                 onerror="this.style.display='none'; if(this.nextElementSibling) this.nextElementSibling.style.display='block';"
+                 onload="this.style.display='block'; if(this.nextElementSibling) this.nextElementSibling.style.display='none';">
+            <svg width="${size}" height="${size}" viewBox="0 0 100 100" class="overflow-visible" fill="none">
+              <path d="${path}" stroke="#dfb467" stroke-width="6.5" stroke-linecap="round" stroke-linejoin="round" />
+              ${mark}
+            </svg>
+          </div>
+        `;
+      }
+
+      return `
+        <svg width="${size}" height="${size}" viewBox="0 0 100 100" class="overflow-visible" fill="none">
+          <path d="${path}" stroke="#dfb467" stroke-width="6.5" stroke-linecap="round" stroke-linejoin="round" />
+          ${mark}
+        </svg>
+      `;
+    }
+
+    // --- 2. Android Phone UI Sliding Logic ---
+    let currentPhoneSlide = 0;
+    const totalPhoneSlides = 3;
+    let autoplayInterval = null;
+
+    function setPhoneSlide(index) {
+      currentPhoneSlide = (index + totalPhoneSlides) % totalPhoneSlides;
+      const track = document.getElementById('phoneSlidesTrack');
+      if (track) {
+        track.style.transform = `translateX(-${currentPhoneSlide * 33.333333}%)`;
+      }
+
+      for (let i = 0; i < totalPhoneSlides; i++) {
+        const dot = document.getElementById(`slideDot${i}`);
+        if (dot) {
+          if (i === currentPhoneSlide) {
+            dot.className = "w-4 h-1.5 rounded-full bg-esubli-orange transition-all";
+          } else {
+            dot.className = "w-1.5 h-1.5 rounded-full bg-slate-700 transition-all";
+          }
+        }
+      }
+
+      if (currentPhoneSlide === 1) {
+        initPhoneInternalCanvas();
+      }
+    }
+
+    function navigatePhoneSlide(dir) {
+      setPhoneSlide(currentPhoneSlide + dir);
+    }
+
+    function togglePhoneDemoAutoplay() {
+      const icon = document.getElementById('autoplayIcon');
+      if (autoplayInterval) {
+        clearInterval(autoplayInterval);
+        autoplayInterval = null;
+        if (icon) icon.className = "fa-solid fa-play text-xs";
+        triggerToastNotice('Screen preview autoplay paused (Nakahinto).');
+      } else {
+        autoplayInterval = setInterval(() => {
+          navigatePhoneSlide(1);
+        }, 4000);
+        if (icon) icon.className = "fa-solid fa-pause text-xs";
+        triggerToastNotice('Auto-playing Android app preview screens...');
+      }
+    }
+
+    // Language switcher for phone mockup UI
+    function syncMockupLanguageUI(lang) {
+      ['en', 'ph', 'kpm'].forEach(l => {
+        const b = document.getElementById(`mockLang${l.charAt(0).toUpperCase() + l.slice(1)}`);
+        if (b) b.className = "px-2 py-0.5 rounded-full text-slate-400 hover:text-white transition";
+      });
+
+      const active = document.getElementById(`mockLang${lang.charAt(0).toUpperCase() + lang.slice(1)}`);
+      if (active) active.className = "px-2 py-0.5 rounded-full bg-esubli-orange text-white font-bold transition";
+
+      const tag = document.getElementById('mockupTagText');
+      const badge = document.getElementById('mockupBadgeText');
+      const desc = document.getElementById('mockupDescText');
+      const btnStart = document.getElementById('mockupBtnStart');
+      const btnGuide = document.getElementById('mockupBtnGuide');
+
+      if (lang === 'en') {
+        if (tag) tag.innerText = "INDIGENOUS PHILIPPINE SCRIPT";
+        if (badge) badge.innerText = "WRITTEN HERITAGE";
+        if (desc) desc.innerText = "Rediscover the ancient Kapampangan script through tracing drills, studio and battles.";
+        if (btnStart) btnStart.innerText = "START THE JOURNEY";
+        if (btnGuide) btnGuide.innerText = "KULITAN GUIDE";
+      } else if (lang === 'kpm') {
+        if (tag) tag.innerText = "SÚLAT KAPAMPÁNGAN";
+        if (badge) badge.innerText = "MANA KING PANYÚLAT";
+        if (desc) desc.innerText = "Balikan ing matwang súlat Kapampángan king pamanyulat, studio at pamilaban.";
+        if (btnStart) btnStart.innerText = "PUMPUNAN ING PAMAGLAKBE";
+        if (btnGuide) btnGuide.innerText = "TUNTUNAN KING KULITAN";
+      } else {
+        if (tag) tag.innerText = "INDIGENOUS PHILIPPINE SCRIPT";
+        if (badge) badge.innerText = "PAMANA SA SULAT";
+        if (desc) desc.innerText = "Tuklasin muli ang sinaunang sulat Kapampangan sa pagsasanay, studio at labanan.";
+        if (btnStart) btnStart.innerText = "SIMULAN ANG PAGLALAKBAY";
+        if (btnGuide) btnGuide.innerText = "GABAY SA KULITAN";
+      }
+    }
+
+    function changeMockupLanguage(lang) {
+      const siteLang = lang === 'ph' ? 'tl' : lang;
+      setSiteLanguage(siteLang, false);
+    }
+
+    // Phone Internal Drawing Canvas
+    let pCanvas, pCtx;
+    let pDrawing = false;
+
+    function initPhoneInternalCanvas() {
+      pCanvas = document.getElementById('phoneInternalCanvas');
+      if (!pCanvas) return;
+      pCtx = pCanvas.getContext('2d');
+      pCanvas.width = pCanvas.parentElement.clientWidth;
+      pCanvas.height = pCanvas.parentElement.clientHeight;
+      pCtx.lineCap = 'round';
+      pCtx.lineWidth = 4;
+      pCtx.strokeStyle = '#dfb467';
+
+      const getPCoord = (e) => {
+        const r = pCanvas.getBoundingClientRect();
+        return {
+          x: (e.touches ? e.touches[0].clientX : e.clientX) - r.left,
+          y: (e.touches ? e.touches[0].clientY : e.clientY) - r.top
+        };
+      };
+
+      const start = (e) => {
+        pDrawing = true;
+        const hand = document.getElementById('virtualTracingHand');
+        if (hand) hand.style.display = 'none';
+        const p = getPCoord(e);
+        pCtx.beginPath();
+        pCtx.moveTo(p.x, p.y);
+      };
+
+      const move = (e) => {
+        if (!pDrawing) return;
+        const p = getPCoord(e);
+        pCtx.lineTo(p.x, p.y);
+        pCtx.stroke();
+      };
+
+      const end = () => { pDrawing = false; };
+
+      pCanvas.onmousedown = start;
+      pCanvas.onmousemove = move;
+      window.addEventListener('mouseup', end);
+
+      pCanvas.ontouchstart = (e) => { e.preventDefault(); start(e); };
+      pCanvas.ontouchmove = (e) => { e.preventDefault(); move(e); };
+      window.addEventListener('touchend', end);
+    }
+
+    function clearPhoneInternalCanvas() {
+      if (pCtx && pCanvas) {
+        pCtx.clearRect(0, 0, pCanvas.width, pCanvas.height);
+        const hand = document.getElementById('virtualTracingHand');
+        if (hand) hand.style.display = 'block';
+      }
+    }
+
+    // --- 3. Desktop Studio Canvas ---
+    let dtCanvas, dtCtx;
+    let dtDrawing = false;
+    let dtStrokeCount = 0;
+    let hasShownTracePrompt = false;
+    let tracePromptTimer = null;
+    let autoScrollDownloadTimer = null;
+    let autoScrollCountdownInterval = null;
+
+    function initDesktopStudioCanvas() {
+      dtCanvas = document.getElementById('desktopStudioCanvas');
+      if (!dtCanvas) return;
+      dtCtx = dtCanvas.getContext('2d');
+
+      const resize = () => {
+        dtCanvas.width = dtCanvas.parentElement.clientWidth;
+        dtCanvas.height = dtCanvas.parentElement.clientHeight;
+        dtCtx.lineCap = 'round';
+        dtCtx.lineJoin = 'round';
+        dtCtx.lineWidth = 6;
+      };
+      resize();
+      window.addEventListener('resize', resize);
+
+      const getCoord = (e) => {
+        const r = dtCanvas.getBoundingClientRect();
+        return {
+          x: (e.touches ? e.touches[0].clientX : e.clientX) - r.left,
+          y: (e.touches ? e.touches[0].clientY : e.clientY) - r.top
+        };
+      };
+
+      const start = (e) => {
+        dtDrawing = true;
+        dtStrokeCount++;
+        const cue = document.getElementById('traceCanvasPulseCue');
+        if (cue) {
+          cue.style.opacity = '0';
+          setTimeout(() => cue.remove(), 400);
+        }
+        if (dtCanvas && dtCanvas.parentElement) {
+          dtCanvas.parentElement.classList.add('canvas-drawing-active');
+        }
+        const sc = document.getElementById('studioStrokeCounter');
+        if (sc) {
+          sc.innerText = `Strokes (Mga Hagod): ${dtStrokeCount}`;
+          sc.classList.add('scale-110', 'text-amber-300');
+          setTimeout(() => sc.classList.remove('scale-110', 'text-amber-300'), 220);
+        }
+        const p = getCoord(e);
+        dtCtx.beginPath();
+        dtCtx.moveTo(p.x, p.y);
+      };
+
+      const move = (e) => {
+        if (!dtDrawing) return;
+        const p = getCoord(e);
+        const col = document.getElementById('inkColor')?.value || '#dfb467';
+        dtCtx.strokeStyle = col;
+        dtCtx.lineTo(p.x, p.y);
+        dtCtx.stroke();
+      };
+
+      const end = () => {
+        if (!dtDrawing) return;
+        dtDrawing = false;
+        if (dtCanvas && dtCanvas.parentElement) {
+          dtCanvas.parentElement.classList.remove('canvas-drawing-active');
+        }
+
+        // When the user traces KA (2 strokes for the 2 horizontal bars)
+        if (!hasShownTracePrompt) {
+          if (dtStrokeCount >= 2) {
+            clearTimeout(tracePromptTimer);
+            tracePromptTimer = setTimeout(() => {
+              triggerTraceSuccess();
+            }, 300);
+          } else if (dtStrokeCount === 1) {
+            clearTimeout(tracePromptTimer);
+            tracePromptTimer = setTimeout(() => {
+              if (!hasShownTracePrompt && dtStrokeCount >= 1) {
+                triggerTraceSuccess();
+              }
+            }, 1200);
+          }
+        }
+      };
+
+      dtCanvas.addEventListener('mousedown', start);
+      dtCanvas.addEventListener('mousemove', move);
+      window.addEventListener('mouseup', end);
+
+      dtCanvas.addEventListener('touchstart', (e) => { e.preventDefault(); start(e); });
+      dtCanvas.addEventListener('touchmove', (e) => { e.preventDefault(); move(e); });
+      window.addEventListener('touchend', end);
+
+      setTraceStudioGlyph('KA');
+    }
+
+    function triggerTraceSuccess() {
+      if (hasShownTracePrompt) return;
+      hasShownTracePrompt = true;
+
+      // Play cultural gong/chime audio
+      playGongAudio();
+
+      // Open the modal
+      openTraceLearnModal();
+
+      // Animate progress bar and countdown to automatically scroll down to download
+      let remainingSeconds = 2;
+      const cdEl = document.getElementById('autoScrollCountdown');
+      const bar = document.getElementById('autoScrollProgressBar');
+      if (cdEl) cdEl.innerText = `${remainingSeconds}s...`;
+      if (bar) {
+        bar.style.transition = 'none';
+        bar.style.width = '0%';
+        setTimeout(() => {
+          bar.style.transition = 'width 2000ms linear';
+          bar.style.width = '100%';
+        }, 50);
+      }
+
+      clearInterval(autoScrollCountdownInterval);
+      autoScrollCountdownInterval = setInterval(() => {
+        remainingSeconds--;
+        if (cdEl && remainingSeconds >= 0) {
+          cdEl.innerText = `${remainingSeconds}s...`;
+        }
+      }, 1000);
+
+      clearTimeout(autoScrollDownloadTimer);
+      autoScrollDownloadTimer = setTimeout(() => {
+        clearInterval(autoScrollCountdownInterval);
+        goToDownloadSection();
+      }, 2100);
+    }
+
+    function clearTraceStudioCanvas() {
+      if (dtCtx && dtCanvas) {
+        dtCanvas.style.transition = 'opacity 0.2s ease, transform 0.2s ease';
+        dtCanvas.style.opacity = '0.35';
+        dtCanvas.style.transform = 'scale(0.985)';
+        setTimeout(() => {
+          dtCtx.clearRect(0, 0, dtCanvas.width, dtCanvas.height);
+          dtCanvas.style.opacity = '1';
+          dtCanvas.style.transform = 'scale(1)';
+        }, 160);
+        dtStrokeCount = 0;
+        hasShownTracePrompt = false;
+        clearTimeout(tracePromptTimer);
+        clearTimeout(autoScrollDownloadTimer);
+        clearInterval(autoScrollCountdownInterval);
+        const sc = document.getElementById('studioStrokeCounter');
+        if (sc) sc.innerText = 'Strokes (Mga Hagod): 0';
+        triggerToastNotice('Canvas cleared (Nalinis na ang canvas).');
+      }
+    }
+
+    function setTraceStudioGlyph(glyphKey = 'KA') {
+      const overlay = document.getElementById('traceGuideOverlay');
+      if (overlay) {
+        overlay.innerHTML = `
+          <div class="relative flex items-center justify-center pointer-events-none select-none">
+            <img src="symbols/pure/ka.png" alt="Kulitan KA" class="w-48 sm:w-60 h-48 sm:h-60 object-contain filter drop-shadow-[0_0_16px_rgba(223,180,103,0.4)] opacity-40 transition-opacity" onerror="this.onerror=null; this.src='symbols/KA.jpg';">
+          </div>
+        `;
+      }
+    }
+
+    function openTraceLearnModal() {
+      const m = document.getElementById('traceLearnMoreModal');
+      if (m) {
+        m.classList.remove('hidden');
+        m.classList.add('flex');
+      }
+    }
+
+    function closeTraceLearnModal() {
+      clearTimeout(autoScrollDownloadTimer);
+      clearInterval(autoScrollCountdownInterval);
+      const m = document.getElementById('traceLearnMoreModal');
+      if (m) {
+        m.classList.add('hidden');
+        m.classList.remove('flex');
+      }
+    }
+
+    function goToDownloadSection() {
+      clearTimeout(autoScrollDownloadTimer);
+      clearInterval(autoScrollCountdownInterval);
+      closeTraceLearnModal();
+      const target = document.getElementById('download');
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        target.classList.add('ring-2', 'ring-esubli-gold', 'ring-offset-8', 'ring-offset-[#0C0D11]');
+        setTimeout(() => {
+          target.classList.remove('ring-2', 'ring-esubli-gold', 'ring-offset-8', 'ring-offset-[#0C0D11]');
+        }, 3000);
+      }
+    }
+
+    // --- Interactive Navigation with Animation to the Download Section ---
+    function navigateToDownloadSection(targetType = 'apk', buttonElement = null) {
+      // 1. Play soft cultural chime sound
+      playGongAudio();
+
+      // 2. Micro-animation on the clicked button
+      if (buttonElement) {
+        buttonElement.classList.add('scale-95', 'brightness-125');
+        setTimeout(() => {
+          buttonElement.classList.remove('scale-95', 'brightness-125');
+        }, 180);
+      }
+
+      // 3. User feedback notification toast
+      const label = targetType === 'apk' ? 'APK Download Portal' : 'Google Play Store';
+      triggerToastNotice(`Navigating to ${label} below... ✦`);
+
+      // 4. Smooth scroll down to the bottom download section
+      const downloadSec = document.getElementById('download');
+      if (downloadSec) {
+        downloadSec.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+        // Highlight the download section frame
+        downloadSec.classList.add('ring-2', 'ring-esubli-gold/80', 'ring-offset-8', 'ring-offset-[#0C0D11]');
+        setTimeout(() => {
+          downloadSec.classList.remove('ring-2', 'ring-esubli-gold/80', 'ring-offset-8', 'ring-offset-[#0C0D11]');
+        }, 3000);
+
+        // 5. Highlight the specific chosen download card & action button
+        setTimeout(() => {
+          const apkCard = document.getElementById('cardDirectApk');
+          const apkBtn = document.getElementById('btnDownloadApkBottom');
+          const playCard = document.getElementById('cardGooglePlay');
+          const playBtn = document.getElementById('btnGooglePlayBottom');
+
+          if (targetType === 'apk') {
+            if (apkBtn) {
+              apkBtn.classList.add('animate-bounce', 'ring-4', 'ring-esubli-orange', 'shadow-[0_0_35px_rgba(212,90,39,0.95)]');
+              setTimeout(() => {
+                apkBtn.classList.remove('animate-bounce', 'ring-4', 'ring-esubli-orange', 'shadow-[0_0_35px_rgba(212,90,39,0.95)]');
+              }, 2500);
+            }
+            if (apkCard) {
+              apkCard.classList.add('border-esubli-orange', 'scale-105', 'bg-[#1C1618]');
+              setTimeout(() => {
+                apkCard.classList.remove('border-esubli-orange', 'scale-105', 'bg-[#1C1618]');
+              }, 2500);
+            }
+          } else {
+            if (playBtn) {
+              playBtn.classList.add('animate-bounce', 'ring-4', 'ring-emerald-400', 'shadow-[0_0_35px_rgba(52,211,153,0.95)]');
+              setTimeout(() => {
+                playBtn.classList.remove('animate-bounce', 'ring-4', 'ring-emerald-400', 'shadow-[0_0_35px_rgba(52,211,153,0.95)]');
+              }, 2500);
+            }
+            if (playCard) {
+              playCard.classList.add('border-emerald-400', 'scale-105', 'bg-[#101F1E]');
+              setTimeout(() => {
+                playCard.classList.remove('border-emerald-400', 'scale-105', 'bg-[#101F1E]');
+              }, 2500);
+            }
+          }
+        }, 650);
+      }
+    }
+
+    // --- 4. Syllabary Grid Logic ---
+    function renderSyllabary() {
+      const grid = document.getElementById('kulitanSyllabaryGrid');
+      if (!grid) return;
+      grid.innerHTML = '';
+
+      kulitanAlphabet.forEach(glyph => {
+        const btn = document.createElement('button');
+        btn.className = "p-4 rounded-2xl bg-esubli-charcoalDark border border-slate-800 hover:border-esubli-gold/50 transition-all flex flex-col items-center justify-between group";
+        btn.onclick = () => selectInspectorGlyph(glyph);
+
+        let vowel = currentDiacritic === 'i' ? 'I / E' : (currentDiacritic === 'u' ? 'U / O' : (currentDiacritic === 'pamudpod' ? 'Ø' : 'A'));
+        let label = glyph.name.replace('A', '') + (currentDiacritic === 'pamudpod' ? '' : vowel);
+
+        btn.innerHTML = `
+          <div class="w-12 h-12 flex items-center justify-center mb-2 group-hover:scale-110 transition-transform">
+            ${createGlyphSvg(glyph.path, currentDiacritic, 42, glyph.id)}
+          </div>
+          <div class="text-xs font-bold text-white font-serif group-hover:text-esubli-gold">${label}</div>
+          <div class="text-[10px] text-slate-400 font-mono">${glyph.ipa}</div>
+        `;
+        grid.appendChild(btn);
+      });
+
+      updateInspectorDisplay(currentInspectorGlyph);
+    }
+
+    function selectInspectorGlyph(glyph) {
+      currentInspectorGlyph = glyph;
+      updateInspectorDisplay(glyph);
+    }
+
+    function updateInspectorDisplay(glyph) {
+      const icon = document.getElementById('inspectorGlyphIcon');
+      const title = document.getElementById('inspectorGlyphTitle');
+      const ipa = document.getElementById('inspectorGlyphIpa');
+      const desc = document.getElementById('inspectorGlyphDesc');
+      if (!icon) return;
+
+      icon.innerHTML = createGlyphSvg(glyph.path, currentDiacritic, 50, glyph.id);
+      title.innerText = glyph.name;
+      ipa.innerText = glyph.ipa;
+      desc.innerText = glyph.desc;
+    }
+
+    function setSyllabaryDiacritic(dia) {
+      currentDiacritic = dia;
+      ['a', 'i', 'u', 'pamudpod'].forEach(type => {
+        const id = type === 'pamudpod' ? 'diaBtnP' : `diaBtn${type.toUpperCase()}`;
+        const b = document.getElementById(id);
+        if (b) {
+          if (type === dia) {
+            b.className = "px-3 py-1.5 rounded-xl text-xs font-bold bg-esubli-orange text-white transition";
+          } else {
+            b.className = "px-3 py-1.5 rounded-xl text-xs font-semibold text-slate-300 hover:text-white transition";
+          }
+        }
+      });
+      renderSyllabary();
+    }
+
+    function syncInspectorToTrace() {
+      setTraceStudioGlyph(currentInspectorGlyph.name.split(' ')[0]);
+    }
+
+    // --- 5. Cultural Gong Sound (Web Audio API) ---
+    function playGongAudio() {
+      try {
+        const AudioCtx = window.AudioContext || window.webkitAudioContext;
+        const ctx = new AudioCtx();
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+
+        osc.type = 'triangle';
+        osc.frequency.setValueAtTime(320, ctx.currentTime);
+        osc.frequency.exponentialRampToValueAtTime(160, ctx.currentTime + 0.65);
+
+        gain.gain.setValueAtTime(0.3, ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.9);
+
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start();
+        osc.stop(ctx.currentTime + 0.9);
+      } catch (e) {
+        // Fallback
+      }
+    }
+
+    // --- 6. Modals & Helpers ---
+    function openDemoModal() {
+      const m = document.getElementById('demoModal');
+      if (m) {
+        m.classList.remove('hidden');
+        m.classList.add('flex');
+      }
+    }
+
+    function closeDemoModal() {
+      const m = document.getElementById('demoModal');
+      if (m) {
+        m.classList.add('hidden');
+        m.classList.remove('flex');
+      }
+    }
+
+    let toastTimer;
+    function triggerToastNotice(msg) {
+      const box = document.getElementById('siteToastBox');
+      const text = document.getElementById('siteToastMessage');
+      if (!box || !text) return;
+
+      text.innerText = msg;
+      box.classList.remove('hidden');
+
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => {
+        box.classList.add('hidden');
+      }, 3500);
+    }
+
+    function toggleMobileMenu() {
+      const d = document.getElementById('mobileDrawer');
+      if (d) d.classList.toggle('hidden');
+    }
+
+    // --- 7. Multi-Plane 3D Stereoscopic Parallax (Phone + Volumetric Clouds + 3D Swallows + Mount Arayat) ---
+    const phone = document.getElementById('androidDeviceChassis');
+    const birdsFlock = document.getElementById('birdsFlockOverlay');
+    const deepClouds = document.getElementById('deepCloudsLayer');
+    const midClouds = document.getElementById('midCloudsLayer');
+    const foreClouds = document.getElementById('foreCloudsLayer');
+    const heroSection = document.getElementById('about');
+    const heroTextCol = document.getElementById('heroTextColumn');
+    const heroBgImage = document.getElementById('bg-image');
+    const heroScrollPrompt = document.getElementById('heroScrollPrompter');
+
+    let mouseNormX = 0;
+    let mouseNormY = 0;
+
+    function updateHeroParallax() {
+      // Mobile Guard: Keep layout perfectly steady and rock-solid on mobile screens (<768px)
+      if (window.innerWidth < 768) {
+        if (phone) {
+          phone.style.transform = `rotateY(-12deg) rotateX(4deg) translate3d(0, 0, 0)`;
+          phone.style.opacity = '1';
+        }
+        if (heroTextCol) {
+          heroTextCol.style.transform = 'none';
+          heroTextCol.style.opacity = '1';
+        }
+        return;
+      }
+
+      const heroSec = document.getElementById('about');
+      const scrollY = Math.max(0, window.pageYOffset || document.documentElement.scrollTop);
+      const heroHeight = (heroSec && heroSec.offsetHeight > 100) ? heroSec.offsetHeight : 700;
+      let progress = heroHeight > 0 ? (scrollY / heroHeight) : 0;
+      if (isNaN(progress) || !isFinite(progress)) progress = 0;
+      progress = Math.min(1.2, Math.max(0, progress));
+
+      // Calculate fade only when scrolling significantly past the top (above 160px)
+      const fadeProgress = scrollY > 160 ? Math.min(1, (scrollY - 160) / (heroHeight * 0.75)) : 0;
+      const contentOpacity = Math.max(0, 1 - fadeProgress);
+
+      // 1. 3D Phone Mockup: blends mouse tilt + scroll-driven 3D forward rotation and camera elevation
+      if (phone) {
+        const tiltY = -22 + mouseNormX * 22 + progress * 12;
+        const tiltX = 8.5 - mouseNormY * 18 + progress * 16;
+        const liftZ = 28 + Math.abs(mouseNormX) * 22 + progress * 75;
+        const yShift = -progress * 80;
+        phone.style.transform = `rotateY(${tiltY}deg) rotateX(${tiltX}deg) rotateZ(-2deg) translate3d(0, ${yShift}px, ${liftZ}px)`;
+        phone.style.opacity = contentOpacity.toString();
+      }
+
+      // 2. Hero Text Column: ascends smoothly and dissolves into the sky
+      if (heroTextCol) {
+        heroTextCol.style.transform = `translate3d(0, -${scrollY * 0.24}px, 0)`;
+        heroTextCol.style.opacity = contentOpacity.toString();
+      }
+
+      // 3. Mount Arayat background: majestic slow-motion zoom and elevation parallax
+      if (heroBgImage) {
+        heroBgImage.style.transform = `translate3d(0, ${scrollY * 0.28}px, 0) scale(${1 + progress * 0.08})`;
+      }
+
+      // 4. Soaring birds flock: swoops upward into the stratosphere
+      if (birdsFlock) {
+        const bx = mouseNormX * 36;
+        const by = mouseNormY * 18 - scrollY * 0.65;
+        birdsFlock.style.transform = `translate3d(${bx}px, ${by}px, 40px) scale(${1 + progress * 0.2}) rotateY(${mouseNormX * 8}deg)`;
+        birdsFlock.style.opacity = `${Math.max(0, 1 - progress * 1.4)}`;
+      }
+
+      // 5. Sky Clouds: part outwards dynamically to open up the view
+      if (deepClouds) {
+        deepClouds.style.transform = `translate3d(${mouseNormX * 12}px, ${mouseNormY * 6 + scrollY * 0.15}px, -80px)`;
+        deepClouds.style.opacity = `${Math.max(0, 1 - progress * 1.2)}`;
+      }
+      if (midClouds) {
+        midClouds.style.transform = `translate3d(${mouseNormX * 22}px, ${mouseNormY * 10 - scrollY * 0.28}px, 0px)`;
+        midClouds.style.opacity = `${Math.max(0, 1 - progress * 1.3)}`;
+      }
+      if (foreClouds) {
+        foreClouds.style.transform = `translate3d(${mouseNormX * 42}px, ${mouseNormY * 20 - scrollY * 0.42}px, 70px)`;
+        foreClouds.style.opacity = `${Math.max(0, 1 - progress * 1.4)}`;
+      }
+
+      // 6. Scroll Prompter: fades out immediately upon scrolling
+      if (heroScrollPrompt) {
+        heroScrollPrompt.style.opacity = `${Math.max(0, 1 - progress * 3.5)}`;
+        heroScrollPrompt.style.transform = `translate(-50%, ${progress * 30}px)`;
+      }
+    }
+
+    window.addEventListener('mousemove', (e) => {
+      mouseNormX = (e.clientX / window.innerWidth - 0.5);
+      mouseNormY = (e.clientY / window.innerHeight - 0.5);
+      if ((window.pageYOffset || document.documentElement.scrollTop) < 850) {
+        updateHeroParallax();
+      }
+    }, { passive: true });
+
+    function updatePage2Parallax() {
+      const dykSec = document.getElementById('did-you-know');
+      const dykWatermark = document.getElementById('dykWatermark');
+      if (dykSec && dykWatermark) {
+        const rect = dykSec.getBoundingClientRect();
+        const winH = window.innerHeight;
+        if (rect.top < winH && rect.bottom > 0) {
+          const dykProgress = (winH - rect.top) / (winH + rect.height);
+          const yMove = (dykProgress - 0.5) * 160;
+          const rot = -6 + dykProgress * 14;
+          dykWatermark.style.transform = `translate3d(0, ${yMove}px, 0) rotate(${rot}deg)`;
+        }
+      }
+    }
+
+    // Dynamic Scroll Transition and Depth Parallax from Page 2 into Page 3 (Trace Studio)
+    function updatePage2To3Transition() {
+      const studioSec = document.getElementById('trace-studio');
+      const studioBg = document.getElementById('traceStudioBgImg');
+      const studioAura = document.getElementById('traceStudioAura');
+      const studioWatermark = document.getElementById('traceStudioWatermark');
+      const studioCard = document.getElementById('traceStudioCard');
+
+      if (studioSec) {
+        const rect = studioSec.getBoundingClientRect();
+        const winH = window.innerHeight;
+        if (rect.top < winH && rect.bottom > 0) {
+          const progress = (winH - rect.top) / (winH + rect.height);
+
+          // Dynamic depth parallax & subtle zoom on Pinatubo landscape background
+          if (studioBg) {
+            const bgY = (progress - 0.5) * 80;
+            const bgScale = 1.08 - progress * 0.06;
+            studioBg.style.transform = `translate3d(0, ${bgY}px, 0) scale(${Math.max(1, bgScale)})`;
+          }
+
+          // Ambient glowing golden aura bloom
+          if (studioAura) {
+            const auraOp = Math.min(0.95, Math.max(0.25, progress * 1.15));
+            studioAura.style.opacity = auraOp.toFixed(2);
+          }
+
+          // Ancient Kulitan watermark parallax float & gentle counter-rotation
+          if (studioWatermark) {
+            const wmY = (progress - 0.5) * 140;
+            const wmRot = 8 - progress * 16;
+            studioWatermark.style.transform = `translate3d(0, ${wmY}px, 0) rotate(${wmRot}deg)`;
+          }
+
+          // Dynamic perspective elevation for Studio Card when scrolling into view
+          if (studioCard && !studioCard.classList.contains('is-revealed')) {
+            const cardProgress = (winH - rect.top) / (winH * 0.7);
+            if (cardProgress > 0.12) {
+              studioCard.classList.add('is-revealed');
+            }
+          }
+        }
+      }
+    }
+
+    // Update Persistent Top Navbar Scrolled State
+    function updateNavbarScroll() {
+      const nav = document.getElementById('mainNavbar');
+      if (!nav) return;
+      const scrollY = window.pageYOffset || document.documentElement.scrollTop;
+      if (scrollY > 20) {
+        nav.classList.add('nav-scrolled');
+      } else {
+        nav.classList.remove('nav-scrolled');
+      }
+    }
+
+    // Update Top Navigation Golden Scroll Progress Bar
+    function updateScrollProgress() {
+      const progressBar = document.getElementById('navScrollProgress');
+      if (progressBar) {
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+        progressBar.style.width = `${Math.min(100, Math.max(0, progress))}%`;
+      }
+    }
+
+    let isScrollTicking = false;
+    window.addEventListener('scroll', () => {
+      if (!isScrollTicking) {
+        window.requestAnimationFrame(() => {
+          const scrollY = window.pageYOffset || document.documentElement.scrollTop;
+          if (scrollY < 1200) {
+            updateHeroParallax();
+          }
+          updateNavbarScroll();
+          updatePage2Parallax();
+          updatePage2To3Transition();
+          updateScrollProgress();
+          isScrollTicking = false;
+        });
+        isScrollTicking = true;
+      }
+    }, { passive: true });
+
+    // Helper for rendering showcase syllables with image support from symbols/ folder & sequential cascade
+    function getShowcaseSyllableHtml(id, defaultSvgHtml, label, isCoda = false, h = '14', index = 0) {
+      const folder = (window.APP_CONFIG && window.APP_CONFIG.symbolsFolder) || 'symbols/pure/';
+      const ext = (window.APP_CONFIG && window.APP_CONFIG.symbolExtension) || 'png';
+      const badgeBorder = isCoda ? 'border-esubli-orange/40 text-esubli-orange' : 'border-amber-500/30 text-amber-300';
+      const delayMs = index * 85;
+      return `
+        <div class="group/syl flex items-center justify-center gap-3.5 w-full max-w-[280px] mx-auto syllable-drop-in" style="animation-delay: ${delayMs}ms;">
+          <div class="w-14 h-${h} shrink-0 rounded-2xl bg-amber-500/10 border border-amber-400/40 flex items-center justify-center p-2 text-2xl font-serif text-amber-200 shadow-glow-gold hover:scale-105 active:scale-95 transition-all duration-300 cursor-pointer overflow-hidden">
+            <img src="${folder}${id}.${ext}" alt="${label}" class="w-full h-full object-contain filter drop-shadow-[0_2px_8px_rgba(223,180,103,0.35)] transition-transform duration-300 group-hover/syl:scale-110"
+                 onerror="this.style.display='none'; if(this.nextElementSibling) this.nextElementSibling.style.display='block';"
+                 onload="this.style.display='block'; if(this.nextElementSibling) this.nextElementSibling.style.display='none';">
+            ${defaultSvgHtml}
+          </div>
+          <div class="text-left w-36 shrink-0">
+            <span class="inline-block px-2.5 py-1 rounded-lg bg-black/90 border ${badgeBorder} text-[11px] font-mono whitespace-nowrap shadow-md group-hover/syl:border-esubli-gold group-hover/syl:text-white transition-colors">
+              ${label}
+            </span>
+          </div>
+        </div>
+      `;
+    }
+
+    // --- Interactive Did You Know? Kulitan Showcase Switcher ---
+    function setKulitanShowcase(word) {
+      const display = document.getElementById('verticalKulitanDisplay');
+      const title = document.getElementById('showcaseTitle');
+      const desc = document.getElementById('showcaseDesc');
+      const btnKap = document.getElementById('btnShowcaseKap');
+      const btnEsu = document.getElementById('btnShowcaseEsu');
+
+      // Reset button styles
+      [btnKap, btnEsu].forEach(b => {
+        if (b) {
+          b.className = 'px-3.5 py-1.5 rounded-full text-xs font-mono text-slate-300 bg-slate-800 hover:text-white border border-slate-700 hover:scale-105 active:scale-95 transition-all';
+        }
+      });
+
+      // Quick smooth text reveal trigger
+      if (title) {
+        title.classList.remove('showcase-text-fade');
+        void title.offsetWidth;
+        title.classList.add('showcase-text-fade');
+      }
+      if (desc) {
+        desc.classList.remove('showcase-text-fade');
+        void desc.offsetWidth;
+        desc.classList.add('showcase-text-fade');
+      }
+
+      if (word === 'kapampangan') {
+        if (btnKap) btnKap.className = 'px-3.5 py-1.5 rounded-full text-xs font-mono font-bold bg-esubli-orange text-white shadow-glow-orange hover:scale-105 active:scale-95 transition-all';
+        if (title) title.innerHTML = 'Anatomy of the Word <span class="text-esubli-gold">"Ka-pam-pa-ngan"</span>';
+        if (desc) desc.innerHTML = 'Observe how each syllable cascades downward in a single vertical column. The <strong>Indung Súlat</strong> (root mother consonant) serves as the foundation, while codas and vowel markers stack (<strong>Sikami</strong>) into a cohesive syllabic block.';
+        if (display) {
+          display.innerHTML = `
+            <div class="flex flex-col items-center gap-3 w-full">
+              ${getShowcaseSyllableHtml('ka', '<svg class="w-9 h-9 text-amber-300" viewBox="0 0 100 100" fill="currentColor"><path d="M 50 15 C 30 15, 20 35, 20 50 C 20 70, 35 85, 50 85 C 65 85, 80 70, 80 50 C 80 35, 70 15, 50 15 Z M 50 25 C 62 25, 70 38, 70 50 C 70 65, 58 75, 50 75 C 42 75, 30 65, 30 50 C 30 38, 38 25, 50 25 Z" fill-rule="evenodd" /><path d="M 45 35 L 55 35 L 55 65 L 45 65 Z" /></svg>', 'KA (Root / Ugat)', false, '14', 0)}
+              ${getShowcaseSyllableHtml('pam', '<svg class="w-9 h-9 text-amber-300" viewBox="0 0 100 100" fill="currentColor"><path d="M 30 20 L 70 20 L 70 50 C 70 65, 55 80, 40 80 L 30 80 L 30 68 L 40 68 C 50 68, 58 58, 58 50 L 58 32 L 30 32 Z" /><circle cx="50" cy="88" r="5" fill="#D45A27" /></svg>', 'PAM (Sikami Stack)', true, '16', 1)}
+              ${getShowcaseSyllableHtml('pa', '<svg class="w-9 h-9 text-amber-300" viewBox="0 0 100 100" fill="currentColor"><path d="M 30 20 L 70 20 L 70 50 C 70 65, 55 80, 40 80 L 30 80 L 30 68 L 40 68 C 50 68, 58 58, 58 50 L 58 32 L 30 32 Z" /></svg>', 'PA (Root / Ugat)', false, '14', 2)}
+              ${getShowcaseSyllableHtml('ngan', '<svg class="w-9 h-9 text-amber-300" viewBox="0 0 100 100" fill="currentColor"><path d="M 25 30 C 25 20, 40 20, 50 30 C 60 20, 75 20, 75 30 C 75 45, 60 55, 50 70 C 40 55, 25 45, 25 30 Z" /><rect x="42" y="80" width="16" height="8" rx="2" fill="#D45A27" /></svg>', 'NGAN (Coda Stack)', true, '16', 3)}
+            </div>
+          `;
+        }
+      } else if (word === 'esubli') {
+        if (btnEsu) btnEsu.className = 'px-3.5 py-1.5 rounded-full text-xs font-mono font-bold bg-esubli-orange text-white shadow-glow-orange hover:scale-105 active:scale-95 transition-all';
+        if (title) title.innerHTML = 'Anatomy of the Name <span class="text-esubli-gold">"Sub-li"</span> (eSUBLI)';
+        if (desc) desc.innerHTML = 'Originating from the Kapampangan word meaning <em>"to inherit"</em> or <em>"to reclaim (pamana)"</em>. Formed by <strong>SUB</strong> (Mother SA with Gulis Lalam /-u/ and stacked BA coda) and <strong>LI</strong> (Mother LA with Gulis Babo /-i/).';
+        if (display) {
+          display.innerHTML = `
+            <div class="flex flex-col items-center gap-4 w-full">
+              ${getShowcaseSyllableHtml('sub', '<svg class="w-10 h-10 text-amber-300" viewBox="0 0 100 100" fill="currentColor"><path d="M 25 40 Q 50 15 75 40 Q 75 65 50 75 Q 25 65 25 40" stroke="currentColor" stroke-width="7" fill="none" /><circle cx="50" cy="85" r="5" fill="#DFB467" /></svg>', 'SUB (Sikami Stack)', true, '18', 0)}
+              ${getShowcaseSyllableHtml('li', '<svg class="w-10 h-10 text-amber-300" viewBox="0 0 100 100" fill="currentColor"><circle cx="50" cy="15" r="5" fill="#DFB467" /><path d="M 25 45 Q 50 25 75 45 Q 50 70 50 90" stroke="currentColor" stroke-width="7" stroke-linecap="round" fill="none" /></svg>', 'LI (Gulis Babo)', false, '18', 1)}
+            </div>
+          `;
+        }
+      }
+    }
+
+    // --- Page 2: Intersection Observer for Staggered Entrance Animations ---
+    function initDykAnimations() {
+      const revealElements = document.querySelectorAll('#did-you-know .dyk-reveal, #did-you-know .dyk-reveal-scale');
+      if (!revealElements.length) return;
+
+      if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              const el = entry.target;
+              const delay = parseInt(el.getAttribute('data-dyk-delay') || '0', 10);
+              setTimeout(() => {
+                el.classList.add('is-visible');
+              }, delay);
+              observer.unobserve(el);
+            }
+          });
+        }, {
+          threshold: 0.12,
+          rootMargin: '0px 0px -40px 0px'
+        });
+
+        revealElements.forEach(el => observer.observe(el));
+      } else {
+        revealElements.forEach(el => el.classList.add('is-visible'));
+      }
+
+      // Subtle 3D Stele container tilt on mouse move
+      const stele = document.getElementById('dykSteleContainer');
+      if (stele) {
+        stele.addEventListener('mousemove', (e) => {
+          const rect = stele.getBoundingClientRect();
+          const x = (e.clientX - rect.left) / rect.width - 0.5;
+          const y = (e.clientY - rect.top) / rect.height - 0.5;
+          stele.style.transform = `perspective(1000px) rotateY(${x * 3.5}deg) rotateX(${-y * 3.5}deg) translateY(0) scale(1)`;
+        }, { passive: true });
+        stele.addEventListener('mouseleave', () => {
+          stele.style.transform = 'perspective(1000px) rotateY(0deg) rotateX(0deg) translateY(0) scale(1)';
+        });
+      }
+    }
+
+    // --- 9. Global Scroll Reveal Observer ---
+    function initGlobalScrollAnimations() {
+      const targets = document.querySelectorAll('.esubli-reveal, .esubli-reveal-scale, .esubli-reveal-left, .esubli-reveal-right');
+      if (!targets.length) return;
+
+      if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              const el = entry.target;
+              const delay = parseInt(el.getAttribute('data-reveal-delay') || '0', 10);
+              if (delay > 0) {
+                setTimeout(() => el.classList.add('is-revealed'), delay);
+              } else {
+                el.classList.add('is-revealed');
+              }
+              observer.unobserve(el);
+            }
+          });
+        }, {
+          threshold: 0.08,
+          rootMargin: '0px 0px -30px 0px'
+        });
+
+        targets.forEach(el => observer.observe(el));
+      } else {
+        targets.forEach(el => el.classList.add('is-revealed'));
+      }
+    }
+
+    // --- 10. 3D Card Tilt & Specular Light Reflection Engine ---
+    function initCardTiltEffects() {
+      // Disable on touch / coarse devices to prevent sticky tilt and preserve 60/120fps touch scrolling
+      if (window.matchMedia('(pointer: coarse)').matches || window.innerWidth < 768) {
+        return;
+      }
+
+      const cards = document.querySelectorAll('.tilt-card');
+      cards.forEach(card => {
+        if (!card.querySelector('.tilt-card-glare')) {
+          const glare = document.createElement('div');
+          glare.className = 'tilt-card-glare';
+          card.appendChild(glare);
+        }
+
+        card.addEventListener('mousemove', (e) => {
+          const rect = card.getBoundingClientRect();
+          const x = (e.clientX - rect.left) / rect.width;
+          const y = (e.clientY - rect.top) / rect.height;
+
+          const tiltX = (0.5 - y) * 10;
+          const tiltY = (x - 0.5) * 10;
+
+          card.style.transform = `perspective(1000px) rotateX(${tiltX}deg) rotateY(${tiltY}deg) translateY(-4px) scale(1.02)`;
+          card.style.setProperty('--mouse-x', `${x * 100}%`);
+          card.style.setProperty('--mouse-y', `${y * 100}%`);
+        }, { passive: true });
+
+        card.addEventListener('mouseleave', () => {
+          card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0) scale(1)';
+        });
+      });
+    }
+
+    // --- 11. Atmospheric Floating Golden Heritage Embers Canvas ---
+    function initHeritageParticles() {
+      const canvas = document.getElementById('heritageParticlesCanvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      if (!ctx) return;
+
+      let width = canvas.width = window.innerWidth;
+      let height = canvas.height = window.innerHeight;
+
+      window.addEventListener('resize', () => {
+        width = canvas.width = window.innerWidth;
+        height = canvas.height = window.innerHeight;
+      }, { passive: true });
+
+      const particleCount = Math.min(36, Math.max(16, Math.floor(width / 40)));
+      const particles = [];
+
+      for (let i = 0; i < particleCount; i++) {
+        particles.push({
+          x: Math.random() * width,
+          y: Math.random() * height,
+          radius: Math.random() * 1.8 + 0.8,
+          speedY: Math.random() * 0.4 + 0.2,
+          speedX: (Math.random() - 0.5) * 0.35,
+          opacity: Math.random() * 0.55 + 0.25,
+          pulseSpeed: Math.random() * 0.02 + 0.012,
+          pulse: Math.random() * Math.PI,
+          isGold: Math.random() > 0.35
+        });
+      }
+
+      function render() {
+        ctx.clearRect(0, 0, width, height);
+
+        for (let i = 0; i < particles.length; i++) {
+          const p = particles[i];
+          p.y -= p.speedY;
+          p.x += Math.sin(p.pulse) * p.speedX;
+          p.pulse += p.pulseSpeed;
+
+          if (p.y < -10) {
+            p.y = height + 10;
+            p.x = Math.random() * width;
+          }
+
+          const currentOpacity = p.opacity * (0.65 + 0.35 * Math.sin(p.pulse));
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+          ctx.fillStyle = p.isGold
+            ? `rgba(223, 180, 103, ${currentOpacity})`
+            : `rgba(212, 90, 39, ${currentOpacity * 0.85})`;
+          ctx.shadowBlur = 8;
+          ctx.shadowColor = 'rgba(223, 180, 103, 0.6)';
+          ctx.fill();
+        }
+
+        requestAnimationFrame(render);
+      }
+
+      render();
+    }
+
+    // --- 8. Initialize on Load ---
+    window.addEventListener('DOMContentLoaded', () => {
+      // Restore user language preference (English / Tagalog / Kapampangan)
+      const savedLang = (function () {
+        try { return localStorage.getItem('esubli_site_lang'); } catch (e) { return null; }
+      })() || 'en';
+      setSiteLanguage(savedLang, true);
+
+      renderSyllabary();
+      setKulitanShowcase('kapampangan');
+      initDykAnimations();
+      initGlobalScrollAnimations();
+      initCardTiltEffects();
+      initHeritageParticles();
+      initDesktopStudioCanvas();
+      initPhoneInternalCanvas();
+      updateNavbarScroll();
+      updateScrollProgress();
+      updateHeroParallax();
+
+      const toggle = document.getElementById('mobileNavToggle');
+      if (toggle) toggle.addEventListener('click', toggleMobileMenu);
+
+      // Real clock sync for Android Status Bar
+      const clock = document.getElementById('androidClock');
+      if (clock) {
+        const d = new Date();
+        clock.innerText = `${String(d.getHours()).padStart(2, '0')}:${String(d.getMinutes()).padStart(2, '0')}`;
+      }
+    });
+  </script>
+</body>
+
+</html>

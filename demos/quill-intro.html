@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fast Quill Calligraphy Writing Intro Animation</title>
+  
+  <!-- Google Fonts: Cinzel & Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;800&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    /* =========================================================================
+       1. VINTAGE CANVAS & DARK PARCHMENT PALETTE
+       ========================================================================= */
+    :root {
+      --bg-dark: #0C0D11;
+      --gold-primary: #DFB467;
+      --gold-bright: #FFF2D6;
+      --orange-accent: #D45A27;
+      
+      /* SPEED CONTROLS:
+         Tweak these values below to customize the speed */
+      --write-duration: 0.65s;     /* Bilis ng pagsusulat ng pluma */
+      --reveal-delay: 0.92s;       /* Oras bago lumitaw ang website */
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      color: #E6DCce;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* Ambient Warm Vignette */
+    .bg-vignette {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 50% 50%, rgba(45, 32, 20, 0.8) 0%, rgba(10, 8, 12, 0.99) 75%);
+      z-index: 0;
+    }
+
+    /* Mockup Website Behind Curtain (Revealed once feather writes) */
+    .mock-website-preview {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      z-index: 10;
+      padding: 24px;
+      opacity: 0;
+      transform: scale(0.96);
+      transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+    .mock-website-preview.revealed {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .website-title {
+      font-family: 'Cinzel', serif;
+      font-size: 2.8rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      background: linear-gradient(135deg, #FFFFFF 0%, #DFB467 60%, #D45A27 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 8px;
+    }
+
+    .website-sub {
+      color: #C5B8A8;
+      font-size: 1.05rem;
+      letter-spacing: 0.05em;
+      max-width: 500px;
+      line-height: 1.6;
+    }
+
+    /* =========================================================================
+       2. FAST QUILL CALLIGRAPHY WRITING INTRO STAGE
+       ========================================================================= */
+    .intro-curtain {
+      position: fixed;
+      inset: 0;
+      z-index: 50;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #0C0D11;
+      transition: opacity 0.32s ease-out, transform 0.32s ease-out;
+      pointer-events: none;
+    }
+    .intro-curtain.dismissed {
+      opacity: 0;
+      transform: scale(1.04);
+      visibility: hidden;
+    }
+
+    .writing-stage {
+      position: relative;
+      width: 100%;
+      max-width: 640px;
+      height: 300px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: visible;
+    }
+
+    /* Glowing Calligraphic Ink Trace */
+    .quill-write-path {
+      stroke-dasharray: 680;
+      stroke-dashoffset: 680;
+      animation: drawInkStroke var(--write-duration) cubic-bezier(0.25, 1, 0.45, 1) 0.08s forwards;
+    }
+    @keyframes drawInkStroke {
+      0% { stroke-dashoffset: 680; opacity: 0; }
+      15% { opacity: 1; }
+      100% { stroke-dashoffset: 0; opacity: 1; }
+    }
+
+    /* Exact Feather from App Logo */
+    .quill-writer-feather {
+      position: absolute;
+      pointer-events: none;
+      will-change: transform, opacity;
+      filter: 
+        drop-shadow(0 14px 24px rgba(0, 0, 0, 0.95)) 
+        drop-shadow(0 0 16px rgba(223, 180, 103, 0.5));
+      animation: featherWritingMotion 0.85s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+
+    /* Fast Calligraphic Sweep (Nib moves along the cursive ink stroke) */
+    @keyframes featherWritingMotion {
+      0% {
+        transform: translate(-170px, 35px) rotate(-16deg) scale(0.85);
+        opacity: 0;
+      }
+      12% {
+        opacity: 1;
+      }
+      35% {
+        transform: translate(-60px, 75px) rotate(-22deg) scale(1);
+      }
+      65% {
+        transform: translate(25px, -15px) rotate(-8deg) scale(1.02);
+      }
+      85% {
+        transform: translate(120px, 15px) rotate(10deg) scale(1);
+      }
+      100% {
+        transform: translate(190px, -45px) rotate(-12deg) scale(1.05);
+        opacity: 0;
+      }
+    }
+
+    /* Golden Flare upon Ink Completion */
+    .ink-glow-flare {
+      position: absolute;
+      width: 220px;
+      height: 80px;
+      border-radius: 50%;
+      background: radial-gradient(ellipse at center, rgba(223, 180, 103, 0.8) 0%, rgba(212, 90, 39, 0.4) 45%, transparent 70%);
+      filter: blur(12px);
+      pointer-events: none;
+      animation: inkFlareFlash 0.45s ease-out 0.65s forwards;
+      opacity: 0;
+    }
+    @keyframes inkFlareFlash {
+      0% { opacity: 0; transform: scale(0.4); }
+      40% { opacity: 1; transform: scale(1.4); }
+      100% { opacity: 0; transform: scale(1.8); }
+    }
+
+    /* Replay Button (For Testing Repeatedly) */
+    .controls-bar {
+      position: fixed;
+      bottom: 28px;
+      z-index: 60;
+    }
+    .btn-replay {
+      background: linear-gradient(135deg, #d45a27 0%, #aa3e12 100%);
+      color: #FFF;
+      border: 1px solid rgba(223, 180, 103, 0.4);
+      padding: 10px 24px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      border-radius: 9999px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 4px 15px rgba(212, 90, 39, 0.35);
+      transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+    .btn-replay:hover {
+      transform: translateY(-2px) scale(1.04);
+      box-shadow: 0 6px 25px rgba(212, 90, 39, 0.65), 0 0 15px rgba(223, 180, 103, 0.4);
+      border-color: var(--gold-primary);
+    }
+
+    .pulse-glow-link {
+      animation: pulseLinkGlow 3s ease-in-out infinite;
+      display: inline-block;
+      transition: transform 0.25s ease;
+    }
+    .pulse-glow-link:hover {
+      transform: scale(1.06);
+    }
+    @keyframes pulseLinkGlow {
+      0%, 100% {
+        box-shadow: 0 6px 20px rgba(212, 90, 39, 0.5), 0 0 10px rgba(223, 180, 103, 0.3);
+      }
+      50% {
+        box-shadow: 0 10px 30px rgba(212, 90, 39, 0.8), 0 0 25px rgba(223, 180, 103, 0.6);
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="bg-vignette" aria-hidden="true"></div>
+
+  <!-- Atmospheric Golden Embers Canvas -->
+  <canvas id="introEmbersCanvas" style="position: fixed; inset: 0; pointer-events: none; z-index: 5; opacity: 0.75;"></canvas>
+
+  <!-- =========================================================================
+       1. INTRO CURTAIN: FAST QUILL CALLIGRAPHY WRITING ANIMATION
+       ========================================================================= -->
+  <div id="introCurtain" class="intro-curtain">
+    <div class="writing-stage">
+      
+      <!-- Golden Ink Flare -->
+      <div id="inkFlare" class="ink-glow-flare"></div>
+
+      <!-- Glowing Calligraphic Ink Stroke -->
+      <svg class="absolute inset-0 w-full h-full pointer-events-none filter drop-shadow-[0_0_12px_rgba(223,180,103,0.85)] drop-shadow-[0_0_24px_rgba(212,90,39,0.5)]" viewBox="0 0 600 240" fill="none">
+        <path id="inkPath" class="quill-write-path" d="M 120 170 C 190 190, 260 210, 310 130 C 350 70, 270 30, 320 25 C 380 20, 470 70, 500 130" stroke="url(#inkStrokeGrad)" stroke-width="6" stroke-linecap="round" />
+        <defs>
+          <linearGradient id="inkStrokeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#DFB467" stop-opacity="0.95"/>
+            <stop offset="50%" stop-color="#FFF2D6" stop-opacity="1"/>
+            <stop offset="100%" stop-color="#D45A27" stop-opacity="0.95"/>
+          </linearGradient>
+        </defs>
+      </svg>
+
+      <!-- Exact Feather from App Logo -->
+      <div id="quillFeather" class="quill-writer-feather">
+        <img src="feather.png" alt="Calligraphy Quill" style="width: 140px; height: auto; object-fit: contain; transform: rotate(-6deg);">
+      </div>
+
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       2. WEBSITE MOCKUP (REVEALED IMMEDIATELY IN ~1 SECOND)
+       ========================================================================= -->
+  <div id="websiteContent" class="mock-website-preview">
+    <h1 class="website-title">eSUBLI. Pamana sa Sulat</h1>
+    <p class="website-sub">
+      Tuklasin muli ang sinaunang sulat Kapampangan sa pagsasanay, studio at labanan.
+    </p>
+    <div style="margin-top: 24px;">
+      <a href="../index.html" class="pulse-glow-link" style="padding: 14px 32px; background: #D45A27; color: white; border-radius: 9999px; text-decoration: none; font-weight: bold; font-size: 0.88rem; letter-spacing: 0.06em; text-transform: uppercase;">
+        Pumunta sa Main Website ➔
+      </a>
+    </div>
+  </div>
+
+  <!-- Controls Bar -->
+  <div class="controls-bar">
+    <button class="btn-replay" onclick="replayFastIntro()">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="1 4 1 10 7 10"></polyline>
+        <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path>
+      </svg>
+      Replay Fast Intro
+    </button>
+  </div>
+
+  <!-- =========================================================================
+       3. JAVASCRIPT ANIMATION CONTROLLER (FAST AUTOMATIC REVEAL)
+       ========================================================================= -->
+  <script>
+    let dismissTimer = null;
+
+    function startFastIntro() {
+      const curtain = document.getElementById('introCurtain');
+      const website = document.getElementById('websiteContent');
+
+      // Clear any existing timer
+      if (dismissTimer) clearTimeout(dismissTimer);
+
+      // Fast auto-reveal after feather finishes writing (~0.95s)
+      dismissTimer = setTimeout(() => {
+        if (curtain) curtain.classList.add('dismissed');
+        if (website) website.classList.add('revealed');
+      }, 920);
+    }
+
+    function replayFastIntro() {
+      const curtain = document.getElementById('introCurtain');
+      const website = document.getElementById('websiteContent');
+      const feather = document.getElementById('quillFeather');
+      const ink = document.getElementById('inkPath');
+      const flare = document.getElementById('inkFlare');
+
+      if (!curtain || !feather || !ink) return;
+
+      // Reset states
+      curtain.classList.remove('dismissed');
+      if (website) website.classList.remove('revealed');
+
+      feather.style.animation = 'none';
+      ink.style.animation = 'none';
+      if (flare) flare.style.animation = 'none';
+
+      // Force reflow
+      void curtain.offsetWidth;
+
+      // Re-trigger animation
+      feather.style.animation = 'featherWritingMotion 0.85s cubic-bezier(0.22, 1, 0.36, 1) forwards';
+      ink.style.animation = 'drawInkStroke var(--write-duration) cubic-bezier(0.25, 1, 0.45, 1) 0.08s forwards';
+      if (flare) flare.style.animation = 'inkFlareFlash 0.45s ease-out 0.65s forwards';
+
+      startFastIntro();
+    }
+
+    // Atmospheric Floating Embers
+    function initIntroEmbers() {
+      const canvas = document.getElementById('introEmbersCanvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      if (!ctx) return;
+
+      let w = canvas.width = window.innerWidth;
+      let h = canvas.height = window.innerHeight;
+
+      window.addEventListener('resize', () => {
+        w = canvas.width = window.innerWidth;
+        h = canvas.height = window.innerHeight;
+      });
+
+      const particles = [];
+      for (let i = 0; i < 35; i++) {
+        particles.push({
+          x: Math.random() * w,
+          y: Math.random() * h,
+          r: Math.random() * 2 + 0.8,
+          vy: Math.random() * 0.4 + 0.2,
+          vx: (Math.random() - 0.5) * 0.3,
+          op: Math.random() * 0.6 + 0.2,
+          pulse: Math.random() * Math.PI
+        });
+      }
+
+      function loop() {
+        ctx.clearRect(0, 0, w, h);
+        for (let i = 0; i < particles.length; i++) {
+          const p = particles[i];
+          p.y -= p.vy;
+          p.x += Math.sin(p.pulse) * p.vx;
+          p.pulse += 0.02;
+          if (p.y < -10) { p.y = h + 10; p.x = Math.random() * w; }
+          const alpha = p.op * (0.6 + 0.4 * Math.sin(p.pulse));
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(223, 180, 103, ${alpha})`;
+          ctx.shadowBlur = 8;
+          ctx.shadowColor = 'rgba(223, 180, 103, 0.65)';
+          ctx.fill();
+        }
+        requestAnimationFrame(loop);
+      }
+      loop();
+    }
+
+    // Trigger immediately on load/refresh
+    document.addEventListener('DOMContentLoaded', () => {
+      startFastIntro();
+      initIntroEmbers();
+    });
+  </script>
+
+</body>
+</html>
