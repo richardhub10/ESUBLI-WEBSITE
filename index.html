@@ -264,31 +264,6 @@
       z-index: 1;
     }
 
-    /* Floating animated central logo medallion inside phone */
-    @keyframes floatMedallion {
-      0%, 100% {
-        transform: translate(-50%, 0px) scale(1);
-        filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.65)) drop-shadow(0 0 12px rgba(223, 180, 103, 0.35));
-      }
-      50% {
-        transform: translate(-50%, -8px) scale(1.03);
-        filter: drop-shadow(0 14px 26px rgba(0, 0, 0, 0.85)) drop-shadow(0 0 24px rgba(223, 180, 103, 0.7));
-      }
-    }
-
-    .animate-float-medallion {
-      animation: floatMedallion 3.2s ease-in-out infinite;
-    }
-
-    @keyframes spinHaloSlow {
-      from { transform: rotate(0deg); }
-      to { transform: rotate(360deg); }
-    }
-
-    .animate-spin-halo {
-      animation: spinHaloSlow 35s linear infinite;
-    }
-
     /* =========================================================================
        3D CELESTIAL SKY SYSTEM: VOLUMETRIC PARCHMENT CLOUDS & 3D SOARING SWALLOWS
        ========================================================================= */
@@ -1611,7 +1586,7 @@
             <div class="absolute top-12 -right-[2px] w-[2px] h-2 bg-black/60 rounded-full"></div>
             <div class="absolute bottom-16 -right-[2px] w-[2px] h-2 bg-black/60 rounded-full"></div>
 
-            <!-- Device Screen Container: Exact App Screen Graphic with Moving Animated Logo -->
+            <!-- Device Screen Container: Exact App Screen Graphic with 3D Glass Sheen -->
             <div
               class="w-full bg-[#0A0D15] rounded-[40px] overflow-hidden border border-slate-800/90 aspect-[385/842] relative z-20 shadow-inner select-none flex items-center justify-center group cursor-pointer"
               onclick="document.getElementById('did-you-know').scrollIntoView({ behavior: 'smooth' })"
@@ -1620,25 +1595,9 @@
               <!-- 3D Specular Glass Glare / Curved Screen Sheen -->
               <div class="screen-specular-glare"></div>
 
-              <!-- Base Screen Graphic (Backdrop under logo) -->
-              <img src="assets/images/app-screen-base.png" alt="eSUBLI App Screen"
+              <!-- Exact Photo Uploaded by User -->
+              <img src="assets/images/app-screen.png" alt="eSUBLI App Screen"
                 class="w-full h-full object-cover object-center relative z-10 block pointer-events-none" />
-
-              <!-- Animated Moving Logo Medallion -->
-              <div
-                class="absolute left-1/2 top-[14.55%] w-[51.95%] aspect-square z-20 pointer-events-none animate-float-medallion"
-                style="transform-origin: center center;">
-
-                <!-- Ambient Pulsing Golden Glow behind Medallion -->
-                <div class="absolute inset-1 rounded-full bg-amber-400/25 blur-md animate-pulse"></div>
-
-                <!-- Subtle Rotating Outer Halo Dash Ring -->
-                <div class="absolute -inset-1 rounded-full border border-dashed border-[#DFB467]/40 animate-spin-halo"></div>
-
-                <!-- High-Resolution Cutout of the Logo Medallion -->
-                <img src="assets/images/logo-medallion.png" alt="Official Kulitan Emblem"
-                  class="w-full h-full object-contain relative z-10" />
-              </div>
 
               <!-- Interactive Click Hotspot: Start Journey -->
               <a href="#did-you-know" onclick="event.stopPropagation();"
