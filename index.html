@@ -1586,112 +1586,28 @@
             <div class="absolute top-12 -right-[2px] w-[2px] h-2 bg-black/60 rounded-full"></div>
             <div class="absolute bottom-16 -right-[2px] w-[2px] h-2 bg-black/60 rounded-full"></div>
 
-            <!-- Device Screen Container -->
+            <!-- Device Screen Container: Exact App Screen Graphic with 3D Glass Sheen -->
             <div
-              class="w-full bg-gradient-to-b from-[#090D16] via-[#0E1422] to-[#0A0E18] rounded-[40px] overflow-hidden border border-slate-800/90 text-white flex flex-col justify-between items-center text-center p-4 xs:p-4.5 sm:p-5 pt-5 pb-5 aspect-[9/19.5] relative z-20 shadow-inner select-none">
+              class="w-full bg-[#0A0D15] rounded-[40px] overflow-hidden border border-slate-800/90 aspect-[385/842] relative z-20 shadow-inner select-none flex items-center justify-center group cursor-pointer"
+              onclick="document.getElementById('did-you-know').scrollIntoView({ behavior: 'smooth' })"
+              title="eSUBLI - Click to explore">
 
               <!-- 3D Specular Glass Glare / Curved Screen Sheen -->
               <div class="screen-specular-glare"></div>
 
-              <!-- Minimal Camera Pinhole -->
-              <div
-                class="absolute top-2.5 left-1/2 -translate-x-1/2 w-3.5 h-3.5 rounded-full bg-black/90 border border-slate-800/90 z-40 flex items-center justify-center shadow-sm">
-                <div class="w-1.5 h-1.5 rounded-full bg-[#081226] flex items-center justify-center">
-                  <div class="w-0.5 h-0.5 rounded-full bg-blue-400/70"></div>
-                </div>
-              </div>
+              <!-- Exact Photo Uploaded by User -->
+              <img src="assets/images/app-screen.png" alt="eSUBLI App Screen"
+                class="w-full h-full object-cover object-center relative z-10 block pointer-events-none" />
 
-              <!-- Faint Heritage Kulitan Calligraphy Watermarks in Background (Matches Image 2) -->
-              <div class="absolute inset-0 pointer-events-none overflow-hidden z-0">
-                <svg class="absolute -left-5 top-12 w-28 h-28 text-amber-500/10" viewBox="0 0 100 100" fill="none">
-                  <path d="M75 30 C45 20, 25 50, 55 60 C85 70, 55 90, 25 80" stroke="currentColor" stroke-width="7" stroke-linecap="round"/>
-                </svg>
-                <svg class="absolute -right-5 top-16 w-28 h-28 text-amber-500/10" viewBox="0 0 100 100" fill="none">
-                  <path d="M20 75 C30 30, 70 30, 80 75 M50 30 V80" stroke="currentColor" stroke-width="7" stroke-linecap="round"/>
-                </svg>
-                <svg class="absolute -left-6 bottom-24 w-32 h-32 text-amber-500/10" viewBox="0 0 100 100" fill="none">
-                  <path d="M20 30 C35 85, 65 85, 80 30" stroke="currentColor" stroke-width="7" stroke-linecap="round"/>
-                </svg>
-                <svg class="absolute -right-6 bottom-28 w-28 h-28 text-amber-500/10" viewBox="0 0 100 100" fill="none">
-                  <path d="M25 80 V25 C45 25, 55 55, 55 80 M55 25 C75 25, 85 55, 85 80" stroke="currentColor" stroke-width="7" stroke-linecap="round"/>
-                </svg>
-              </div>
+              <!-- Interactive Click Hotspot: Start Journey -->
+              <a href="#did-you-know" onclick="event.stopPropagation();"
+                class="absolute left-4 right-4 bottom-[15.5%] h-[6.5%] z-30 rounded-full focus:outline-none"
+                aria-label="Start Journey"></a>
 
-              <!-- Top Header: INDIGENOUS PHILIPPINE SCRIPT Badge -->
-              <div
-                class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#181F2F]/90 border border-[#8C6B32]/50 text-[9px] text-[#E5B564] font-semibold uppercase tracking-wider shadow-sm z-10 mt-1">
-                <span class="text-[8px] text-[#DFB467]">✦</span>
-                <span id="mockupTagText">INDIGENOUS PHILIPPINE SCRIPT</span>
-                <span class="text-[8px] text-[#DFB467]">✦</span>
-              </div>
-
-              <!-- App Title: ESUBLI -->
-              <h2
-                class="font-serif font-black text-3xl xs:text-4xl tracking-[0.18em] text-transparent bg-clip-text bg-gradient-to-b from-[#FFF5DD] via-[#DFB467] to-[#B38332] drop-shadow-[0_2px_12px_rgba(223,180,103,0.35)] uppercase z-10 my-0.5">
-                ESUBLI
-              </h2>
-
-              <!-- Central Circular Medallion with Official Emblem -->
-              <div class="relative z-10 flex items-center justify-center my-0.5">
-                <!-- Concentric golden halo ring -->
-                <div class="absolute -inset-2.5 rounded-full border border-dashed border-[#DFB467]/30 pointer-events-none"></div>
-
-                <!-- Gold Rim Medallion Frame -->
-                <div
-                  class="w-32 h-32 xs:w-36 xs:h-36 rounded-full p-1.5 bg-gradient-to-br from-[#DFB467] via-[#FCE3AA] to-[#A87928] shadow-[0_12px_32px_rgba(0,0,0,0.7),0_0_25px_rgba(223,180,103,0.35)] flex items-center justify-center">
-                  <div
-                    class="w-full h-full rounded-full overflow-hidden bg-[#F5ECD8] border-2 border-[#544128] relative flex items-center justify-center shadow-inner">
-                    <img id="phone-logo-img" src="assets/images/logo.jpg" alt="Official Emblem"
-                      class="w-full h-full object-cover object-center rounded-full transform scale-105"
-                      onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?w=300&auto=format&fit=crop&q=80';">
-                  </div>
-                </div>
-              </div>
-
-              <!-- Crest Pill: HERITAGE IN SCRIPT -->
-              <div
-                class="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-[#181F2F]/90 border border-[#8C6B32]/50 text-[9.5px] text-[#DFB467] font-bold tracking-wider uppercase z-10 shadow-sm my-0.5">
-                <i class="fa-solid fa-shield-halved text-[9px] text-[#E0622D]"></i>
-                <span id="mockupBadgeText">HERITAGE IN SCRIPT</span>
-              </div>
-
-              <!-- Tagline Description Text -->
-              <p id="mockupDescText"
-                class="text-[10.5px] xs:text-[11px] text-slate-300 leading-snug px-2 font-normal max-w-[260px] text-center z-10 my-0.5">
-                Rediscover the ancient Kapampangan script with interactive lessons, writing studio &amp; multiplayer battles.
-              </p>
-
-              <!-- Language Switcher: [EN], [PH], [KPM] -->
-              <div
-                class="inline-flex items-center p-0.5 px-1 rounded-full bg-[#0B101D] border border-slate-800 text-[10px] font-sans z-10 my-1">
-                <button onclick="changeMockupLanguage('en')" id="mockLangEn"
-                  class="px-3.5 py-1 rounded-full bg-esubli-orange text-white font-bold transition shadow-sm">EN</button>
-                <button onclick="changeMockupLanguage('ph')" id="mockLangPh"
-                  class="px-3.5 py-1 rounded-full text-slate-400 hover:text-white transition font-medium">PH</button>
-                <button onclick="changeMockupLanguage('kpm')" id="mockLangKpm"
-                  class="px-3.5 py-1 rounded-full text-slate-400 hover:text-white transition font-medium">KPM</button>
-              </div>
-
-              <!-- CTA Buttons -->
-              <div class="w-full space-y-2 z-10 px-1 mt-0.5">
-                <!-- Primary Action Button: START JOURNEY -->
-                <button onclick="document.getElementById('did-you-know').scrollIntoView({ behavior: 'smooth' })"
-                  class="w-full py-2.5 xs:py-3 rounded-full bg-gradient-to-r from-[#E85B24] to-[#DC4F18] hover:from-[#f26c36] hover:to-[#df5c2c] text-white text-[11.5px] font-bold uppercase tracking-wider shadow-[0_4px_20px_rgba(224,98,45,0.45)] flex items-center justify-center gap-2 transition active:scale-95 group">
-                  <span id="mockupBtnStart">START JOURNEY</span>
-                  <span
-                    class="w-5 h-5 rounded-full bg-white/20 flex items-center justify-center group-hover:translate-x-0.5 transition-transform">
-                    <i class="fa-solid fa-arrow-right text-[9px] text-white"></i>
-                  </span>
-                </button>
-
-                <!-- Secondary Guide Button: KULITAN GUIDE -->
-                <button onclick="document.getElementById('did-you-know').scrollIntoView({ behavior: 'smooth' })"
-                  class="w-full py-2 xs:py-2.5 rounded-full bg-[#0E1422]/90 hover:bg-[#161F33] border border-[#DFB467]/60 hover:border-[#DFB467] text-[#DFB467] text-[10.5px] font-bold uppercase tracking-wider flex items-center justify-center gap-2 transition shadow-sm active:scale-95">
-                  <i class="fa-solid fa-book-open text-[10px]"></i>
-                  <span id="mockupBtnGuide">KULITAN GUIDE</span>
-                </button>
-              </div>
-
+              <!-- Interactive Click Hotspot: Kulitan Guide -->
+              <a href="#did-you-know" onclick="event.stopPropagation();"
+                class="absolute left-4 right-4 bottom-[8%] h-[6%] z-30 rounded-full focus:outline-none"
+                aria-label="Kulitan Guide"></a>
             </div>
           </div>
 
